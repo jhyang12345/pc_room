@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+from pc_profile.models import Profile
+import os, time, datetime
+from pc_room.util import make_filename
 
 # Create your views here.
 def simple_upload(request):
@@ -7,15 +10,27 @@ def simple_upload(request):
     if request.method == 'POST' and request.FILES['snapshot']:
         print(request.FILES)
         image = request.FILES['snapshot']
-        fs = FileSystemStorage()
-        filename = fs.save(image.name, image)
-        uploaded_file_url = fs.url(filename)
 
-        handle_request(request)
+        token = handle_request(request)
 
-        return render(request, 'image_upload/simple_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
+        passkey = token.password
+
+        image_name, image_type = os.path.splitext(image.name)
+        print(image_name, image_type)
+        now = datetime.datetime.now()
+        if(token):
+            file_path = os.path.join("./media", passkey, "raw_images")
+            fs = FileSystemStorage(location=file_path)
+            image_name = make_filename(now) + image_type
+            filename = fs.save(image_name, image)
+            uploaded_file_url = fs.url(filename)
+            print(os.path.join(file_path, image_name))
+            return render(request, 'image_upload/simple_upload.html', {
+                'uploaded_file_url': uploaded_file_url
+            })
+        else:
+            return "Failed"
+
     elif request.method == 'GET':
         print("Getting")
         response = render(request, 'image_upload/simple_upload.html')
@@ -26,3 +41,11 @@ def simple_upload(request):
 
 def handle_request(request):
     print(request.COOKIES)
+    passkey = request.COOKIES["passkey"]
+    try:
+        profile = Profile.objects.get(password=passkey)
+        return profile
+        print("Profile Found!")
+    except Exception as e:
+        print("Profile not found!")
+        return False
