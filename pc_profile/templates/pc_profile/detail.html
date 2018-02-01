@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>자리요</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="css/fonts.css" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <link rel="stylesheet" href="css/detail.css" type="text/css" />
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA416a1okFOhUwZ-6ygcUfbDx7KjHMer1I&libraries=places">
+    </script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/canvas_handler.js"></script>
+    <script src="js/map_functions.js"></script>
+    <script src="js/detail.js"></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand app-name" href="./index.html">자리요</a>
+
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+
+        <i class="fa fa-bars reorder-icon" aria-hidden="true"></i>
+
+
+      </button>
+
+      <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-md-0">
+          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </nav>
+    <div class="container-box">
+      <div class="search-bar-container">
+        <div class="search-bar-holder">
+          <input type="text" class="search-bar" placeholder="내 주변 피시방 찾아보기...">
+          <span class="search-icon-holder">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+
+      <div id="main-view-holder">
+        <div id="main-canvas-holder">
+          <canvas id="main-canvas">
+          </canvas>
+        </div>
+      </div>
+
+
+      <div class="pc-info-holder">
+        <div class="pc-picture-holder">
+          <div class="main-picture-holder">
+            <img src="./images/pc1.jpg" />
+          </div>
+          <table class="thumbnails-holder">
+            <tr>
+              <td>
+                <div class="single_thumbnail">
+                  <img src="./images/pc2.jpg" />
+                </div>
+              </td>
+              <td>
+                <div class="single_thumbnail">
+                  <img src="./images/pc3.jpg" />
+                </div>
+              </td>
+              <td>
+                <div class="single_thumbnail">
+                  <img src="" />
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="pc-title-holder">
+          <span class="pc-title">
+            사이버리아 PC방
+          </span>
+        </div>
+        <div class="pc-subtitle-holder">
+          <span class="pc-subtitle">
+            수서점
+          </span>
+        </div>
+        <div class="pc-address-holder">
+          <span class="pc-address">
+            서울특별시 강남구 수서동 725
+          </span>
+        </div>
+        <div class="pc-phone-holder">
+          <span class="pc-phone">
+            <i class="fa fa-phone-square"></i><a href="tel:01012345678">010-1234-5678</a>
+          </span>
+        </div>
+
+      </div>
+      <div class="pc-sub-info">
+        <div class="info-label">
+          컴퓨터 사양
+        </div>
+        <div class="info-content pc-specs-holder">
+          RAM 32GB, RAM 16GB, i7 8700k, GTX 1080 Ti, GTX 1080
+        </div>
+
+        <div class="info-label">
+          사장님 한마디
+        </div>
+        <div class="info-content">
+          쾌적하게 좋은 시간 보내세요~
+        </div>
+        <div class="info-label">
+          총 자리 수
+        </div>
+        <div class="info-content">
+          75석
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

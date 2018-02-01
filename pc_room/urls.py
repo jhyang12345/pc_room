@@ -19,6 +19,7 @@ from django.conf.urls import url
 
 
 urlpatterns = [
+    path('', include('pc_profile.urls')),
     path('image_upload/', include('image_upload.urls')),
     path('admin/', admin.site.urls),
 ]
