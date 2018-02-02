@@ -11,7 +11,7 @@ class Profile(models.Model):
     added_date = models.DateField('date published')
     supported = models.BooleanField(default=False)
     grid_shape = models.TextField(max_length=600, default="")
-    grid_data = models.TextField(max_length=600, default="")
+    grid_data = models.TextField(max_length=600, default="", blank=True, null=True)
     lat = models.DecimalField(max_digits=10, decimal_places=7, default=100.00)
     lng = models.DecimalField(max_digits=10, decimal_places=7, default=100.00)
     pc_title = models.CharField(max_length=20, default="")

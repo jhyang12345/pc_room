@@ -16,8 +16,18 @@
 
     <script type="text/javascript">
       var mapMarkerList = [];
+      var markerInfoDict = {};
       {% for profile in supported_profiles %}
-        mapMarkerList.push({profile_name: {{profile.profile_name}}, lat: {{profile.lat}}, lng: {{profile.lng}}});
+
+        markerInfoDict["{{profile.profile_name}}"] = {
+            pc_title: "{{profile.pc_title}}",
+            pc_subtitle: "{{profile.pc_subtitle}}",
+            address: "{{profile.address}}",
+            id: "{{profile.id}}",
+            lat: {{profile.lat}},
+            lng: {{profile.lng}},
+          };
+        mapMarkerList.push({profile_name: "{{profile.profile_name}}", lat: {{profile.lat}}, lng: {{profile.lng}}});
       {% endfor %}
     </script>
 
