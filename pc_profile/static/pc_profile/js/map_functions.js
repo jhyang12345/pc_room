@@ -21,7 +21,13 @@ function initializeMap(mapHolder) {
     gestureHandling: "greedy"
   });
 
+
   addMarker({lat: 37.561225, lng: 127.035503}, map, "normal");
+  if(typeof(mapMarkerList) != "undefined") {
+    for(const marker of mapMarkerList) {
+      addMarker(marker, map, "normal");
+    }
+  }
 
   google.maps.event.addListener(map, 'click', function(evt) {
     console.log(evt.latLng.lat());

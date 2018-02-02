@@ -5,24 +5,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" href="css/reset.css" type="text/css" />
-    <link rel="stylesheet" href="css/fonts.css" type="text/css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "pc_profile/css/reset.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/fonts.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/bootstrap.min.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/font-awesome.min.css" %}" type="text/css">
 
-    <link rel="stylesheet" href="css/main.css" type="text/css" />
-    <link rel="stylesheet" href="css/detail.css" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/main.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/detail.css" %}" type="text/css" />
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA416a1okFOhUwZ-6ygcUfbDx7KjHMer1I&libraries=places">
     </script>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/canvas_handler.js"></script>
-    <script src="js/map_functions.js"></script>
-    <script src="js/detail.js"></script>
+    <script src="{% static "pc_profile/js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/canvas_handler.js" %}"></script>
+    <script src="{% static "pc_profile/js/map_functions.js" %}"></script>
+    <script src="{% static "pc_profile/js/detail.js" %}"></script>
 
   </head>
   <body>

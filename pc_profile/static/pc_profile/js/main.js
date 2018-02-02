@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 // $(document).ready(function(evt) {
   console.log("Document Ready!");
-  console.log(DJANGO_STATIC_URL)
+
+  $("#map-container").on("click tap", function(evt) {
+    evt.preventDefault();
+    window.location.href = "./map"
+  });
 
   $(".up-button-holder").on("click tap", function(evt) {
     evt.preventDefault();

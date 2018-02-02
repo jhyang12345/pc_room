@@ -15,7 +15,19 @@
     <link rel="stylesheet" href="{% static "pc_profile/css/map.css" %}" type="text/css" />
 
     <script type="text/javascript">
-        DJANGO_STATIC_URL = '{{ STATIC_URL }}';
+      var mapMarkerList = [];
+      var markerInfoDict = {};
+      {% for profile in supported_profiles %}
+
+        markerInfoDict["{{profile.profile_name}}"] = {
+            pc_title: "{{profile.pc_title}}",
+            pc_subtitle: "{{profile.pc_subtitle}}",
+            address: "{{profile.address}}",
+            lat: {{profile.lat}},
+            lng: {{profile.lng}},
+          };
+        mapMarkerList.push({profile_name: "{{profile.profile_name}}", lat: {{profile.lat}}, lng: {{profile.lng}}});
+      {% endfor %}
     </script>
 
     <script
@@ -28,11 +40,13 @@
     <script src="{% static "pc_profile/js/map_functions.js" %}"></script>
     <script src="{% static "pc_profile/js/map.js" %}"></script>
 
+
+
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
       <!-- link to home page! -->
-      <a class="navbar-brand app-name" href="./index.html">자리요</a>
+      <a class="navbar-brand app-name" href="/">자리요</a>
 
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -93,7 +107,7 @@
         <div class="info-marker-holder">
           <span class="info-distance">1.4 km</span>
           <div class="marker-image-holder">
-            <img class="info-marker" src="images/marker_blue.png" />
+            <img class="info-marker" src="{% static "pc_profile/images/marker_blue.png" %}" />
           </div>
 
         </div>
@@ -110,7 +124,7 @@
         <div class="info-marker-holder">
           <span class="info-distance">1.4 km</span>
           <div class="marker-image-holder">
-            <img class="info-marker" src="images/marker_blue.png" />
+            <img class="info-marker" src="{% static "pc_profile/images/marker_blue.png" %}" />
           </div>
 
         </div>

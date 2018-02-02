@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function(evt) {
     resizeMap($(".main-map-holder"));
   });
 
-  for (object of object_list) {
-    addActualMarker(object, map);
-    console.log(object);
-  }
+  // for (object of object_list) {
+  //   addActualMarker(object, map);
+  //   console.log(object);
+  // }
 
 });
 

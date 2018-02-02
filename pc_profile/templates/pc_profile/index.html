@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="{% static "pc_profile/css/index.css" %}" type="text/css" />
 
     <script type="text/javascript">
-        var DJANGO_STATIC_URL = '{{ STATIC_URL }}';
+      var mapMarkerList = [];
+      {% for profile in supported_profiles %}
+        mapMarkerList.push({profile_name: {{profile.profile_name}}, lat: {{profile.lat}}, lng: {{profile.lng}}});
+      {% endfor %}
     </script>
 
     <script
@@ -28,10 +31,12 @@
     <script src="{% static "pc_profile/js/map_functions.js" %}"></script>
     <script src="{% static "pc_profile/js/main.js" %}"></script>
 
+
+
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand app-name" href="./index.html">자리요</a>
+      <a class="navbar-brand app-name" href="/">자리요</a>
 
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -84,7 +89,7 @@
           <!-- number of pc_rooms are template variables -->
           <div id="map-label-holder">
               <div class="header-label">
-                  현재 자리요는 9개의 PC방의 실시간 정보를 제공하고 있습니다.
+                  현재 자리요는 {{ servicing_number }}개의 PC방의 실시간 정보를 제공하고 있습니다.
               </div>
               <div class="sub-label">
                   현재 자리요는 일부 지역에서만 서비스 하고 있습니다. 점차 새로운 PC방들과 제휴를 맺어서, 더 나은 서비스를 약속드립니다.
