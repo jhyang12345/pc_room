@@ -9,5 +9,6 @@ app_name='pc_profile'
 urlpatterns = [
   path('', views.index, name='main_page'),
   path('map/', views.map_view, name="map_page"),
-  path('detail/', views.detail_view, name="detail_page"),
+  # path('detail/', views.detail_view, name="detail_page"),
+  path('detail/<int:id>', views.single_detail_view, name="single_detail_view"),
 ]

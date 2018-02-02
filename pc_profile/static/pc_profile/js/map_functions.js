@@ -22,10 +22,10 @@ function initializeMap(mapHolder) {
   });
 
 
-  addMarker({lat: 37.561225, lng: 127.035503}, map, "normal");
+  // addMarker({lat: 37.561225, lng: 127.035503}, map, "normal");
   if(typeof(mapMarkerList) != "undefined") {
     for(const marker of mapMarkerList) {
-      addMarker(marker, map, "normal");
+      addActualMarker(marker, map);
     }
   }
 
@@ -47,16 +47,16 @@ function addMarker(location, map, type) {
 }
 
 function addActualMarker(object, map) {
-  const coord = object["coord"];
+  const markerInfo = markerInfoDict[object.profile_name];
 
   const marker = new google.maps.Marker({
-    position: coord,
+    position: markerInfo,
     map: map,
     icon: blueMarkerImage
   });
 
   google.maps.event.addListener(marker, 'click', function() {
     handleInfoBoxAnimation(this);
-  }.bind(object));
+  }.bind(markerInfo));
 
 }

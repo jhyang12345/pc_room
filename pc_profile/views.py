@@ -22,3 +22,7 @@ def map_view(request):
 
 def detail_view(request):
     return render(request, 'pc_profile/detail.html')
+
+def single_detail_view(request, id):
+    
+    return render(request, 'pc_profile/detail.html')
