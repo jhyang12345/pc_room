@@ -26,6 +26,7 @@ function resizeMap(mapElement) {
   mapElement.height(mapElement.height() - navbarHeight);
 }
 
+
 // Object Keys
 // pc_title, pc_subtitle, address, lat, lng
 function handleInfoBoxAnimation(object) {

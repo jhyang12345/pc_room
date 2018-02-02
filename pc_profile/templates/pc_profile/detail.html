@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static "pc_profile/css/fonts.css" %}" type="text/css" />
     <link rel="stylesheet" href="{% static "pc_profile/css/bootstrap.min.css" %}" type="text/css" />
     <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/font-awesome.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/fontawesome-all.min.css" %}" type="text/css">
 
     <link rel="stylesheet" href="{% static "pc_profile/css/main.css" %}" type="text/css" />
     <link rel="stylesheet" href="{% static "pc_profile/css/detail.css" %}" type="text/css" />
@@ -77,24 +78,43 @@
           <canvas id="main-canvas">
           </canvas>
         </div>
+        <div id="legend-holder">
+          <div id="color-guide-holder">
+            <div id="empty-guide">
+              <span class="guide-text">빈 자리</span>
+              <span class="color-square"></span>
+            </div>
+            <div id="taken-guide">
+              <span class="guide-text">사용중</span>
+              <span class="color-square"></span>
+            </div>
+            <div id="counter-guide">
+              <span class="guide-text">카운터</span>
+              <span class="color-square"></span>
+            </div>
+          </div>
+        </div>
+        <div id="time-holder">
+          <span id="current-time"></span><i class="fas fa-sync-alt"></i>
+        </div>
       </div>
 
 
       <div class="pc-info-holder">
         <div class="pc-picture-holder">
           <div class="main-picture-holder">
-            <img src="./images/pc1.jpg" />
+            <img src="/static/pc_profile/images/pc1.jpg" />
           </div>
           <table class="thumbnails-holder">
             <tr>
               <td>
                 <div class="single_thumbnail">
-                  <img src="./images/pc2.jpg" />
+                  <img src="/static/pc_profile/images/pc2.jpg" />
                 </div>
               </td>
               <td>
                 <div class="single_thumbnail">
-                  <img src="./images/pc3.jpg" />
+                  <img src="/static/pc_profile/images/pc3.jpg" />
                 </div>
               </td>
               <td>
@@ -107,22 +127,22 @@
         </div>
         <div class="pc-title-holder">
           <span class="pc-title">
-            사이버리아 PC방
+            {{ pc_title }}
           </span>
         </div>
         <div class="pc-subtitle-holder">
           <span class="pc-subtitle">
-            수서점
+            {{pc_subtitle}}
           </span>
         </div>
         <div class="pc-address-holder">
           <span class="pc-address">
-            서울특별시 강남구 수서동 725
+            {{address}}
           </span>
         </div>
         <div class="pc-phone-holder">
           <span class="pc-phone">
-            <i class="fa fa-phone-square"></i><a href="tel:01012345678">010-1234-5678</a>
+            <i class="fa fa-phone-square"></i><a href="tel:{{phone_address}}">{{phone_number}}</a>
           </span>
         </div>
 
@@ -132,20 +152,20 @@
           컴퓨터 사양
         </div>
         <div class="info-content pc-specs-holder">
-          RAM 32GB, RAM 16GB, i7 8700k, GTX 1080 Ti, GTX 1080
+          {{pc_specs}}
         </div>
 
         <div class="info-label">
           사장님 한마디
         </div>
         <div class="info-content">
-          쾌적하게 좋은 시간 보내세요~
+          {{owners_words}}
         </div>
         <div class="info-label">
           총 자리 수
         </div>
         <div class="info-content">
-          75석
+          {{total_seats}}
         </div>
       </div>
     </div>

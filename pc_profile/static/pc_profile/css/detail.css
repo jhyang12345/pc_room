@@ -13,11 +13,70 @@
   height: 50%;
   background-color: #252525;
   padding: 15px;
+  position: relative;
 }
 
 #main-canvas-holder {
   width: 100%;
   height: 100%;
+}
+
+#legend-holder {
+  padding: 5px;
+  position: absolute;
+  right: 0px;
+  bottom: 20px;
+  color: #b5b5b5;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+}
+
+
+#color-guide-holder div {
+  height: 18px;
+  line-height: 18px;
+}
+
+#empty-guide .color-square {
+  background-color: #bfffff;
+}
+
+#taken-guide .color-square {
+  background-color: #263333;
+}
+
+#counter-guide .color-square {
+  background-color: #9b9b9b;
+}
+
+span.color-square {
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  border-radius: 2.5px;
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+}
+
+#time-holder {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  color: #b5b5b5;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+#current-time {
+  color: #656565;
+}
+
+#time-holder .fa-sync-alt {
+  margin-left: 5px;
+  color: #656565;
+  vertical-align: middle;
 }
 
 .pc-picture-holder {

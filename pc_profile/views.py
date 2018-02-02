@@ -24,5 +24,15 @@ def detail_view(request):
     return render(request, 'pc_profile/detail.html')
 
 def single_detail_view(request, id):
-    
-    return render(request, 'pc_profile/detail.html')
+    profile = Profile.objects.get(id=id)
+    context = {
+        'pc_title': profile.pc_title.strip(),
+        'pc_subtitle': profile.pc_subtitle.strip(),
+        'address': profile.address.strip(),
+        'phone_number': profile.phone_number.strip(),
+        'phone_address': profile.phone_address.strip(),
+        'pc_specs': profile.pc_specs.strip(),
+        'owners_words': profile.owners_words.strip(),
+        'total_seats': profile.total_seats.strip(),
+    }
+    return render(request, 'pc_profile/detail.html', context)

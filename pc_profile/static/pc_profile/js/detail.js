@@ -4,6 +4,14 @@ $(document).ready(function(evt) {
   initializeCanvas(document.querySelector("#main-canvas"));
 
   resizeThumbnails();
+
+  setTime(document.querySelector("#current-time"));
+
+  const refreshButton = document.querySelector("#time-holder");
+  $(refreshButton).on("click tap", function(evt) {
+    setTime(document.querySelector("#current-time"));
+  });
+
 });
 
 function initializeDetail() {
@@ -29,4 +37,31 @@ function resizeThumbnails() {
     // }
 
   });
+}
+
+function checkTime(i) {
+    return (i < 10) ? "0" + i : i;
+}
+
+function amPM(h) {
+  if(h > 12) {
+    return "PM";
+  } else {
+    return "AM";
+  }
+}
+
+function checkHours(i) {
+  if(i > 12) {
+    return i % 12;
+  }
+  return i;
+}
+
+function setTime(elem) {
+    var today = new Date(),
+        h = checkTime(checkHours(today.getHours())),
+        m = checkTime(today.getMinutes());
+    var format = amPM(today.getHours());
+    elem.innerHTML = h + ":" + m + " " + format;
 }
