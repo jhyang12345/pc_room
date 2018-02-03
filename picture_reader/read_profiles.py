@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-from picture_reader.CafeProfile import CafeProfile
 from pc_profile.models import Profile, ProfileImageGuide
 
 port_number = 27018

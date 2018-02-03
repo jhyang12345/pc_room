@@ -1,7 +1,6 @@
 from django.db import models
 from django.dispatch import receiver
 import pymongo
-from pc_profile.CafeProfile import CafeProfile
 
 # Create your models here.
 class Profile(models.Model):
@@ -28,9 +27,6 @@ class Profile(models.Model):
 
 @receiver(models.signals.post_save, sender=Profile)
 def execute_after_save(sender, instance, created, *args, **kwargs):
-    if created:
-        c = CafeProfile(name=instance.profile_name, id=instance.id)
-        c.save_profile()
     try:
         ret = ProfileImageGuide.objects.get(profile_name=instance.profile_name)
     except:

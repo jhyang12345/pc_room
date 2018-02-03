@@ -8,6 +8,7 @@ import datetime
 import os, sys
 from picture_reader.util import *
 from picture_reader.read_profiles import read_data_list, read_data
+from database_helper import update_profile_grid_info
 
 ssim_threshold = 0.95
 
@@ -165,6 +166,7 @@ def generate_first_time(filename, pc_name, root_path=""):
             grid_string = string_from_grid(handle_corners(item.grid_cell_locations),
                 Image.open(original_image), item.base_grid.strip(),
                 (item.r, item.g, item.b))
+            update_profile_grid_info(pc_name, grid_string)
 
 def main():
     filename = sys.argv[1]

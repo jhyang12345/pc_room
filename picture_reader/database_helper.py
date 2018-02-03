@@ -1,66 +1,16 @@
-from pymongo import MongoClient
-from picture_reader.CafeProfile import CafeProfile
+from pc_profile.models import Profile
 
-port_number = 27018
+def update_profile_grid_info(profile_name, grid_string):
+    try:
+        p = Profile.objects.get(profile_name=profile_name)
+        p.grid_data = grid_string
+        p.save()
+    except:
+        pass
 
-def delete_all(dbh):
-    dbh.profile_list.delete_many({"name": "Pica_test"})
-
-def update_anchor(dbh, name, image):
-    dbh.profile_list.update_one(
-        {
-        "name": name
-        },
-        {
-        "$set": {
-            "anchor_image": image
-        }
-        }
-    )
-
-def update_reference_color(dbh, name, color):
-    dbh.profile_list.update_one(
-        {
-        "name": name
-        },
-        {
-        "$set": {
-            "color": color
-        }
-        }
-    )
-
-def update_base_grid(dbh, name, grid):
-    dbh.profile_list.update_one(
-        {
-        "name": name
-        },
-        {
-        "$set": {
-            "base_grid": grid
-        }
-        }
-    )
 
 def main():
-    try:
-        c = MongoClient(host='localhost', port=port_number)
-        dbh = c["profile_db"]
-        delete_all(dbh)
-        # update_base_grid(dbh, "initial_test", """
-        # ***.***
-        # .......
-        # ***.***
-        # ***.***
-        # .......
-        # ***.***
-        # ***.***
-        # .......
-        # ***.***
-        # """)
-    except Exception as e:
-        print(e)
-        print("Failed to connect to db!")
+    pass
 
 if __name__ == '__main__':
     main()
