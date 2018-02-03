@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+import json
 
 from .models import Profile
 # Create your views here.
@@ -36,3 +38,18 @@ def single_detail_view(request, id):
         'total_seats': profile.total_seats.strip(),
     }
     return render(request, 'pc_profile/detail.html', context)
+
+def get_current_grid(request, id):
+    print("Received AJAX Request")
+    try:
+        profile = Profile.objects.get(id=id)
+        data = {
+            "grid": profile.grid_data.strip()
+        }
+        print(data)
+        return JsonResponse(data)
+    except Exception as e:
+        print("Failed", e)
+        return JsonResponse({})
+
+    return render(request, 'pc_profile/detail.html')

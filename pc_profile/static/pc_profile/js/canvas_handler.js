@@ -51,7 +51,7 @@ function drawGridFromString(canvas, referenceString) {
   var grid_margin_top = padding;
   var grid_margin_left = padding;
   // x is the divisor to the relative size of padding to square_width
-  const padding_ratio = 3;
+  const padding_ratio = 2.5;
   if(cols / rows > canvas.width / canvas.height) {
     square_width = (canvas.width) / (cols + (cols + 1) / padding_ratio);
     padding = square_width / padding_ratio
@@ -183,6 +183,17 @@ function fillPathRectangle(context, x, y, square_width, radius, padding,
 
 }
 
+function getCurrentGrid(profileID) {
+  $.ajax({
+    url: '/current-grid/' + profileID,
+    type: 'GET',
+    success: function(data) {
+      console.log(data);
+      console.log(data.grid);
+    }
+  });
+}
+
 const definition_scale = 3;
 
 const seat_color = "#263333";
@@ -206,3 +217,10 @@ var ret = `-....+.....
 -.--.-....+
 +.++.-.##.+
 `
+
+// var ret = `+++-+
+// +++-+
+// +---+
+// +-+-+
+// +-+-+
+// `

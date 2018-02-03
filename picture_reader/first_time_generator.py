@@ -142,18 +142,18 @@ def generate_first_time(filename, pc_name, root_path=""):
         os.makedirs(mask_directory)
 
     # Creating & Saving masked image
-    filename = make_filename(now) + "_mask" + ".png"
-    filename = os.path.join(mask_directory, filename)
-    processed_image.save(filename)
+    mask_filename = make_filename(now) + "_mask" + ".png"
+    mask_filename = os.path.join(mask_directory, mask_filename)
+    processed_image.save(mask_filename)
 
     # Creating & Saving hough line image
-    filename = make_filename(now) + "_hough" + ".png"
-    filename = os.path.join(hough_directory, filename)
-    hough_image.save(filename)
+    hough_filename = make_filename(now) + "_hough" + ".png"
+    hough_filename = os.path.join(hough_directory, hough_filename)
+    hough_image.save(hough_filename)
 
     # Set anchor image if not set!
     if(not item.anchor_image):
-        item.anchor_image = filename
+        item.anchor_image = hough_filename
         item.save()
 
     # filename = make_filename(now) + "_snap" + ".png"
@@ -167,6 +167,10 @@ def generate_first_time(filename, pc_name, root_path=""):
             grid_string = string_from_grid(handle_coords(item.grid_cell_locations),
                 Image.open(original_filename), item.base_grid.strip(),
                 (item.r, item.g, item.b))
+            # updating hough image path if similar enough
+            item.anchor_image = hough_filename
+            item.save()
+            # updating profile grid info
             update_profile_grid_info(pc_name, grid_string)
 
 def main():
