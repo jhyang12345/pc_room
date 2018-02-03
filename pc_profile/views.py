@@ -28,7 +28,7 @@ def detail_view(request):
 def single_detail_view(request, id):
     profile = Profile.objects.get(id=id)
     context = {
-        'profile_id': profile.id, 
+        'profile_id': profile.id,
         'pc_title': profile.pc_title.strip(),
         'pc_subtitle': profile.pc_subtitle.strip(),
         'address': profile.address.strip(),
@@ -41,16 +41,14 @@ def single_detail_view(request, id):
     return render(request, 'pc_profile/detail.html', context)
 
 def get_current_grid(request, id):
-    print("Received AJAX Request")
     try:
         profile = Profile.objects.get(id=id)
         data = {
             "grid": profile.grid_data.strip()
         }
-        print(data)
         return JsonResponse(data)
     except Exception as e:
-        print("Failed", e)
+        print("Failed to handle AJAX Request", e)
         return JsonResponse({})
 
     return render(request, 'pc_profile/detail.html')
