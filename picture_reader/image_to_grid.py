@@ -40,8 +40,8 @@ def string_from_grid(coords, image, base_grid, color):
             ret += "+"
         else: # taken seats
             ret += "-"
-    iterate_base_grid(base_grid, ret, color_grid)
-    return ret
+    base_grid = iterate_base_grid(base_grid, ret, color_grid)
+    return base_grid
 
 def iterate_base_grid(base_grid, ret, color_grid, column_sort=True):
     base_grid = base_grid.strip()
@@ -65,6 +65,7 @@ def iterate_base_grid(base_grid, ret, color_grid, column_sort=True):
         base_grid[i] = "".join(base_grid[i])
     base_grid = "\n".join(base_grid)
     print(base_grid)
+    return base_grid
 
 base_grid = """
 ***.***

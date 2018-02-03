@@ -8,7 +8,8 @@ import datetime
 import os, sys
 from picture_reader.util import *
 from picture_reader.read_profiles import read_data_list, read_data
-from database_helper import update_profile_grid_info
+from picture_reader.database_helper import update_profile_grid_info
+from picture_reader.image_to_grid import *
 
 ssim_threshold = 0.95
 
@@ -133,8 +134,8 @@ def generate_first_time(filename, pc_name, root_path=""):
     now = datetime.datetime.now()
     filename = make_filename(now) + ".png"
 
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    # if not os.path.exists(directory):
+    #     os.makedirs(directory)
     if not os.path.exists(hough_directory):
         os.makedirs(hough_directory)
     if not os.path.exists(mask_directory):
@@ -155,16 +156,16 @@ def generate_first_time(filename, pc_name, root_path=""):
         item.anchor_image = filename
         item.save()
 
-    filename = make_filename(now) + "_snap" + ".png"
-    filename = os.path.join(directory, filename)
-    img.save(filename)
+    # filename = make_filename(now) + "_snap" + ".png"
+    # filename = os.path.join(directory, filename)
+    # img.save(filename)
 
     # SSIM Threshold is 0.95
     if(item.anchor_image):
-        ssim_value = compare_to_anchor(hough_image, item.anchor_image)
+        ssim_value = compare_to_anchor(np.array(hough_image), item.anchor_image)
         if(ssim_value > 0.95):
-            grid_string = string_from_grid(handle_corners(item.grid_cell_locations),
-                Image.open(original_image), item.base_grid.strip(),
+            grid_string = string_from_grid(handle_coords(item.grid_cell_locations),
+                Image.open(original_filename), item.base_grid.strip(),
                 (item.r, item.g, item.b))
             update_profile_grid_info(pc_name, grid_string)
 

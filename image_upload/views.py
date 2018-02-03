@@ -5,7 +5,6 @@ import os, time, datetime
 from pc_room.util import make_filename
 from picture_reader.first_time_generator import generate_first_time
 from picture_reader.read_profiles import read_data
-from picture_reader.CafeProfile import CafeProfile
 
 # Profile attributes
 # profile_name
@@ -19,7 +18,6 @@ from picture_reader.CafeProfile import CafeProfile
 def simple_upload(request):
     print(request)
     if request.method == 'POST' and request.FILES['snapshot']:
-        print(request.FILES)
         image = request.FILES['snapshot']
 
         profile = handle_request(request)
@@ -30,11 +28,6 @@ def simple_upload(request):
         print(image_name, image_type)
         now = datetime.datetime.now()
         if(profile):
-            # create profile if it doesn't exist
-            if(read_data(pc_name=profile.profile_name)):
-                c = CafeProfile(name=profile.profile_name, id=profile.id)
-                c.save_profile()
-
             file_path = os.path.join("media", passkey, "raw_images")
             root_path = os.path.join("media", passkey)
             fs = FileSystemStorage(location=file_path)
@@ -42,7 +35,6 @@ def simple_upload(request):
             filename = fs.save(image_name, image)
             uploaded_file_url = fs.url(filename)
             generate_first_time(os.path.join(file_path, image_name), profile.profile_name, root_path=root_path)
-            print(os.path.join(file_path, image_name))
             return render(request, 'image_upload/simple_upload.html', {
                 'uploaded_file_url': uploaded_file_url
             })

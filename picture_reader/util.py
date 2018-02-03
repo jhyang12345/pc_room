@@ -38,6 +38,7 @@ def get_ssim(imageA, imageB):
     s = ssim(imageA, imageB)
     return s
 
+# Image passed is numpy array
 def compare_to_anchor(image, anchor_file="images/hough/snap_171202_215637_hough.png"):
     anchor = Image.open(anchor_file)
     anchor = np.array(anchor)
