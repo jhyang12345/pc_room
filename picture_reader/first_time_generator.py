@@ -1,4 +1,4 @@
-from PIL import ImageGrab, Image
+from PIL import Image
 from matplotlib.pyplot import imshow
 from skimage.measure import structural_similarity as ssim
 import numpy as np

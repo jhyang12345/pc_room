@@ -38,6 +38,9 @@ function handleGridString(gridString) {
       ret.splice(i, 1);
     i++;
   }
+  for(var i = 0; i < ret.length; ++i) {
+    ret[i] = ret[i].trim();
+  }
   var rows = ret.length;
   var cols = ret[0].length;
   return ret;
