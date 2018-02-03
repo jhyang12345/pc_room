@@ -1,4 +1,4 @@
-function initializeCanvas(canvas) {
+function initializeCanvas(canvas, referenceString) {
   var $container = $(canvas).parent();
   const container = $container.get(0);
   const container_width = $container[0].offsetWidth;
@@ -17,9 +17,15 @@ function initializeCanvas(canvas) {
   $(canvas).attr({width: (rect.width - paddingLeft * 2) * definition_scale, height: (rect.height - paddingTop * 2) * definition_scale});
   canvas.style.width = (canvas.width / definition_scale).toString() + "px";
   canvas.style.height = (canvas.height / definition_scale).toString() + "px";
-  const referenceString = handleGridString(ret);
+  console.log(canvas, referenceString);
+  if(!referenceString) {
+    const referenceString = handleGridString(ret);
 
-  drawGridFromString(canvas, referenceString);
+    drawGridFromString(canvas, referenceString);
+  } else {
+    const referenceStr = handleGridString(referenceString);
+    drawGridFromString(canvas, referenceStr);
+  }
 
 }
 
@@ -183,14 +189,15 @@ function fillPathRectangle(context, x, y, square_width, radius, padding,
 
 }
 
-function getCurrentGrid(profileID) {
+function getCurrentGrid(profileID, initializeCanvas) {
   $.ajax({
     url: '/current-grid/' + profileID,
     type: 'GET',
     success: function(data) {
-      console.log(data);
       console.log(data.grid);
-    }
+      initializeCanvas(this, data.grid);
+
+    }.bind(this)
   });
 }
 

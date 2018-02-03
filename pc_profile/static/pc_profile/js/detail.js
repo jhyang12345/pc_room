@@ -1,7 +1,10 @@
 $(document).ready(function(evt) {
   initializeDetail();
 
-  initializeCanvas(document.querySelector("#main-canvas"));
+  const mainCanvas = document.querySelector("#main-canvas");
+
+  // call AJAX function to retrieve current grid_data
+  getCurrentGrid.call(mainCanvas, pcProfileID, initializeCanvas);
 
   resizeThumbnails();
 
@@ -10,6 +13,7 @@ $(document).ready(function(evt) {
   const refreshButton = document.querySelector("#time-holder");
   $(refreshButton).on("click tap", function(evt) {
     setTime(document.querySelector("#current-time"));
+    getCurrentGrid.call(mainCanvas, pcProfileID, initializeCanvas);
   });
 
 });

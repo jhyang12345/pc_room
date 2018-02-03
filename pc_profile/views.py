@@ -28,6 +28,7 @@ def detail_view(request):
 def single_detail_view(request, id):
     profile = Profile.objects.get(id=id)
     context = {
+        'profile_id': profile.id, 
         'pc_title': profile.pc_title.strip(),
         'pc_subtitle': profile.pc_subtitle.strip(),
         'address': profile.address.strip(),
