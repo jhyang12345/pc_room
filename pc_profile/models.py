@@ -7,7 +7,7 @@ from pc_profile.CafeProfile import CafeProfile
 class Profile(models.Model):
 
     profile_name = models.CharField(max_length=200, unique=True)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=50, unique=True)
     added_date = models.DateField('date published')
     supported = models.BooleanField(default=False)
     grid_shape = models.TextField(max_length=600, default="")
