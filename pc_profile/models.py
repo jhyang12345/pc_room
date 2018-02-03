@@ -23,7 +23,6 @@ class Profile(models.Model):
     owners_words = models.CharField(max_length=100, default="")
     total_seats = models.CharField(max_length=10, default="")
 
-
     def __str__(self):
         return self.profile_name
 
@@ -32,3 +31,24 @@ def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
         c = CafeProfile(name=instance.profile_name, id=instance.id)
         c.save_profile()
+    try:
+        ret = ProfileImageGuide.objects.get(profile_name=instance.profile_name)
+    except:
+        ret = None
+    if not ret or created:
+        p = ProfileImageGuide(profile_name=instance.profile_name)
+        p.save()
+
+class ProfileImageGuide(models.Model):
+    profile_name = models.CharField(max_length=200, unique=True)
+    grid_corners = models.TextField(max_length=100, default="", blank=True, null=True)
+    grid_cell_locations = models.TextField(default="", blank=True, null=True)
+    base_grid = models.TextField(default="", blank=True, null=True)
+    anchor_image = models.CharField(max_length=100, default="", blank=True, null=True)
+    # RGB is for the occupied seats
+    r = models.IntegerField(default=0, blank=True, null=True)
+    g = models.IntegerField(default=0, blank=True, null=True)
+    b = models.IntegerField(default=0, blank=True, null=True)
+
+    def __str__(self):
+        return self.profile_name

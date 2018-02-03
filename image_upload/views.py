@@ -3,6 +3,17 @@ from django.core.files.storage import FileSystemStorage
 from pc_profile.models import Profile
 import os, time, datetime
 from pc_room.util import make_filename
+from picture_reader.first_time_generator import generate_first_time
+from picture_reader.read_profiles import read_data
+from picture_reader.CafeProfile import CafeProfile
+
+# Profile attributes
+# profile_name
+# password
+# added_date
+# supported
+# grid_shape
+# grid_data
 
 # Create your views here.
 def simple_upload(request):
@@ -11,19 +22,26 @@ def simple_upload(request):
         print(request.FILES)
         image = request.FILES['snapshot']
 
-        token = handle_request(request)
+        profile = handle_request(request)
 
-        passkey = token.password
+        passkey = profile.password
 
         image_name, image_type = os.path.splitext(image.name)
         print(image_name, image_type)
         now = datetime.datetime.now()
-        if(token):
-            file_path = os.path.join("./media", passkey, "raw_images")
+        if(profile):
+            # create profile if it doesn't exist
+            if(read_data(pc_name=profile.profile_name)):
+                c = CafeProfile(name=profile.profile_name, id=profile.id)
+                c.save_profile()
+
+            file_path = os.path.join("media", passkey, "raw_images")
+            root_path = os.path.join("media", passkey)
             fs = FileSystemStorage(location=file_path)
             image_name = make_filename(now) + image_type
             filename = fs.save(image_name, image)
             uploaded_file_url = fs.url(filename)
+            generate_first_time(os.path.join(file_path, image_name), profile.profile_name, root_path=root_path)
             print(os.path.join(file_path, image_name))
             return render(request, 'image_upload/simple_upload.html', {
                 'uploaded_file_url': uploaded_file_url
