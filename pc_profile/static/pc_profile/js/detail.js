@@ -13,6 +13,7 @@ $(document).ready(function(evt) {
   const refreshButton = document.querySelector("#time-holder");
   $(refreshButton).on("click tap", function(evt) {
     setTime(document.querySelector("#current-time"));
+    console.log("REFRESHED");
     getCurrentGrid.call(mainCanvas, pcProfileID, initializeCanvas);
   });
 
@@ -21,6 +22,37 @@ $(document).ready(function(evt) {
 function initializeDetail() {
   const windowHeight = $(window).height();
   $("#main-view-holder").height(windowHeight * (4.5 / 10));
+
+  // document.querySelector("#main-view-holder").addEventListener("touchstart", function(evt) {
+  //   evt.preventDefault();
+  //   var touches = evt.touches;
+  //   console.log(touches);
+  // });
+
+  $("#main-view-holder").on("touchstart", function(evt) {
+    evt.preventDefault();
+    var touches = evt.touches;
+    const touch = touches[0];
+    pageObject.touchStart = {x: touch.clientX, y: touch.clientY};
+  });
+
+  // Handle drag event
+  $("#main-view-holder").on("touchmove", function(evt) {
+    evt.preventDefault();
+    var touches = evt.touches;
+
+    const touch = touches[0];
+    const deltaX = touch.clientX - pageObject.touchStart.x;
+    const deltaY = touch.clientY - pageObject.touchStart.y;
+    $(this).css({
+      "transform": "translate(" + deltaX + "px, " + deltaY + "px)",
+      "-webkit-transform" : "translate(" + deltaX + "px, " + deltaY + "px)",
+      "-ms-transform" : "translate(" + deltaX + "px, " + deltaY + "px)",
+    });
+    for(var i = 0; i < touches.length; ++i) {
+
+    }
+  }.bind(document.querySelector("#main-canvas")));
 }
 
 function resizeThumbnails() {
@@ -69,3 +101,5 @@ function setTime(elem) {
     var format = amPM(today.getHours());
     elem.innerHTML = h + ":" + m + " " + format;
 }
+
+var pageObject = new PageObject();

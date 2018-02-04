@@ -29,6 +29,7 @@ function initializeMap(mapHolder) {
     }
   }
 
+  // Map listener may be covering marker listener
   google.maps.event.addListener(map, 'click', function(evt) {
     console.log(evt.latLng.lat());
     console.log(evt.latLng.lng());
@@ -49,13 +50,17 @@ function addMarker(location, map, type) {
 function addActualMarker(object, map) {
   const markerInfo = markerInfoDict[object.profile_name];
 
+  console.log("Adding marker!");
   const marker = new google.maps.Marker({
     position: markerInfo,
     map: map,
     icon: blueMarkerImage
   });
 
+  marker.setMap(map);
+
   google.maps.event.addListener(marker, 'click', function() {
+
     handleInfoBoxAnimation(this);
   }.bind(markerInfo));
 

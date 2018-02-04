@@ -13,11 +13,9 @@ function initializeCanvas(canvas, referenceString) {
   paddingLeft = parseInt(paddingLeft);
   paddingTop = parseInt(paddingTop);
 
-  console.log(rect.width, rect.height);
   $(canvas).attr({width: (rect.width - paddingLeft * 2) * definition_scale, height: (rect.height - paddingTop * 2) * definition_scale});
   canvas.style.width = (canvas.width / definition_scale).toString() + "px";
   canvas.style.height = (canvas.height / definition_scale).toString() + "px";
-  console.log(canvas, referenceString);
   if(!referenceString) {
     const referenceString = handleGridString(ret);
 
