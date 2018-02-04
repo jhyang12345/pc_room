@@ -15,6 +15,10 @@ $(document).ready(function(evt) {
     setTime(document.querySelector("#current-time"));
     console.log("REFRESHED");
     getCurrentGrid.call(mainCanvas, pcProfileID, initializeCanvas);
+    $("#main-canvas").css({
+      "margin-left": (0) + "px",
+      "margin-top": (0) + "px",
+    });
   });
 
 });
@@ -30,10 +34,10 @@ function initializeDetail() {
   // });
 
   $("#main-view-holder").on("touchstart", function(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
     var touches = evt.touches;
     const touch = touches[0];
-    pageObject.touchStart = {x: touch.clientX, y: touch.clientY};
+    pageObject.curTouch = {x: touch.clientX, y: touch.clientY};
   });
 
   // Handle drag event
@@ -42,16 +46,26 @@ function initializeDetail() {
     var touches = evt.touches;
 
     const touch = touches[0];
-    const deltaX = touch.clientX - pageObject.touchStart.x;
-    const deltaY = touch.clientY - pageObject.touchStart.y;
-    $(this).css({
-      "transform": "translate(" + deltaX + "px, " + deltaY + "px)",
-      "-webkit-transform" : "translate(" + deltaX + "px, " + deltaY + "px)",
-      "-ms-transform" : "translate(" + deltaX + "px, " + deltaY + "px)",
-    });
-    for(var i = 0; i < touches.length; ++i) {
-
+    const deltaX = touch.clientX - pageObject.curTouch.x;
+    const deltaY = touch.clientY - pageObject.curTouch.y;
+    console.log(this.style.marginLeft, this.style.marginTop);
+    let marginLeft, marginTop;
+    if(this.style.marginLeft && this.style.marginTop) {
+      marginLeft = parseInt(this.style.marginLeft.substring(0, this.style.marginLeft.length - 2));
+      marginTop = parseInt(this.style.marginTop.substring(0, this.style.marginTop.length - 2));
+    } else {
+      marginLeft = 0;
+      marginTop = 0;
     }
+
+    console.log(marginLeft, marginTop);
+    $(this).css({
+      "margin-left": (marginLeft + deltaX) + "px",
+      "margin-top": (marginTop + deltaY) + "px",
+    });
+
+    pageObject.curTouch.x = touch.clientX;
+    pageObject.curTouch.y = touch.clientY;
   }.bind(document.querySelector("#main-canvas")));
 }
 
