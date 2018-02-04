@@ -56,25 +56,26 @@ def get_over_two_components(grid_shape, grid_data):
                 component_size = 0
                 i = x
                 j = y
+                # Grid shape implies the actual seat layout
                 if grid_shape[y][x] == '|':
                     while(j < len(grid_shape) and grid_shape[j][i] == '|'
                         and grid_data[j][i] == '-'):
                         visited[j][i] = True
                         component_size += 1
                         j += 1
+
                 elif grid_shape[y][x] == '-':
-                    while(i < len(grid_shape) and grid_shape[j][i] == '|'
+                    while(i < len(grid_shape) and grid_shape[j][i] == '-'
                         and grid_data[j][i] == '-'):
                         visited[j][i] = True
                         component_size += 1
                         i += 1
-                print(component_size)
                 if(component_size > 1):
                     over_two_total += component_size
                 if(component_size > largest_component):
                     largest_component = component_size
                 total += component_size
-    print(total, over_two_total, largest_component)
+    return total, over_two_total, largest_component
 
 if __name__ == '__main__':
     get_over_two_components(base_grid, grid_data)

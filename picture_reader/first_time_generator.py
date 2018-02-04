@@ -8,8 +8,9 @@ import datetime
 import os, sys
 from picture_reader.util import *
 from picture_reader.read_profiles import read_data_list, read_data
-from picture_reader.database_helper import update_profile_grid_info
+from picture_reader.database_helper import update_profile_grid_info, update_profile_seats_info
 from picture_reader.image_to_grid import *
+from picture_reader.components_count import get_over_two_components
 
 ssim_threshold = 0.95
 
@@ -172,6 +173,10 @@ def generate_first_time(filename, pc_name, root_path=""):
             item.save()
             # updating profile grid info
             update_profile_grid_info(pc_name, grid_string)
+            empty_seats, two_empty_seats, largest_empty_seats = get_over_two_components(item.base_grid, grid_string)
+            update_profile_seats_info(pc_name, empty_seats, two_empty_seats, largest_empty_seats)
+
+
 
 def main():
     filename = sys.argv[1]

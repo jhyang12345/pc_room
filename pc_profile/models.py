@@ -11,6 +11,11 @@ class Profile(models.Model):
     supported = models.BooleanField(default=False)
     grid_shape = models.TextField(max_length=600, default="")
     grid_data = models.TextField(max_length=600, default="", blank=True, null=True)
+
+    empty_seats = models.IntegerField(default=0)
+    two_empty_seats = models.IntegerField(default=0)
+    largest_empty_seats = models.IntegerField(default=0)
+
     lat = models.DecimalField(max_digits=10, decimal_places=7, default=100.00)
     lng = models.DecimalField(max_digits=10, decimal_places=7, default=100.00)
     pc_title = models.CharField(max_length=20, default="")
