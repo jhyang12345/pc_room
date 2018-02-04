@@ -7,6 +7,30 @@ const blueMarkerImage = {
   scaledSize: new google.maps.Size(27, 42)
 };
 
+const greenMarkerImage = {
+  url: '/static/pc_profile/images/marker_green.png',
+  size: new google.maps.Size(90, 140),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
+};
+
+const orangeMarkerImage = {
+  url: '/static/pc_profile/images/marker_orange.png',
+  size: new google.maps.Size(90, 140),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
+};
+
+const redMarkerImage = {
+  url: '/static/pc_profile/images/marker_red.png',
+  size: new google.maps.Size(90, 140),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
+};
+
 function initializeMap(mapHolder) {
   var map = new google.maps.Map(mapHolder, {
     center: {lat: 37.561225, lng: 127.035503},
