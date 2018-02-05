@@ -18,6 +18,10 @@ a:active, a:visited, a:hover {
 
 }
 
+.fa, .fas {
+  letter-spacing: 0px;
+}
+
 input:focus {
   border-color: none;
   box-shadow: none;

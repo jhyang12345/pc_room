@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static "pc_profile/css/fonts.css" %}" type="text/css" />
     <link rel="stylesheet" href="{% static "pc_profile/css/bootstrap.min.css" %}" type="text/css" />
     <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/font-awesome.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/fontawesome-all.min.css" %}" type="text/css">
 
     <link rel="stylesheet" href="{% static "pc_profile/css/main.css" %}" type="text/css" />
     <link rel="stylesheet" href="{% static "pc_profile/css/map.css" %}" type="text/css" />
@@ -62,42 +63,32 @@
     </div>
 
     <div class="main-map-holder">
+      <div id="map-controls-holder">
+        <div id="party-number-holder">
+          <div class="number-button" id="up-button-holder">
+            <i class="fa fa-caret-up" aria-hidden="true"></i>
+          </div>
+          <input type="number" id="party-size-number" value="1" max="10" />
+          <div class="number-button" id="down-button-holder">
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div id="get-current-location-holder">
+          <i class="fas fa-compass"></i>
+        </div>
+      </div>
+
       <div id="actual-map">
 
       </div>
 
       <div class="info-box hidden-box">
-        <div class="info-thumbnail">
-          <img src="" />
-        </div>
-        <span class="info-title">사이버리아 - 강남점 밥먹고 싶다</span>
-        <span class="info-address">서울특별시 강남구 수서동 725</span>
-        <span class="info-state not-enough-seats">자리 없음</span>
-
-        <div class="info-marker-holder">
-          <span class="info-distance">1.4 km</span>
-          <div class="marker-image-holder">
-            <img class="info-marker" src="{% static "pc_profile/images/marker_blue.png" %}" />
-          </div>
-
-        </div>
+        {% include "pc_profile/info_box_content.html" %}
       </div>
 
       <div class="info-box visible-box">
-        <div class="info-thumbnail">
-          <img src="" />
-        </div>
-        <span class="info-title">사이버리아 - 수서점</span>
-        <span class="info-address">서울특별시 강남구 수서동 725</span>
-        <span class="info-state not-enough-seats">자리 없음</span>
-
-        <div class="info-marker-holder">
-          <span class="info-distance">1.4 km</span>
-          <div class="marker-image-holder">
-            <img class="info-marker" src="{% static "pc_profile/images/marker_blue.png" %}" />
-          </div>
-
-        </div>
+        {% include "pc_profile/info_box_content.html" %}
       </div>
 
     </div>

@@ -22,6 +22,76 @@
   letter-spacing: 0.2px;
 }
 
+#map-controls-holder {
+  position: absolute;
+  top: 54px;
+  right: 10px;
+  z-index: 9;
+}
+
+#party-number-holder {
+  background-color: #222;
+  opacity: 0.7;
+  border-radius: 10px;
+}
+
+#party-number-holder div {
+  text-align: center;
+}
+
+#party-size-number {
+  background-color: rgba(0,0,0,0);
+  border: none;
+  width: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+}
+
+.number-button i {
+  color: #888;
+  font-size: 40px;
+  vertical-align: middle;
+}
+
+#up-button-holder {
+  /* margin-top: -10px; */
+  margin-bottom: -12px;
+}
+
+#up-button-holder i {
+  margin-top: -6px;
+}
+
+/* 3:4 */
+
+#down-button-holder {
+  margin-top: -16px;
+  /* margin-bottom: -10px; */
+}
+
+#down-button-holder i {
+  margin-bottom: -4px;
+}
+
+#get-current-location-holder {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  text-align: center;
+  background-color: #222;
+  opacity: 0.7;
+  border-radius: 10px;
+}
+
+#get-current-location-holder .fa-compass {
+  color: #FFF;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  line-height: 40px;
+  font-size: 20px;
+}
+
 .info-box {
   height: 100px;
   border-radius: 10px;

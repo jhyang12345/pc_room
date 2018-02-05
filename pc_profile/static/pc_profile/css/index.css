@@ -74,7 +74,6 @@
 .up-button-holder {
     margin-top: -30px;
     margin-bottom: -30px;
-    margin-left: 5px;
 }
 
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
@@ -116,7 +115,6 @@ input[type="number"] {
 .down-button-holder {
     margin-bottom: -30px;
     margin-top: -40px;
-    margin-left: 5px;
 }
 
 #quick-view-holder {
