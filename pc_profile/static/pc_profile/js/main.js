@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else {
       $("#party-size-number").val(10);
     }
+    $("#party-size-number").trigger('input');
   });
 
   $(".down-button-holder").on("click tap", function(evt) {
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else {
       $("#party-size-number").val(1);
     }
+    $("#party-size-number").trigger('input');
   });
 
   $("#party-size-number").on('input', function(evt) {
@@ -32,13 +34,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     console.log("Changed!")
     if(inputValue.length > 2 || parseInt(inputValue) > 10) {
       $(evt.target).val(10);
+      pageObject.setPartySize(10);
     }
+    pageObject.setPartySize(inputValue);
   });
 
   $("#party-size-number").keypress(function(e) {
     if(e.which == 13){
       $(this).blur();
-
     }
   });
 
@@ -46,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const inputValue = $(evt.target).val();
     if(inputValue.length < 1 || parseInt(inputValue) < 1) {
       $(evt.target).val(1);
+      pageObject.setPartySize(1);
     }
   });
 
@@ -62,11 +66,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Always initialize pageObject at the end of document ready
   pageObject = new PageObject();
 
-  if(pageObject.storageAvailable) {
-    
-  }
+  $("#party-size-number").val(pageObject.getPartySize());
 
 });
+
+
 
 function handleGridArrowPosition() {
   const height = $(".mini-grid-viewer").outerHeight();

@@ -9,11 +9,20 @@ class PageObject {
   init() {
     if(storageAvailable('localStorage')) {
       this.storageAvailable = true;
-      console.log("localStorage available!");
     } else {
       this.storageAvailable = false;
-      console.log("unavailable");
     }
+  }
+
+  setPartySize(partySize) {
+    if(!this.storageAvailable) return;
+    localStorage["party-size"] = partySize;
+    console.log("Resetting partySize");
+  }
+
+  getPartySize() {
+    if(!this.storageAvailable) return 1;
+    return localStorage["party-size"];
   }
 
 }
@@ -41,6 +50,8 @@ function storageAvailable(type) {
       storage.length !== 0;
   }
 }
+
+
 
 // Things that need to be on localStorage
 // 1. Current Location
