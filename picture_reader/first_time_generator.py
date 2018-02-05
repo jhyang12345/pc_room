@@ -7,7 +7,7 @@ import time
 import datetime
 import os, sys
 from picture_reader.util import *
-from picture_reader.read_profiles import read_data_list, read_data
+from picture_reader.read_profiles import  read_data
 from picture_reader.database_helper import update_profile_grid_info, update_profile_seats_info
 from picture_reader.image_to_grid import *
 from picture_reader.components_count import get_over_two_components

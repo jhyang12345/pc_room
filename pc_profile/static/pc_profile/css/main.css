@@ -22,7 +22,7 @@ input:focus {
 
 .container-box {
 
-  margin-top: 62px;
+  margin-top: 54px;
   width: 100%;
   padding-left: 12px;
   padding-right: 12px;
@@ -38,6 +38,9 @@ input:focus {
     top: 0px;
     width: 100%;
     z-index: 10;
+
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .app-name {
@@ -65,7 +68,7 @@ input:focus {
 .search-bar-holder {
     position: fixed;
     z-index: 9;
-    top: 14px;
+    top: 6px;
     left: 0px;
     right: 0px;
     margin-top: 56px;

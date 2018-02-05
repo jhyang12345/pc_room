@@ -45,6 +45,7 @@ function initializeMap(mapHolder) {
     gestureHandling: "greedy"
   });
 
+  getLocation();
 
   // addMarker({lat: 37.561225, lng: 127.035503}, map, "normal");
   if(typeof(mapMarkerList) != "undefined") {
@@ -88,4 +89,35 @@ function addActualMarker(object, map) {
     handleInfoBoxAnimation(this);
   }.bind(markerInfo));
 
+}
+
+function getLocation() {
+  console.log("Retrieving location!");
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    console.log("Failed to retrieve geolocation!");
+  }
+}
+
+function showPosition(position) {
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      console.log("User denied the request for Geolocation.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      console.log("Location information is unavailable.");
+      break;
+    case error.TIMEOUT:
+      console.log("The request to get user location timed out.");
+      break;
+    case error.UNKNOWN_ERROR:
+      console.log("An unknown error occurred.");
+      break;
+  }
 }

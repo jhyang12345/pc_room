@@ -59,6 +59,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   initializeMap(document.querySelector("#map-holder"));
 
+  // Always initialize pageObject at the end of document ready
+  pageObject = new PageObject();
+
+  if(pageObject.storageAvailable) {
+    
+  }
+
 });
 
 function handleGridArrowPosition() {
@@ -69,3 +76,5 @@ function handleGridArrowPosition() {
   $('.grid-right-button').css("top", height / 2 - itemHeight / 2);
 
 }
+
+var pageObject;

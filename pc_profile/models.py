@@ -1,6 +1,5 @@
 from django.db import models
 from django.dispatch import receiver
-import pymongo
 
 # Create your models here.
 class Profile(models.Model):

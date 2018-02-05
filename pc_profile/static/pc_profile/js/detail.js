@@ -21,6 +21,9 @@ $(document).ready(function(evt) {
     });
   });
 
+  // Always initialize pageObject at the end of document ready
+  pageObject  = new PageObject();
+
 });
 
 function initializeDetail() {
@@ -116,4 +119,4 @@ function setTime(elem) {
     elem.innerHTML = h + ":" + m + " " + format;
 }
 
-var pageObject = new PageObject();
+var pageObject;

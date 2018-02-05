@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function(evt) {
     goToDetailsPage();
   });
 
+  // Always initialize pageObject at the end of document ready
+  pageObject = new PageObject();
+
 });
 
 function resizeMap(mapElement) {
@@ -66,3 +69,5 @@ function goToDetailsPage() {
 }
 
 var detailsPageLink = "/detail";
+
+var pageObject;
