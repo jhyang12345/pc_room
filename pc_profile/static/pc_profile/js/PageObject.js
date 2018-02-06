@@ -4,6 +4,7 @@ class PageObject {
     this.curTouch = {};
     this.curPosition = {};
     this.map = null;
+    this.locationSet = null;
     this.init();
 
   }

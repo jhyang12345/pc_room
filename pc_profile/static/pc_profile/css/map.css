@@ -61,6 +61,8 @@
   text-align: center;
   color: #fff;
   font-size: 24px;
+  padding-right: 13px;
+  text-align: right;
 }
 
 .number-button i {

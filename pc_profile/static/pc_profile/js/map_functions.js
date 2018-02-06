@@ -1,42 +1,42 @@
 // 9:14 marker image ratio
 const blueMarkerImage = {
   url: '/static/pc_profile/images/marker_blue.png',
-  size: new google.maps.Size(90, 140),
+  size: new google.maps.Size(18, 28),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(14, 42),
-  scaledSize: new google.maps.Size(27, 42)
+  anchor: new google.maps.Point(9, 28),
+  scaledSize: new google.maps.Size(18, 28)
 };
 
 const greenMarkerImage = {
   url: '/static/pc_profile/images/marker_green.png',
-  size: new google.maps.Size(90, 140),
+  size: new google.maps.Size(18, 28),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(14, 42),
-  scaledSize: new google.maps.Size(27, 42)
+  anchor: new google.maps.Point(9, 28),
+  scaledSize: new google.maps.Size(18, 28)
 };
 
 const orangeMarkerImage = {
   url: '/static/pc_profile/images/marker_orange.png',
-  size: new google.maps.Size(90, 140),
+  size: new google.maps.Size(18, 28),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(14, 42),
-  scaledSize: new google.maps.Size(27, 42)
+  anchor: new google.maps.Point(9, 28),
+  scaledSize: new google.maps.Size(18, 28)
 };
 
 const redMarkerImage = {
   url: '/static/pc_profile/images/marker_red.png',
-  size: new google.maps.Size(90, 140),
+  size: new google.maps.Size(18, 28),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(14, 42),
-  scaledSize: new google.maps.Size(27, 42)
+  anchor: new google.maps.Point(9, 28),
+  scaledSize: new google.maps.Size(18, 28)
 };
 
 const myLocationClear = {
   url: '/static/pc_profile/images/my_location_clear.png',
-  size: new google.maps.Size(90, 140),
+  size: new google.maps.Size(18, 28),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(14, 42),
-  scaledSize: new google.maps.Size(27, 42)
+  anchor: new google.maps.Point(9, 28),
+  scaledSize: new google.maps.Size(18, 28)
 };
 
 const myLocationBold = {
@@ -65,10 +65,18 @@ function initializeMap(mapHolder) {
 
   getLocation(map);
 
+  // Adding loaded markerlist
   if(typeof(mapMarkerList) != "undefined") {
     for(const marker of mapMarkerList) {
       addActualMarker(marker, map);
     }
+  }
+
+  // check if get current location holder exists in DOM
+  if($("#get-current-location-holder").length > 0) {
+    $("#get-current-location-holder").on("click tap", (evt) => {
+      getLocation(map);
+    });
   }
 
   // Map listener may be covering marker listener
@@ -76,24 +84,30 @@ function initializeMap(mapHolder) {
     console.log(evt.latLng.lat());
     console.log(evt.latLng.lng());
   });
-
   return map;
 
 }
 
 function addMyLocationMarker(location, map) {
-  const marker = new google.maps.Marker({
-    position: location,
-    map: map,
-    icon: myLocationClear,
-    draggable: true
-  });
-  console.log("See");
+  let marker;
+  // check in pageObject for locationMarker
+  if(pageObject.locationSet) {
+    console.log("Location already set!");
+    marker = pageObject.locationSet;
+  } else {
+    marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      icon: myLocationClear,
+      draggable: true
+    });
+    pageObject.locationSet = marker;
+  }
+
   google.maps.event.addListener(marker, 'dragend', function() {
     if(pageObject.storageAvailable) {
       localStorage["lat"] = this.getPosition().lat();
       localStorage["lng"] = this.getPosition().lng();
-      console.log({"lat": this.getPosition().lat(), "lng": this.getPosition().lng()});
     }
 
   }.bind(marker));
@@ -121,7 +135,7 @@ function addActualMarker(object, map) {
 function getLocation(map) {
   console.log("Retrieving location!");
 
-  let location = {lat: 0, lnt: 0};
+  let location = {lat: 0, lng: 0};
 
   if(pageObject.storageAvailable) {
     if(localStorage["lat"]) {
@@ -134,10 +148,11 @@ function getLocation(map) {
 
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition.bind(map), showError);
-
+    return;
   } else {
     console.log("Failed to retrieve geolocation!");
   }
+
 }
 
 function showPosition(position, map) {
@@ -160,5 +175,10 @@ function showError(error) {
     case error.UNKNOWN_ERROR:
       console.log("An unknown error occurred.");
       break;
+    default:
+      break;
   }
+  const currentCenter = this.getCenter();
+  const location = {lat: currentCenter.lat(), lng: currentCenter.lng()};
+  addMyLocationMarker(location, this);
 }
