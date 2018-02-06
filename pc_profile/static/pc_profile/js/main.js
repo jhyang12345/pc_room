@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-// $(document).ready(function(evt) {
-  console.log("Document Ready!");
+  // Always initialize pageObject at the end of document ready
+  pageObject = new PageObject();
 
   $("#map-container").on("click tap", function(evt) {
     evt.preventDefault();
@@ -62,9 +62,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   handleGridArrowPosition();
 
   initializeMap(document.querySelector("#map-holder"));
-
-  // Always initialize pageObject at the end of document ready
-  pageObject = new PageObject();
 
   $("#party-size-number").val(pageObject.getPartySize());
 

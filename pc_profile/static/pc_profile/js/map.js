@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(evt) {
+  // Always initialize pageObject at the beginning of document ready
+  pageObject = new PageObject();
+
   const map = initializeMap(document.querySelector("#actual-map"));
 
   resizeMap($(".main-map-holder"));
@@ -17,9 +20,6 @@ document.addEventListener("DOMContentLoaded", function(evt) {
   $(visible).on("click tap", function(evt) {
     goToDetailsPage();
   });
-
-  // Always initialize pageObject at the end of document ready
-  pageObject = new PageObject();
 
 });
 

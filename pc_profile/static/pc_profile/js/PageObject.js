@@ -2,6 +2,8 @@ class PageObject {
   constructor() {
     this.touchStart = {};
     this.curTouch = {};
+    this.curPosition = {};
+    this.map = null;
     this.init();
 
   }

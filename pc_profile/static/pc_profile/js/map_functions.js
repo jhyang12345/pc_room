@@ -31,6 +31,22 @@ const redMarkerImage = {
   scaledSize: new google.maps.Size(27, 42)
 };
 
+const myLocationClear = {
+  url: '/static/pc_profile/images/my_location_clear.png',
+  size: new google.maps.Size(90, 140),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
+};
+
+const myLocationBold = {
+  url: '/static/pc_profile/images/my_location_bold.png',
+  size: new google.maps.Size(90, 140),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(9, 28),
+  scaledSize: new google.maps.Size(18, 28)
+};
+
 function initializeMap(mapHolder) {
   var map = new google.maps.Map(mapHolder, {
     center: {lat: 37.561225, lng: 127.035503},
@@ -45,9 +61,10 @@ function initializeMap(mapHolder) {
     gestureHandling: "greedy"
   });
 
-  getLocation();
+  pageObject.map = map;
 
-  // addMarker({lat: 37.561225, lng: 127.035503}, map, "normal");
+  getLocation(map);
+
   if(typeof(mapMarkerList) != "undefined") {
     for(const marker of mapMarkerList) {
       addActualMarker(marker, map);
@@ -64,12 +81,22 @@ function initializeMap(mapHolder) {
 
 }
 
-function addMarker(location, map, type) {
+function addMyLocationMarker(location, map) {
   const marker = new google.maps.Marker({
     position: location,
     map: map,
-    icon: blueMarkerImage,
+    icon: myLocationClear,
+    draggable: true
   });
+  console.log("See");
+  google.maps.event.addListener(marker, 'dragend', function() {
+    if(pageObject.storageAvailable) {
+      localStorage["lat"] = this.getPosition().lat();
+      localStorage["lng"] = this.getPosition().lng();
+      console.log({"lat": this.getPosition().lat(), "lng": this.getPosition().lng()});
+    }
+
+  }.bind(marker));
 }
 
 function addActualMarker(object, map) {
@@ -91,18 +118,32 @@ function addActualMarker(object, map) {
 
 }
 
-function getLocation() {
+function getLocation(map) {
   console.log("Retrieving location!");
+
+  let location = {lat: 0, lnt: 0};
+
+  if(pageObject.storageAvailable) {
+    if(localStorage["lat"]) {
+      location["lat"] = parseFloat(localStorage["lat"]);
+      location["lng"] = parseFloat(localStorage["lng"]);
+      addMyLocationMarker(location, map);
+      return;
+    }
+  }
+
   if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
+    navigator.geolocation.getCurrentPosition(showPosition.bind(map), showError);
+
   } else {
     console.log("Failed to retrieve geolocation!");
   }
 }
 
-function showPosition(position) {
-  console.log(position.coords.latitude);
-  console.log(position.coords.longitude);
+function showPosition(position, map) {
+  const location = {lat: position.coords.latitude,
+    lng: position.coords.longitude};
+  addMyLocationMarker(location, this);
 }
 
 function showError(error) {

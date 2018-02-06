@@ -1,4 +1,7 @@
 $(document).ready(function(evt) {
+  // Always initialize pageObject at the end of document ready
+  pageObject  = new PageObject();
+
   initializeDetail();
 
   const mainCanvas = document.querySelector("#main-canvas");
@@ -21,8 +24,7 @@ $(document).ready(function(evt) {
     });
   });
 
-  // Always initialize pageObject at the end of document ready
-  pageObject  = new PageObject();
+
 
 });
 
