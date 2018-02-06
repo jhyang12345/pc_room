@@ -68,7 +68,7 @@ function initializeMap(mapHolder) {
   // Adding loaded markerlist
   if(typeof(mapMarkerList) != "undefined") {
     for(const marker of mapMarkerList) {
-      addActualMarker(marker, map);
+      pageObject.mapMarkerDict[marker.profile_name] = addActualMarker(marker, map);
     }
   }
 
@@ -85,6 +85,23 @@ function initializeMap(mapHolder) {
     console.log(evt.latLng.lng());
   });
   return map;
+
+}
+
+function applyPartyMarkerImage(partySize) {
+  for(const item of mapMarkerList) {
+    const marker = pageObject.mapMarkerDict[item.profile_name];
+    const markerInfo = markerInfoDict[item.profile_name];
+    if(partySize < markerInfo.largest_empty_seats) {
+      marker.setIcon(greenMarkerImage);
+    } else if(partySize < markerInfo.two_empty_seats) {
+      marker.setIcon(blueMarkerImage);
+    } else if(partySize < markerInfo.empty_seats) {
+      marker.setIcon(orangeMarkerImage);
+    } else {
+      marker.setIcon(redMarkerImage);
+    }
+  }
 
 }
 
@@ -129,6 +146,8 @@ function addActualMarker(object, map) {
 
     handleInfoBoxAnimation(this);
   }.bind(markerInfo));
+
+  return marker;
 
 }
 

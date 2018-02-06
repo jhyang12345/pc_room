@@ -31,6 +31,7 @@ class Profile(models.Model):
 
 @receiver(models.signals.post_save, sender=Profile)
 def execute_after_save(sender, instance, created, *args, **kwargs):
+    print("After Profile Save!")
     try:
         ret = ProfileImageGuide.objects.get(profile_name=instance.profile_name)
     except:

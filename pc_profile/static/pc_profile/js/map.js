@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
     goToDetailsPage();
   });
 
+  // attaching controls for party size number
   $("#up-button-holder").on("click tap", function(evt) {
     evt.preventDefault();
     const curVal = parseInt($("#party-size-number").val());
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
     $("#party-size-number").trigger('input');
   });
 
+  // handling input events on party size number
   $("#party-size-number").on('input', function(evt) {
     const inputValue = $(evt.target).val();
     console.log("Changed!")
@@ -51,6 +53,9 @@ document.addEventListener("DOMContentLoaded", function(evt) {
       pageObject.setPartySize(10);
     }
     pageObject.setPartySize(inputValue);
+
+    // applying new party size each time to refresh marker images
+    applyPartyMarkerImage(pageObject.getPartySize());
   });
 
   $("#party-size-number").keypress(function(e) {
@@ -69,6 +74,8 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
   $("#party-size-number").val(pageObject.getPartySize());
 
+  // applying party size to initial marker images load
+  applyPartyMarkerImage(pageObject.getPartySize());
 });
 
 function resizeMap(mapElement) {

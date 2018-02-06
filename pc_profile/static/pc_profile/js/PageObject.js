@@ -5,6 +5,7 @@ class PageObject {
     this.curPosition = {};
     this.map = null;
     this.locationSet = null;
+    this.mapMarkerDict = {};
     this.init();
 
   }
