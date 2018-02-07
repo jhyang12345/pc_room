@@ -94,19 +94,27 @@ function handleInfoBoxAnimation(object) {
   hidden.querySelector(".info-title").innerHTML = object["pc_title"].trim() + " - " + object["pc_subtitle"].trim();
   hidden.querySelector(".info-address").innerHTML = object["address"].trim();
 
+  const partySize = pageObject.getPartySize();
+
+  // easier to use jquery to set src for image
+  const imageSrc = getPartyMarkerImage(partySize, object);
+  $(hidden.querySelector(".info-marker")).attr("src", imageSrc);
+
+  hidden.querySelector(".info-state").innerHTML = getPartyStateText(partySize, object);
+
   detailsPageLink = "/detail/" + object["id"].trim();
 
-   $(hidden).css({'transform': 'translate(0px, 0px)',
+ $(hidden).css({'transform': 'translate(0px, 0px)',
    'transition-duration': '0.5s'});
 
-   $(hidden).fadeTo(300, 1.0);
+ $(hidden).fadeTo(300, 1.0);
 
-   hidden.classList.toggle("hidden-box");
-   hidden.classList.toggle("visible-box");
-   visible.classList.toggle("hidden-box");
-   visible.classList.toggle("visible-box");
+ hidden.classList.toggle("hidden-box");
+ hidden.classList.toggle("visible-box");
+ visible.classList.toggle("hidden-box");
+ visible.classList.toggle("visible-box");
 
-   hideInfoBoxAnimation(visible);
+ hideInfoBoxAnimation(visible);
 
 }
 
@@ -116,7 +124,6 @@ function hideInfoBoxAnimation(infobox) {
     $(this).css({'transform': 'translate(0px, 120px)'});
   }.bind(infobox));
 
-  console.log("tansformed!");
 }
 
 function goToDetailsPage() {

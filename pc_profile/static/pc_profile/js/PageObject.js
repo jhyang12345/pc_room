@@ -17,12 +17,15 @@ class PageObject {
       this.storageAvailable = false;
     }
 
-    $(document).on("click tap", function(evt) {
-      if($('.navbar-toggler').attr('aria-expanded') == "true") {
-        console.log($('.navbar-toggler').attr('aria-expanded'));
-
-      }
+    $(".navbar-open-cover").on("click tap", function(evt) {
+      $('.navbar-toggler').click();
+      $(this).css("display", "none");
     });
+
+    $(".navbar-toggler").on("click tap", function(evt) {
+      $(".navbar-open-cover").css("display", "block");
+    });
+
   }
 
   setPartySize(partySize) {

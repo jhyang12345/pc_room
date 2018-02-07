@@ -104,6 +104,30 @@ function applyPartyMarkerImage(partySize) {
   }
 }
 
+function getPartyMarkerImage(partySize, markerInfo) {
+  if(partySize < markerInfo.largest_empty_seats) {
+    return "/static/pc_profile/images/marker_green.png";
+  } else if(partySize < markerInfo.two_empty_seats) {
+    return "/static/pc_profile/images/marker_blue.png";
+  } else if(partySize < markerInfo.empty_seats) {
+    return "/static/pc_profile/images/marker_orange.png";
+  } else {
+    return "/static/pc_profile/images/marker_red.png";
+  }
+}
+
+function getPartyStateText(partySize, markerInfo) {
+  if(partySize < markerInfo.largest_empty_seats) {
+    return "붙은 자리";
+  } else if(partySize < markerInfo.two_empty_seats) {
+    return "최소 둘둘";
+  } else if(partySize < markerInfo.empty_seats) {
+    return "한명은 혼자";
+  } else {
+    return "자리 부족";
+  }
+}
+
 function addMyLocationMarker(location, map) {
   let marker;
   // check in pageObject for locationMarker
@@ -132,7 +156,6 @@ function addMyLocationMarker(location, map) {
 function addActualMarker(object, map) {
   const markerInfo = markerInfoDict[object.profile_name];
 
-  console.log("Adding marker!");
   const marker = new google.maps.Marker({
     position: markerInfo,
     map: map,

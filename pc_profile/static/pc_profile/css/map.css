@@ -123,13 +123,14 @@
   transform: translate(0, 120px);
 }
 
-.info-thumbnail{
+.info-thumbnail {
   top: 10px;
   left: 10px;
   bottom: 10px;
   width: 80px;
   position: absolute;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .info-thumbnail img {
@@ -153,6 +154,7 @@
   color: #aaa;
   line-height: 80px;
   font-size: 40px;
+  border-radius: 5px;
 }
 
 .info-title {
@@ -161,7 +163,7 @@
   top: 10px;
   left: 100px;
   right: 60px;
-  font-size: 24px;
+  font-size: 20px;
   letter-spacing: 0.5px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -172,7 +174,7 @@
   color: #555;
   position: absolute;
   display: inline-block;
-  top: 40px;
+  top: 36px;
   left: 100px;
   right: 60px;
   font-size: 14px;
@@ -187,8 +189,9 @@
   display: inline-block;
   bottom: 10px;
   left: 100px;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 0.4px;
+  color: #888;
 }
 
 .info-marker-holder {
@@ -205,7 +208,6 @@
   text-align: center;
   letter-spacing: 0.15px;
   font-size: 12px;
-
 }
 
 .marker-image-holder {

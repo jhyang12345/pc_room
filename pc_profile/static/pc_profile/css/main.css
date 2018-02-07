@@ -81,12 +81,22 @@ input:focus {
     color: #F8F8F8;
 }
 
+.navbar-open-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  opacity: 0.5;
+  z-index: 9;
+  display: none;
+}
+
 .navbar-toggler{
-    border: 0px;
+  border: 0px;
 }
 
 .navbar-toggler-icon {
-
+  
 }
 
 .reorder-icon {
