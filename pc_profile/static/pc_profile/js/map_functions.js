@@ -161,6 +161,10 @@ function addMyLocationMarker(location, map, clickCalled) {
     }
 
   }.bind(marker));
+
+  google.maps.event.addListener(marker, 'click', function() {
+    map.panTo(marker.getPosition());
+  });
 }
 
 function addActualMarker(object, map) {
