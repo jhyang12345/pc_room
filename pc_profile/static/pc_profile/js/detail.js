@@ -50,27 +50,35 @@ function initializeDetail() {
     evt.preventDefault();
     var touches = evt.touches;
 
-    const touch = touches[0];
-    const deltaX = touch.clientX - pageObject.curTouch.x;
-    const deltaY = touch.clientY - pageObject.curTouch.y;
-    console.log(this.style.marginLeft, this.style.marginTop);
-    let marginLeft, marginTop;
-    if(this.style.marginLeft && this.style.marginTop) {
-      marginLeft = parseInt(this.style.marginLeft.substring(0, this.style.marginLeft.length - 2));
-      marginTop = parseInt(this.style.marginTop.substring(0, this.style.marginTop.length - 2));
-    } else {
-      marginLeft = 0;
-      marginTop = 0;
+    // one finger drag
+    if(evt.touches.length < 2) {
+      const touch = touches[0];
+      const deltaX = touch.clientX - pageObject.curTouch.x;
+      const deltaY = touch.clientY - pageObject.curTouch.y;
+      console.log(this.style.marginLeft, this.style.marginTop);
+      let marginLeft, marginTop;
+      if(this.style.marginLeft && this.style.marginTop) {
+        marginLeft = parseInt(this.style.marginLeft.substring(0, this.style.marginLeft.length - 2));
+        marginTop = parseInt(this.style.marginTop.substring(0, this.style.marginTop.length - 2));
+      } else {
+        marginLeft = 0;
+        marginTop = 0;
+      }
+
+      console.log(marginLeft, marginTop);
+      $(this).css({
+        "margin-left": (marginLeft + deltaX) + "px",
+        "margin-top": (marginTop + deltaY) + "px",
+      });
+
+      pageObject.curTouch.x = touch.clientX;
+      pageObject.curTouch.y = touch.clientY;
+    } else if(evt.touches.length == 2) {
+      const fingerOne = touches[0];
+      const fingerTwo = touches[1];
+
     }
 
-    console.log(marginLeft, marginTop);
-    $(this).css({
-      "margin-left": (marginLeft + deltaX) + "px",
-      "margin-top": (marginTop + deltaY) + "px",
-    });
-
-    pageObject.curTouch.x = touch.clientX;
-    pageObject.curTouch.y = touch.clientY;
   }.bind(document.querySelector("#main-canvas")));
 
 }

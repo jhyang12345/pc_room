@@ -52,7 +52,7 @@ const myLocationBold = {
 
 function initializeMap(mapHolder) {
   var map = new google.maps.Map(mapHolder, {
-    center: {lat: 37.561225, lng: 127.035503},
+    center: {lat: 37.56058516193408, lng: 127.03855991363525},
     zoom: 16,
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
