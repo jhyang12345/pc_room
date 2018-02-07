@@ -164,10 +164,13 @@ function addActualMarker(object, map) {
 
   marker.setMap(map);
 
-  google.maps.event.addListener(marker, 'click', function() {
-
+  google.maps.event.addListener(marker, 'click', function(marker) {
     handleInfoBoxAnimation(this);
-  }.bind(markerInfo));
+    const map = marker.getMap();
+    map.panTo(marker.getPosition());
+  }.bind(markerInfo, marker));
+
+
 
   return marker;
 
