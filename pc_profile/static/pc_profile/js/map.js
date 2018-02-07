@@ -76,6 +76,11 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
   // applying party size to initial marker images load
   applyPartyMarkerImage(pageObject.getPartySize());
+
+  // clicking current location button from main page
+  $("#get-current-location-holder").on("click tap", (evt) => {
+    getLocation(map, true);
+  });
 });
 
 function resizeMap(mapElement) {
