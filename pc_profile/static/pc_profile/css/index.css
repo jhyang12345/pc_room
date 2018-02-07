@@ -14,12 +14,12 @@
 }
 
 #map-holder {
-    width: 150%;
-    height: 300px;
+    width: 125%;
+    height: 250px;
     background-color: #ccc;
     letter-spacing: 0.2px;
     transform-origin: 0px 0px;
-    transform: scale(0.66666666, 0.66666666);
+    transform: scale(0.8, 0.8);
 }
 
 #map-label-holder {
@@ -52,8 +52,8 @@
 }
 
 #location-icon-holder {
-    text-align: center;
-
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 #location-icon-holder > .fa-location-arrow {

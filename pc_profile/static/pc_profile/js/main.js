@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Always initialize pageObject at the end of document ready
   pageObject = new PageObject();
 
-  $("#map-container").on("click tap", function(evt) {
+  $("#map-holder").on("click tap", function(evt) {
     evt.preventDefault();
     window.location.href = "./map"
   });

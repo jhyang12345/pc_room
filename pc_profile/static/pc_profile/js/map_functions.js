@@ -102,7 +102,6 @@ function applyPartyMarkerImage(partySize) {
       marker.setIcon(redMarkerImage);
     }
   }
-
 }
 
 function addMyLocationMarker(location, map) {

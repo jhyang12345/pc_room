@@ -16,6 +16,13 @@ class PageObject {
     } else {
       this.storageAvailable = false;
     }
+
+    $(document).on("click tap", function(evt) {
+      if($('.navbar-toggler').attr('aria-expanded') == "true") {
+        console.log($('.navbar-toggler').attr('aria-expanded'));
+
+      }
+    });
   }
 
   setPartySize(partySize) {

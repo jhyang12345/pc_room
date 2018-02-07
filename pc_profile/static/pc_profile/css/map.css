@@ -129,7 +129,30 @@
   bottom: 10px;
   width: 80px;
   position: absolute;
+  overflow: hidden;
+}
+
+.info-thumbnail img {
+  height: 100%;
+  -webkit-transform:translate(-50%);
+  -moz-tranform:translate(-50%);
+  -ms-transform: translate(-50%); /* IE 9 */
+  transform: translate(-50%);
+  margin-left: 50%;
+}
+
+.info-thumbnail-background {
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  width: 80px;
+  position: absolute;
+  z-index: -1;
+  text-align: center;
   background-color: #ccc;
+  color: #aaa;
+  line-height: 80px;
+  font-size: 40px;
 }
 
 .info-title {
