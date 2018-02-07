@@ -6,6 +6,7 @@ class PageObject {
     this.map = null;
     this.locationSet = null;
     this.mapMarkerDict = {};
+    this.imagesList = [];
     this.init();
 
   }
@@ -35,7 +36,9 @@ class PageObject {
   }
 
   getPartySize() {
-    if(!this.storageAvailable) return 1;
+    if(!this.storageAvailable || !localStorage["party-size"]) return 1;
+    if(localStorage["party-size"] > 10) return 10;
+    if(localStorage["party-size"] < 1) return 1;
     return localStorage["party-size"];
   }
 

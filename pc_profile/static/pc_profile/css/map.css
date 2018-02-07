@@ -163,8 +163,8 @@
   top: 10px;
   left: 100px;
   right: 60px;
-  font-size: 20px;
-  letter-spacing: 0.5px;
+  font-size: 22px;
+  letter-spacing: 0.4px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -174,10 +174,10 @@
   color: #555;
   position: absolute;
   display: inline-block;
-  top: 36px;
+  top: 38px;
   left: 100px;
   right: 60px;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.3px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -198,27 +198,36 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 50px;
+  width: 40px;
   bottom: 10px;
-}
 
-.info-distance {
-  width: 100%;
-  display: inline-block;
-  text-align: center;
-  letter-spacing: 0.15px;
-  font-size: 12px;
 }
 
 .marker-image-holder {
   width: 100%;
-  position: absolute;
   text-align: center;
-  bottom: 10px;
+  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+.child {
+  position: absolute;
+
+}
+
+.info-distance {
+  width: 100%;
+  color: #888;
+  display: inline-block;
+  text-align: center;
+  letter-spacing: 0.1px;
+  font-size: 8px;
 }
 
 .info-marker {
-  width: 60%;
+  width: 50%;
 }
 
 .not-enough-seats {

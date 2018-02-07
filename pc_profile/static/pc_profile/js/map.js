@@ -6,7 +6,22 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
   resizeMap($(".main-map-holder"));
 
-  $(window).resize(function(evt) {
+  // $(window).resize(function(evt) {
+  //   resizeMap($(".main-map-holder"));
+  // });
+
+  google.maps.event.addListener(map, 'drag', function() {
+    document.querySelector("#party-size-number").blur();
+    hideInfoBoxAnimation(document.querySelector(".visible-box"));
+
+  });
+
+  google.maps.event.addListener(map, 'click', function() {
+    document.querySelector("#party-size-number").blur();
+    hideInfoBoxAnimation(document.querySelector(".visible-box"));
+  });
+
+  $(".main-map-holder").resize(function(evt) {
     resizeMap($(".main-map-holder"));
   });
 
@@ -112,7 +127,7 @@ function handleInfoBoxAnimation(object) {
  $(hidden).css({'transform': 'translate(0px, 0px)',
    'transition-duration': '0.5s'});
 
- $(hidden).fadeTo(300, 1.0);
+ $(hidden).fadeTo(200, 1.0);
 
  hidden.classList.toggle("hidden-box");
  hidden.classList.toggle("visible-box");

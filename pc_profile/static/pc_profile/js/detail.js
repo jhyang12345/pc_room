@@ -72,6 +72,7 @@ function initializeDetail() {
     pageObject.curTouch.x = touch.clientX;
     pageObject.curTouch.y = touch.clientY;
   }.bind(document.querySelector("#main-canvas")));
+
 }
 
 function resizeThumbnails() {
@@ -92,6 +93,11 @@ function resizeThumbnails() {
     // }
 
   });
+}
+
+// function to open Gallery in detail view for magnified view of images
+function openGallery() {
+
 }
 
 function checkTime(i) {

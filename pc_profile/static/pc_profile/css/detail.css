@@ -92,6 +92,8 @@ span.color-square {
   background-color: #ccc;
   overflow: hidden;
   border: 1px solid #444;
+  overflow: hidden;
+  border-radius: 6px;
 }
 
 .main-picture-holder img {
@@ -101,6 +103,7 @@ span.color-square {
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
+
 }
 
 .thumbnails-holder {
@@ -132,6 +135,7 @@ span.color-square {
   height: 100%;
   position: relative;
   border: 1px solid #444;
+  border-radius: 3px;
 }
 
 .thumbnails-holder .single_thumbnail img {

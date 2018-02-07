@@ -25,7 +25,7 @@ SECRET_KEY = 'c%cn-_vti)erpbj%&%8q@^#ita@iyt12br&lgy1&-2&t9uv572'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.219.107', '127.0.0.1']
 
 
 # Application definition

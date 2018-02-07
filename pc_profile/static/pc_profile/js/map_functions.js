@@ -1,42 +1,45 @@
 // 9:14 marker image ratio
+// 18, 28
+// 27, 42
+
 const blueMarkerImage = {
   url: '/static/pc_profile/images/marker_blue.png',
-  size: new google.maps.Size(18, 28),
+  size: new google.maps.Size(27, 42),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(9, 28),
-  scaledSize: new google.maps.Size(18, 28)
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
 };
 
 const greenMarkerImage = {
   url: '/static/pc_profile/images/marker_green.png',
-  size: new google.maps.Size(18, 28),
+  size: new google.maps.Size(27, 42),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(9, 28),
-  scaledSize: new google.maps.Size(18, 28)
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
 };
 
 const orangeMarkerImage = {
   url: '/static/pc_profile/images/marker_orange.png',
-  size: new google.maps.Size(18, 28),
+  size: new google.maps.Size(27, 42),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(9, 28),
-  scaledSize: new google.maps.Size(18, 28)
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
 };
 
 const redMarkerImage = {
   url: '/static/pc_profile/images/marker_red.png',
-  size: new google.maps.Size(18, 28),
+  size: new google.maps.Size(27, 42),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(9, 28),
-  scaledSize: new google.maps.Size(18, 28)
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
 };
 
 const myLocationClear = {
   url: '/static/pc_profile/images/my_location_clear.png',
-  size: new google.maps.Size(18, 28),
+  size: new google.maps.Size(27, 42),
   origin: new google.maps.Point(0, 0),
-  anchor: new google.maps.Point(9, 28),
-  scaledSize: new google.maps.Size(18, 28)
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
 };
 
 const myLocationBold = {
@@ -50,7 +53,7 @@ const myLocationBold = {
 function initializeMap(mapHolder) {
   var map = new google.maps.Map(mapHolder, {
     center: {lat: 37.561225, lng: 127.035503},
-    zoom: 15,
+    zoom: 16,
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     },
@@ -177,8 +180,6 @@ function addActualMarker(object, map) {
     map.panTo(marker.getPosition());
   }.bind(markerInfo, marker));
 
-
-
   return marker;
 
 }
@@ -194,7 +195,11 @@ function getLocation(map, clickCalled) {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         showPosition.bind(map, position, clickCalled)();
-      }, showError);
+      }, (error) => {
+        showError.bind(map, error, clickCalled)();
+
+      }
+      );
       return;
     } else {
       console.log("Failed to retrieve geolocation!");
@@ -211,22 +216,26 @@ function getLocation(map, clickCalled) {
   }
 
   if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition.bind(map), showError);
+    navigator.geolocation.getCurrentPosition(showPosition.bind(map), showError.bind(map));
     return;
   } else {
     console.log("Failed to retrieve geolocation!");
   }
+
+  location["lat"] = map.getCenter().lat();
+  location["lng"] = map.getCenter().lng();
+  addMyLocationMarker(location, map, clickCalled);
 
 }
 
 function showPosition(position, clickCalled) {
   const location = {lat: position.coords.latitude,
     lng: position.coords.longitude};
-  console.log(position);
+
   addMyLocationMarker(location, this, clickCalled);
 }
 
-function showError(error) {
+function showError(error, clickCalled) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
       console.log("User denied the request for Geolocation.");
@@ -245,5 +254,5 @@ function showError(error) {
   }
   const currentCenter = this.getCenter();
   const location = {lat: currentCenter.lat(), lng: currentCenter.lng()};
-  addMyLocationMarker(location, this);
+  addMyLocationMarker(location, this, clickCalled);
 }
