@@ -41,8 +41,29 @@ function initializeDetail() {
   $("#main-view-holder").on("touchstart", function(evt) {
     // evt.preventDefault();
     var touches = evt.touches;
-    const touch = touches[0];
-    pageObject.curTouch = {x: touch.clientX, y: touch.clientY};
+    if(touches.length < 2) {
+      const touch = touches[0];
+      pageObject.curTouch = {x: touch.clientX, y: touch.clientY, identifier: touch.identifier};
+    }
+    if(touches.length == 2) {
+      pageObject.fingerOne = {x: touches[0].clientX, y: touches[0].clientY};
+      pageObject.fingerTwo = {x: touches[1].clientX, y: touches[1].clientY};
+    }
+  });
+
+  // Handle touch end event
+  $("#main-view-holder").on("touchend", function(evt) {
+    // evt.preventDefault();
+
+    var touches = evt.touches;
+    // if(touches.length < 2) {
+    //   const touch = touches[0];
+    //   pageObject.curTouch = {x: touch.clientX, y: touch.clientY};
+    // }
+    // if(touches.length == 2) {
+    //   pageObject.fingerOne = {x: touches[0].clientX, y: touches[0].clientY};
+    //   pageObject.fingerTwo = {x: touches[1].clientX, y: touches[1].clientY};
+    // }
   });
 
   // Handle drag event
@@ -55,7 +76,9 @@ function initializeDetail() {
       const touch = touches[0];
       const deltaX = touch.clientX - pageObject.curTouch.x;
       const deltaY = touch.clientY - pageObject.curTouch.y;
-      console.log(this.style.marginLeft, this.style.marginTop);
+
+      if(touch.identifier != pageObject.curTouch.identifier) return;
+
       let marginLeft, marginTop;
       if(this.style.marginLeft && this.style.marginTop) {
         marginLeft = parseInt(this.style.marginLeft.substring(0, this.style.marginLeft.length - 2));
@@ -74,12 +97,56 @@ function initializeDetail() {
       pageObject.curTouch.x = touch.clientX;
       pageObject.curTouch.y = touch.clientY;
     } else if(evt.touches.length == 2) {
-      const fingerOne = touches[0];
-      const fingerTwo = touches[1];
+      const fingerOne = {x: touches[0].clientX, y: touches[0].clientY};
+      const fingerTwo = {x: touches[1].clientX, y: touches[1].clientY};
+      const curCenter = {x: (fingerOne.x + fingerTwo.x) / 2, y: (fingerOne.y + fingerTwo.y) / 2};
+      const fingerOneOrigin = pageObject.fingerOne;
+      const fingerTwoOrigin = pageObject.fingerTwo;
+      const originalCenter = {x: (fingerOneOrigin.x + fingerTwoOrigin.x) / 2, y: (fingerOneOrigin.y + fingerTwoOrigin.y) / 2};
+      const deltaX = curCenter.x - originalCenter.x;
+      const deltaY = curCenter.y - originalCenter.y;
+
+      let marginLeft, marginTop;
+      if(this.style.marginLeft && this.style.marginTop) {
+        marginLeft = parseInt(this.style.marginLeft.substring(0, this.style.marginLeft.length - 2));
+        marginTop = parseInt(this.style.marginTop.substring(0, this.style.marginTop.length - 2));
+      } else {
+        marginLeft = 0;
+        marginTop = 0;
+      }
+
+      console.log(marginLeft, marginTop);
+      $(this).css({
+        "margin-left": (marginLeft + deltaX) + "px",
+        "margin-top": (marginTop + deltaY) + "px",
+      });
+
+      const curDistance = Math.sqrt((fingerOne.x - fingerTwo.x) * (fingerOne.x - fingerTwo.x) + (fingerOne.y - fingerTwo.y) * (fingerOne.y - fingerTwo.y));
+      const prevDistance = Math.sqrt((fingerOneOrigin.x - fingerTwoOrigin.x) * (fingerOneOrigin.x - fingerTwoOrigin.x) +
+        (fingerOneOrigin.y - fingerTwoOrigin.y) * (fingerOneOrigin.y - fingerTwoOrigin.y));
+
+      const ratio = curDistance / prevDistance;
+      // alert(ratio);
+      // let scaleRatio;
+
+      const canvas = this;
+      // const scaleX = canvas.getBoundingClientRect().width / canvas.offsetWidth;
+
+      const canvasWidth = parseFloat(canvas.style.width.substring(0, canvas.style.width.length - 2));
+      const canvasHeight = parseFloat(canvas.style.height.substring(0, canvas.style.height.length - 2));
+
+      canvas.style.width = (canvasWidth * ratio) + 'px';
+      canvas.style.height = (canvasHeight * ratio) + 'px';
+
+
+      pageObject.fingerOne = fingerOne;
+      pageObject.fingerTwo = fingerTwo;
 
     }
 
   }.bind(document.querySelector("#main-canvas")));
+
+
 
 }
 

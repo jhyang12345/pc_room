@@ -3,6 +3,8 @@ class PageObject {
     this.touchStart = {};
     this.curTouch = {};
     this.curPosition = {};
+    this.fingerOne = {};
+    this.fingerTwo = {};
     this.map = null;
     this.locationSet = null;
     this.mapMarkerDict = {};
