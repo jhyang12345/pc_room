@@ -115,12 +115,6 @@ function initializeDetail() {
         marginTop = 0;
       }
 
-      console.log(marginLeft, marginTop);
-      $(this).css({
-        "margin-left": (marginLeft + deltaX) + "px",
-        "margin-top": (marginTop + deltaY) + "px",
-      });
-
       const curDistance = Math.sqrt((fingerOne.x - fingerTwo.x) * (fingerOne.x - fingerTwo.x) + (fingerOne.y - fingerTwo.y) * (fingerOne.y - fingerTwo.y));
       const prevDistance = Math.sqrt((fingerOneOrigin.x - fingerTwoOrigin.x) * (fingerOneOrigin.x - fingerTwoOrigin.x) +
         (fingerOneOrigin.y - fingerTwoOrigin.y) * (fingerOneOrigin.y - fingerTwoOrigin.y));
@@ -137,6 +131,14 @@ function initializeDetail() {
 
       canvas.style.width = (canvasWidth * ratio) + 'px';
       canvas.style.height = (canvasHeight * ratio) + 'px';
+
+      const xGrowth = ((canvasWidth * ratio) - canvasWidth);
+      const yGrowth = ((canvasHeight * ratio) - canvasHeight);
+
+      $(this).css({
+        "margin-left": (marginLeft + deltaX - (xGrowth / 2)) + "px",
+        "margin-top": (marginTop + deltaY - (yGrowth / 2)) + "px",
+      });
 
 
       pageObject.fingerOne = fingerOne;
