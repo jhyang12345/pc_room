@@ -32,12 +32,6 @@ function initializeDetail() {
   const windowHeight = $(window).height();
   $("#main-view-holder").height(windowHeight * (4.5 / 10));
 
-  // document.querySelector("#main-view-holder").addEventListener("touchstart", function(evt) {
-  //   evt.preventDefault();
-  //   var touches = evt.touches;
-  //   console.log(touches);
-  // });
-
   $("#main-view-holder").on("touchstart", function(evt) {
     // evt.preventDefault();
     var touches = evt.touches;
@@ -53,17 +47,8 @@ function initializeDetail() {
 
   // Handle touch end event
   $("#main-view-holder").on("touchend", function(evt) {
-    // evt.preventDefault();
-
     var touches = evt.touches;
-    // if(touches.length < 2) {
-    //   const touch = touches[0];
-    //   pageObject.curTouch = {x: touch.clientX, y: touch.clientY};
-    // }
-    // if(touches.length == 2) {
-    //   pageObject.fingerOne = {x: touches[0].clientX, y: touches[0].clientY};
-    //   pageObject.fingerTwo = {x: touches[1].clientX, y: touches[1].clientY};
-    // }
+
   });
 
   // Handle drag event
@@ -135,12 +120,13 @@ function initializeDetail() {
       const xGrowth = ((canvasWidth * ratio) - canvasWidth);
       const yGrowth = ((canvasHeight * ratio) - canvasHeight);
 
+      // applying margins at end
       $(this).css({
         "margin-left": (marginLeft + deltaX - (xGrowth / 2)) + "px",
         "margin-top": (marginTop + deltaY - (yGrowth / 2)) + "px",
       });
 
-
+      // refreshing pageObject finger coordinates
       pageObject.fingerOne = fingerOne;
       pageObject.fingerTwo = fingerTwo;
 

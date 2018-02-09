@@ -26,7 +26,11 @@ class PageObject {
     });
 
     $(".navbar-toggler").on("click tap", function(evt) {
-      $(".navbar-open-cover").css("display", "block");
+      if($(".navbar-open-cover").css("display") == "block") {
+        $(".navbar-open-cover").css("display", "none");
+      } else {
+        $(".navbar-open-cover").css("display", "block");
+      }
     });
 
   }
