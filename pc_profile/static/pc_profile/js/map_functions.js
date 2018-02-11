@@ -61,12 +61,10 @@ function initializeMap(mapHolder) {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     },
     disableDefaultUI: true,
-    gestureHandling: "greedy"
+    gestureHandling: "none"
   });
 
   pageObject.map = map;
-
-  getLocation(map);
 
   // Adding loaded markerlist
   if(typeof(mapMarkerList) != "undefined") {

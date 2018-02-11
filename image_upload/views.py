@@ -22,12 +22,12 @@ def simple_upload(request):
 
         profile = handle_request(request)
 
-        passkey = profile.password
-
-        image_name, image_type = os.path.splitext(image.name)
-        print(image_name, image_type)
-        now = datetime.datetime.now()
         if(profile):
+            passkey = profile.password
+
+            image_name, image_type = os.path.splitext(image.name)
+            print(image_name, image_type)
+            now = datetime.datetime.now()
             file_path = os.path.join("media", passkey, "raw_images")
             root_path = os.path.join("media", passkey)
             fs = FileSystemStorage(location=file_path)

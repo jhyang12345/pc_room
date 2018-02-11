@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
   const map = initializeMap(document.querySelector("#actual-map"));
 
+  map.setOptions({'gestureHandling': 'greedy'});
+  getLocation(map);
+
   resizeMap($(".main-map-holder"));
 
   // $(window).resize(function(evt) {
