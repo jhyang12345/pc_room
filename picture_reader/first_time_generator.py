@@ -14,11 +14,11 @@ from picture_reader.components_count import get_over_two_components
 
 ssim_threshold = 0.95
 
-minLineLength = 50
-threshold = 100
+threshold = 60
+minLineLength = 30
 dilate_iterations = 3
 
-horizontal_threshold = 100
+horizontal_threshold = 80
 horizontal_minLineLength = 80
 
 def make_empty_image(image):
@@ -167,7 +167,7 @@ def generate_first_time(filename, pc_name, root_path=""):
         if(ssim_value > 0.95):
             grid_string = string_from_grid(handle_coords(item.grid_cell_locations),
                 Image.open(original_filename), item.base_grid.strip(),
-                (item.r, item.g, item.b))
+                [(item.r1, item.g1, item.b1), (item.r2, item.g2, item.b2), (item.r3, item.g3, item.b3)])
             # updating hough image path if similar enough
             item.anchor_image = hough_filename
             item.save()

@@ -30,13 +30,20 @@ def absolute_error(value, color):
         ret += abs(value[i] - color[i])
     return ret
 
-def string_from_grid(coords, image, base_grid, color):
+def string_from_grid(coords, image, base_grid, colors):
     ret = ""
     color_grid = []
     for coord in coords:
         value = average_rgb(translate(coord, image), image)
         color_grid.append(value)
-        if absolute_error(value, color) < 20: # empty seats
+        smallest_error = 100
+        # check all the colors for the color that is closest
+        for color in colors:
+            # if color is -1 pass
+            if(color[0] == -1): continue
+            smallest_error = min(smallest_error, absolute_error(value, color))
+
+        if smallest_error < 20: # empty seats
             ret += "+"
         else: # taken seats
             ret += "-"

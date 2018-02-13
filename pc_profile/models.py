@@ -46,10 +46,23 @@ class ProfileImageGuide(models.Model):
     grid_cell_locations = models.TextField(default="", blank=True, null=True)
     base_grid = models.TextField(default="", blank=True, null=True)
     anchor_image = models.CharField(max_length=100, default="", blank=True, null=True)
+
+    empty_check = models.BooleanField(default=False)
+
     # RGB is for the occupied seats
-    r = models.IntegerField(default=0, blank=True, null=True)
-    g = models.IntegerField(default=0, blank=True, null=True)
-    b = models.IntegerField(default=0, blank=True, null=True)
+    r1 = models.IntegerField(default=0, blank=True, null=True)
+    g1 = models.IntegerField(default=0, blank=True, null=True)
+    b1 = models.IntegerField(default=0, blank=True, null=True)
+
+    # RGB is for the occupied seats
+    r2 = models.IntegerField(default=-1, blank=True, null=True)
+    g2 = models.IntegerField(default=-1, blank=True, null=True)
+    b2 = models.IntegerField(default=-1, blank=True, null=True)
+
+    # RGB is for the occupied seats
+    r3 = models.IntegerField(default=-1, blank=True, null=True)
+    g3 = models.IntegerField(default=-1, blank=True, null=True)
+    b3 = models.IntegerField(default=-1, blank=True, null=True)
 
     def __str__(self):
         return self.profile_name
