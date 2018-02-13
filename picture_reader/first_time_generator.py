@@ -167,7 +167,7 @@ def generate_first_time(filename, pc_name, root_path=""):
         if(ssim_value > 0.95):
             grid_string = string_from_grid(handle_coords(item.grid_cell_locations),
                 Image.open(original_filename), item.base_grid.strip(),
-                [(item.r1, item.g1, item.b1), (item.r2, item.g2, item.b2), (item.r3, item.g3, item.b3)])
+                [(item.r1, item.g1, item.b1), (item.r2, item.g2, item.b2), (item.r3, item.g3, item.b3)], item.empty_check)
             # updating hough image path if similar enough
             item.anchor_image = hough_filename
             item.save()

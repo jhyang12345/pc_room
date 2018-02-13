@@ -30,7 +30,7 @@ def absolute_error(value, color):
         ret += abs(value[i] - color[i])
     return ret
 
-def string_from_grid(coords, image, base_grid, colors):
+def string_from_grid(coords, image, base_grid, colors, empty_check):
     ret = ""
     color_grid = []
     for coord in coords:
@@ -43,10 +43,16 @@ def string_from_grid(coords, image, base_grid, colors):
             if(color[0] == -1): continue
             smallest_error = min(smallest_error, absolute_error(value, color))
 
-        if smallest_error < 20: # empty seats
-            ret += "+"
-        else: # taken seats
-            ret += "-"
+        if not empty_check:
+            if smallest_error < 20: # empty seats
+                ret += "+"
+            else: # taken seats
+                ret += "-"
+        else:
+            if smallest_error < 20: # empty seats
+                ret += "-"
+            else: # taken seats
+                ret += "+"
     base_grid = iterate_base_grid(base_grid, ret, color_grid)
     return base_grid
 

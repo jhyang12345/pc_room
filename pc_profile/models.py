@@ -47,6 +47,7 @@ class ProfileImageGuide(models.Model):
     base_grid = models.TextField(default="", blank=True, null=True)
     anchor_image = models.CharField(max_length=100, default="", blank=True, null=True)
 
+    # boolean if set as False, the colors are used to match taken seats
     empty_check = models.BooleanField(default=False)
 
     # RGB is for the occupied seats
