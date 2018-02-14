@@ -13,6 +13,8 @@
   height: 50%;
   background-color: #252525;
   padding: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
   position: relative;
   overflow: hidden;
 }

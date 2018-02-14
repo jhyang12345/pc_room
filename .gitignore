@@ -1,4 +1,4 @@
 /media/*
 */__pycache__/*
 */migrations/*
-*/settings.py
+settings.py
