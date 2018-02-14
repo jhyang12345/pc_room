@@ -47,6 +47,11 @@ class ProfileImageGuide(models.Model):
     base_grid = models.TextField(default="", blank=True, null=True)
     anchor_image = models.CharField(max_length=100, default="", blank=True, null=True)
 
+    vertical_threshold = models.IntegerField(default=60, blank=True, null=True)
+    vertical_minLineLength = models.IntegerField(default=30, blank=True, null=True)
+    horizontal_threshold = models.IntegerField(default=80, blank=True, null=True)
+    horizontal_minLineLength = models.IntegerField(default=80, blank=True, null=True)
+
     # boolean if set as False, the colors are used to match taken seats
     empty_check = models.BooleanField(default=False)
 
