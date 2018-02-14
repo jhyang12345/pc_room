@@ -26,7 +26,7 @@ SECRET_KEY = 'c%cn-_vti)erpbj%&%8q@^#ita@iyt12br&lgy1&-2&t9uv572'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['172.30.1.23', '127.0.0.1']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['211.226.115.87']
 
 
 # Application definition
