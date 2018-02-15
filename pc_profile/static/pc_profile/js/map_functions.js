@@ -53,7 +53,7 @@ const myLocationBold = {
 function initializeMap(mapHolder) {
   var map = new google.maps.Map(mapHolder, {
     center: {lat: 37.56058516193408, lng: 127.03855991363525},
-    zoom: 17,
+    zoom: 16,
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     },
@@ -64,6 +64,8 @@ function initializeMap(mapHolder) {
     gestureHandling: "none"
   });
 
+
+
   pageObject.map = map;
 
   // Adding loaded markerlist
@@ -73,13 +75,14 @@ function initializeMap(mapHolder) {
     }
   }
 
-
-
   // Map listener may be covering marker listener
   google.maps.event.addListener(map, 'click', function(evt) {
     console.log(evt.latLng.lat());
     console.log(evt.latLng.lng());
   });
+
+  google.maps.event.trigger(map, "resize");
+
   return map;
 
 }
