@@ -201,9 +201,6 @@ function addActualMarker(object, map, small) {
     });
   }
 
-
-
-
   marker.setMap(map);
 
   google.maps.event.addListener(marker, 'click', function(marker) {

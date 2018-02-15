@@ -25,6 +25,9 @@ def map_view(request):
 def detail_view(request):
     return render(request, 'pc_profile/detail.html')
 
+def about_view(request):
+    return render(request, 'pc_profile/about.html')
+    
 def single_detail_view(request, id):
     profile = Profile.objects.get(id=id)
     context = {

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>자리요</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static "pc_profile/css/reset.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/fonts.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/bootstrap.min.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/font-awesome.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/fontawesome-all.min.css" %}" type="text/css">
+
+    <link rel="stylesheet" href="{% static "pc_profile/css/main.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/about.css" %}" type="text/css" />
+
+    <script src="{% static "pc_profile/js/PageObject.js" %}"></script>
+    <script src="{% static "pc_profile/js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/canvas_handler.js" %}"></script>
+
+  </head>
+  <body>
+    {% include "pc_profile/navbar.html" %}
+
+    <div class="container-box">
+        <div class="search-bar-container">
+          <div class="search-bar-holder">
+            <input type="text" class="search-bar" placeholder="내 주변 피시방 찾아보기...">
+            <span class="search-icon-holder">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="container-content">
+          <div class="about-header">
+            자리요 서비스 소개
+          </div>
+          <div class="about-detail">
+            자리요는 PC방 정보 공유 앱입니다. PC방 시장에 더 많은 사람들이 더 쉽게 접근할 수 있게 만들어서, PC방 시장을 활성화 시키는 것을 목표로 하고 있습니다.
+            <br  />
+            <br />
+            PC방 사용자로서 PC방을 다니며 느낀 아쉬운 점들을 토대로 만들어 나가고 있는 앱인만큼, 앞으로도 앱 사용자들의 의견에 귀 귀울이고, 서비스를 그에 맞춰나갈 생각입니다.
+
+          </div>
+
+        </div>
+
+    </div>
+
+
+  </body>
+
+</html>
