@@ -10,6 +10,14 @@ const blueMarkerImage = {
   scaledSize: new google.maps.Size(27, 42)
 };
 
+const blueMarkerImageSmall = {
+  url: '/static/pc_profile/images/marker_blue.png',
+  size: new google.maps.Size(18, 28),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(9, 28),
+  scaledSize: new google.maps.Size(18, 28)
+};
+
 const greenMarkerImage = {
   url: '/static/pc_profile/images/marker_green.png',
   size: new google.maps.Size(27, 42),
@@ -50,10 +58,10 @@ const myLocationBold = {
   scaledSize: new google.maps.Size(18, 28)
 };
 
-function initializeMap(mapHolder) {
+function initializeMap(mapHolder, small) {
   var map = new google.maps.Map(mapHolder, {
     center: {lat: 37.56058516193408, lng: 127.03855991363525},
-    zoom: 16,
+    zoom: 15,
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     },
@@ -61,17 +69,16 @@ function initializeMap(mapHolder) {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     },
     disableDefaultUI: true,
-    gestureHandling: "none"
+    gestureHandling: "none",
+
   });
-
-
 
   pageObject.map = map;
 
   // Adding loaded markerlist
   if(typeof(mapMarkerList) != "undefined") {
     for(const marker of mapMarkerList) {
-      pageObject.mapMarkerDict[marker.profile_name] = addActualMarker(marker, map);
+      pageObject.mapMarkerDict[marker.profile_name] = addActualMarker(marker, map, small);
     }
   }
 
@@ -81,7 +88,15 @@ function initializeMap(mapHolder) {
     console.log(evt.latLng.lng());
   });
 
-  google.maps.event.trigger(map, "resize");
+  // setTimeout(() => {
+  //   $(window).trigger("resize");
+  //   console.log("Trigger resize");
+  //   map.setCenter({lat: 37.56058516193408, lng: 127.0388});
+  //
+  //   map.fitBounds(map.getBounds());
+  //   google.maps.event.trigger(map, 'resize');
+  //
+  // }, 1000);
 
   return map;
 
@@ -168,14 +183,26 @@ function addMyLocationMarker(location, map, clickCalled) {
   });
 }
 
-function addActualMarker(object, map) {
+function addActualMarker(object, map, small) {
   const markerInfo = markerInfoDict[object.profile_name];
 
-  const marker = new google.maps.Marker({
-    position: markerInfo,
-    map: map,
-    icon: blueMarkerImage
-  });
+  let marker;
+  if(!small) {
+    marker = new google.maps.Marker({
+      position: markerInfo,
+      map: map,
+      icon: blueMarkerImage
+    });
+  } else {
+    marker = new google.maps.Marker({
+      position: markerInfo,
+      map: map,
+      icon: blueMarkerImageSmall
+    });
+  }
+
+
+
 
   marker.setMap(map);
 

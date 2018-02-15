@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   handleGridArrowPosition();
 
-  initializeMap(document.querySelector("#map-holder"));
+  initializeMap(document.querySelector("#map-holder"), true);
 
   $("#party-size-number").val(pageObject.getPartySize());
 
