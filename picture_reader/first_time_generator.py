@@ -165,9 +165,12 @@ def generate_first_time(filename, pc_name, root_path=""):
                 Image.open(original_filename), item.base_grid.strip(),
                 [(item.r1, item.g1, item.b1), (item.r2, item.g2, item.b2), (item.r3, item.g3, item.b3)], item.empty_check)
 
-            hough_image.save(os.path.join(hough_directory, "hough_answer.png"))
+            # maintaining one file for hough anchor at a time
+            answer_filename = os.path.join(hough_directory, "hough_answer.png")
+            hough_image.save(answer_filename)
+            img.save(os.path.join(directory, "current_image.png"))
             # updating hough image path if similar enough
-            item.anchor_image = hough_filename
+            item.anchor_image = answer_filename
             item.save()
             # updating profile grid info
             update_profile_grid_info(pc_name, grid_string)
