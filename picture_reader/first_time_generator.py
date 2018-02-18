@@ -141,7 +141,7 @@ def generate_first_time(filename, pc_name, root_path=""):
         os.makedirs(hough_directory)
     if not os.path.exists(mask_directory):
         os.makedirs(mask_directory)
-    if not os.path.exists(directlry):
+    if not os.path.exists(directory):
         os.makedirs(directory)
 
     # Creating & Saving masked image
