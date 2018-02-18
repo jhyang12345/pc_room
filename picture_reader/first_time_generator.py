@@ -153,7 +153,7 @@ def generate_first_time(filename, pc_name, root_path=""):
     hough_image.save(hough_filename)
 
     # Set anchor image if not set!
-    if(not item.anchor_image):
+    if(not item.anchor_image or not os.path.isfile(item.anchor_image)):
         item.anchor_image = hough_filename
         item.save()
 
