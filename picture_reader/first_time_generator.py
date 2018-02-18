@@ -157,10 +157,6 @@ def generate_first_time(filename, pc_name, root_path=""):
         item.anchor_image = hough_filename
         item.save()
 
-    # filename = make_filename(now) + "_snap" + ".png"
-    # filename = os.path.join(directory, filename)
-    # img.save(filename)
-
     # SSIM Threshold is 0.95
     if(item.anchor_image):
         ssim_value = compare_to_anchor(np.array(hough_image), item.anchor_image)
@@ -168,6 +164,8 @@ def generate_first_time(filename, pc_name, root_path=""):
             grid_string = string_from_grid(handle_coords(item.grid_cell_locations),
                 Image.open(original_filename), item.base_grid.strip(),
                 [(item.r1, item.g1, item.b1), (item.r2, item.g2, item.b2), (item.r3, item.g3, item.b3)], item.empty_check)
+
+            hough_image.save(os.path.join(hough_directory, "hough_answer.png"))
             # updating hough image path if similar enough
             item.anchor_image = hough_filename
             item.save()
@@ -175,7 +173,6 @@ def generate_first_time(filename, pc_name, root_path=""):
             update_profile_grid_info(pc_name, grid_string)
             empty_seats, two_empty_seats, largest_empty_seats = get_over_two_components(item.base_grid, grid_string)
             update_profile_seats_info(pc_name, empty_seats, two_empty_seats, largest_empty_seats)
-
 
 
 def main():
