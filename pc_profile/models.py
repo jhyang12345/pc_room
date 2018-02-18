@@ -72,3 +72,7 @@ class ProfileImageGuide(models.Model):
 
     def __str__(self):
         return self.profile_name
+
+class Report(models.Model):
+    report_title = models.TextField(default="빈 제목", blank=True, null=True)
+    report_content = models.TextField(default="", blank=True, null=True)

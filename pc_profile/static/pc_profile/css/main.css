@@ -15,7 +15,6 @@ body {
 
 a:active, a:visited, a:hover {
   text-decoration: none;
-
 }
 
 button:focus {
@@ -96,7 +95,7 @@ input:focus {
 }
 
 .navbar-toggler-icon {
-  
+
 }
 
 .reorder-icon {

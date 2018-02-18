@@ -15,9 +15,19 @@
   margin-bottom: 10px;
 }
 
+.about-header span {
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
 .about-detail {
   font-size: 16px;
-  color: #d5d5d5;
+  color: #c5c5c5;
   letter-spacing: 2px;
   margin-bottom: 20px;
+}
+
+a.actual-email {
+  float: right;
+  color: #e5e5e5;
 }
