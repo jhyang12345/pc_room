@@ -102,6 +102,7 @@ input[type="number"] {
 }
 
 #party-size-number {
+    font-family: Jua;
     background-color: rgba(0,0,0,0);
     border: none;
     color: #FFF;
