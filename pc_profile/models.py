@@ -1,5 +1,6 @@
 from django.db import models
 from django.dispatch import receiver
+from django.utils import timezone
 
 # Create your models here.
 class Profile(models.Model):
@@ -76,3 +77,8 @@ class ProfileImageGuide(models.Model):
 class Report(models.Model):
     report_title = models.TextField(default="빈 제목", blank=True, null=True)
     report_content = models.TextField(default="", blank=True, null=True)
+    reply_email = models.CharField(max_length=50, default="", blank=True, null=True)
+    report_date = models.DateTimeField(default=timezone.now, blank=True)
+
+    def __str__(self):
+        return self.report_title

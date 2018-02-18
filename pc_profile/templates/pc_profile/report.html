@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>자리요</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static "pc_profile/css/reset.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/fonts.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/bootstrap.min.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/font-awesome.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/fontawesome-all.min.css" %}" type="text/css">
+
+    <link rel="stylesheet" href="{% static "pc_profile/css/main.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/report.css" %}" type="text/css" />
+
+    <script src="{% static "pc_profile/js/PageObject.js" %}"></script>
+    <script src="{% static "pc_profile/js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/canvas_handler.js" %}"></script>
+
+    <script src="{% static "pc_profile/js/autosize.js" %}"></script>
+    <script src="{% static "pc_profile/js/report.js" %}"></script>
+
+  </head>
+  <body>
+    {% include "pc_profile/navbar.html" %}
+
+    <div class="container-box">
+<!--        <div class="search-bar-container">
+          <div class="search-bar-holder">
+            <input type="text" class="search-bar" placeholder="내 주변 피시방 찾아보기...">
+            <span class="search-icon-holder">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+-->
+        <div class="container-content">
+          <!-- <div class="report-header">
+            제보하기
+          </div> -->
+          <form method="POST" class="report-form">{% csrf_token %}
+            <input class="report-title" name="report_title" placeholder="제보 제목"></input>
+            <textarea class="report-content" name="report_content" placeholder="제보 내용"></textarea>
+            <input class="report-email" name="reply_email" type="email" placeholder="회신용 이메일"/>
+
+            <div class="report-guide">
+              문의사항, 제보할 PC방 혹은 문제점에 대해 최대한 자세하게 설명해 주시길 바랍니다.
+            </div>
+
+            <div class="report-button-holder">
+              <button type="submit" class="report-button">
+                제보하기
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+    </div>
+
+
+  </body>
+
+</html>

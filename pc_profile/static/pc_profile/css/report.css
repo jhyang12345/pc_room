@@ -1,0 +1,75 @@
+.container-box {
+  padding-top: 0px;
+}
+
+.container-content {
+  padding: 8px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.report-header {
+  font-size: 20px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #d8d8d8;
+  text-align: center;
+}
+
+.report-guide {
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  color: #d8d8d8;
+}
+
+.report-title {
+  width: 100%;
+  font-size: 24px;
+  background-color: #292929;
+  color: #d8d8d8;
+  border: none;
+  border-radius: 10px;
+  padding: 4px 12px 4px 12px;
+
+}
+
+.report-content {
+  margin-top: 8px;
+  width: 100%;
+  background-color: #333;
+  color: #d8d8d8;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 4px 12px 4px 12px;
+}
+
+.report-email {
+  width: 100%;
+  background-color: #333;
+  color: #d8d8d8;
+  border: none;
+  border-radius: 10px;
+  padding: 4px 12px 4px 12px;
+}
+
+.report-guide {
+  margin-top: 8px;
+}
+
+.report-button-holder {
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.report-button {
+  display: inline-block;
+  font-size: 24px;
+  color: #e5e5e5;
+  background-color: #202A33;
+  border-radius: 5px;
+  padding: 8px 24px 8px 24px;
+}

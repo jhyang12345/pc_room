@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.utils import timezone
 import json
 
 from .models import Profile
 # Create your views here.
+
+from .forms import ReportForm
 
 def index(request):
     supported_profiles = Profile.objects.filter(supported=True)
@@ -27,7 +30,25 @@ def detail_view(request):
 
 def about_view(request):
     return render(request, 'pc_profile/about.html')
-    
+
+def report_view(request):
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            report = form.save(commit=False)
+            report.report_date = timezone.now()
+
+            if(report.report_title.strip() == ""):
+                report.report_title = "제목 없음"
+
+            report.save()
+            print("Report successfully saved!")
+            return render(request, 'pc_profile/report.html')
+    else:
+        form = ReportForm()
+
+    return render(request, 'pc_profile/report.html', {'form': form})
+
 def single_detail_view(request, id):
     profile = Profile.objects.get(id=id)
     context = {
