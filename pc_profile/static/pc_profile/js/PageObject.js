@@ -7,6 +7,7 @@ class PageObject {
     this.fingerTwo = {};
     this.map = null;
     this.locationSet = null;
+    this.selectedMarker = null;
     this.mapMarkerDict = {};
     this.imagesList = [];
     this.init();

@@ -16,12 +16,13 @@ document.addEventListener("DOMContentLoaded", function(evt) {
   google.maps.event.addListener(map, 'drag', function() {
     document.querySelector("#party-size-number").blur();
     hideInfoBoxAnimation(document.querySelector(".visible-box"));
-
+    removeSelectedMarker();
   });
 
   google.maps.event.addListener(map, 'click', function() {
     document.querySelector("#party-size-number").blur();
     hideInfoBoxAnimation(document.querySelector(".visible-box"));
+    removeSelectedMarker();
   });
 
   $(".main-map-holder").resize(function(evt) {

@@ -18,6 +18,14 @@ const blueMarkerImageSmall = {
   scaledSize: new google.maps.Size(18, 28)
 };
 
+const selectedMarker = {
+  url: '/static/pc_profile/images/selected_marker.png',
+  size: new google.maps.Size(27, 42),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(14, 42),
+  scaledSize: new google.maps.Size(27, 42)
+};
+
 const greenMarkerImage = {
   url: '/static/pc_profile/images/marker_green.png',
   size: new google.maps.Size(27, 42),
@@ -207,10 +215,25 @@ function addActualMarker(object, map, small) {
     handleInfoBoxAnimation(this);
     const map = marker.getMap();
     map.panTo(marker.getPosition());
+    if(pageObject.selectedMarker == null) {
+      pageObject.selectedMarker = new google.maps.Marker({
+        position: marker.getPosition(),
+        map: map,
+        icon: selectedMarker
+      });
+    } else {
+      pageObject.selectedMarker.setPosition(marker.getPosition());
+      pageObject.selectedMarker.setMap(map);
+    }
+    marker.getPosition();
   }.bind(markerInfo, marker));
 
   return marker;
 
+}
+
+function removeSelectedMarker() {
+  pageObject.selectedMarker.setMap(null);
 }
 
 // retrieve geolocation
