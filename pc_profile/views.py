@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils import timezone
 import json
@@ -43,11 +43,14 @@ def report_view(request):
 
             report.save()
             print("Report successfully saved!")
-            return render(request, 'pc_profile/report.html')
+            return report_success(request)
     else:
         form = ReportForm()
 
     return render(request, 'pc_profile/report.html', {'form': form})
+
+def report_success(request):
+    return render(request, 'pc_profile/report_success.html')
 
 def single_detail_view(request, id):
     profile = Profile.objects.get(id=id)

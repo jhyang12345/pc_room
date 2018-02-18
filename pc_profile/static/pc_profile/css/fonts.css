@@ -26,5 +26,9 @@
     font-family: 'Hanna';
     src: url("fonts/BMHANNA_11yrs_ttf.ttf") format("truetype"),
         url("fonts/BMHANNA_11yrs_otf.otf") format("otf");
-    
+}
+
+@font-face {
+  font-family: 'NanumGothic';
+  src: url("fonts/NanumBarunGothic.ttf") format("truetype");
 }

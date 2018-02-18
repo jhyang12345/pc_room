@@ -1,11 +1,14 @@
 .container-box {
   padding-top: 0px;
+  height: 90vh;
 }
 
 .container-content {
   padding: 8px;
   padding-left: 0px;
   padding-right: 0px;
+  position: relative;
+  height: 100%;
 }
 
 .report-header {
@@ -72,4 +75,19 @@
   background-color: #202A33;
   border-radius: 5px;
   padding: 8px 24px 8px 24px;
+}
+
+.message-holder {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.report-success-message {
+  margin-top: 24px;
+  font-size: 20px;
+}
+
+.home-button {
+  font-size: 16px;
 }

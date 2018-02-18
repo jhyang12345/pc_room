@@ -21,8 +21,7 @@
     <script src="{% static "pc_profile/js/bootstrap.bundle.min.js" %}"></script>
     <script src="{% static "pc_profile/js/canvas_handler.js" %}"></script>
 
-    <script src="{% static "pc_profile/js/autosize.js" %}"></script>
-    <script src="{% static "pc_profile/js/report.js" %}"></script>
+    <script src="{% static "pc_profile/js/report_success.js" %}"></script>
 
   </head>
   <body>
@@ -31,23 +30,16 @@
     <div class="container-box">
 
         <div class="container-content">
-
-          <form method="POST" class="report-form">{% csrf_token %}
-            <input autocomplete="off" class="report-title" name="report_title" placeholder="제보 제목"></input>
-            <textarea autocomplete="off" class="report-content" name="report_content" placeholder="제보 내용"></textarea>
-            <input autocomplete="off" class="report-email" name="reply_email" type="email" placeholder="회신용 이메일"/>
-
-            <div class="report-guide">
-              문의사항, 제보할 PC방 혹은 문제점에 대해 최대한 자세하게 설명해 주시길 바랍니다.
+          <div class="message-holder">
+            <div class="report-header report-success-message">
+              소중한 제보 잘 받았습니다. 회신용 이메일을 남겨 주셨으면, 빠른 시일 내에 답변 드리겠습니다. 감사합니다.
             </div>
-
             <div class="report-button-holder">
-              <button type="submit" class="report-button">
-                제보하기
-              </button>
+              <a class="home-button report-button" href="/">
+                홈으로 돌아가기
+              </a>
             </div>
-          </form>
-
+          </div>
         </div>
 
     </div>

@@ -9,8 +9,9 @@ html {
 
 body {
   background-color: #404040;
-    font-family: Jua, NotoSans!important;
-    letter-spacing: 3px;
+  font-family: Jua!important;
+  letter-spacing: 3px;
+  word-break: keep-all;
 }
 
 a:active, a:visited, a:hover {
@@ -25,6 +26,38 @@ textarea {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+
+input {
+
+}
+
+input::-webkit-input-placeholder {
+  font-family: Jua;
+}
+
+input:-ms-input-placeholder {
+  font-family: Jua;
+}
+
+input:-moz-placeholder {
+  font-family: Jua;
+}
+
+textarea::-webkit-input-placeholder {
+  font-family: Jua;
+}
+
+textarea:-ms-input-placeholder {
+  font-family: Jua;
+}
+
+textarea:-moz-placeholder {
+  font-family: Jua;
+}
+
+input, textarea {
+  font-family: NanumGothic;
 }
 
 input,
