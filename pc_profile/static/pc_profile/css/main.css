@@ -186,6 +186,7 @@ input:focus {
 
 .search-bar-holder {
     position: fixed;
+    height: 38px;
     z-index: 8;
     top: 6px;
     left: 0px;
@@ -193,6 +194,7 @@ input:focus {
     margin-top: 56px;
     margin-left: 10px;
     margin-right: 10px;
+    line-height: 26px;
     background-color: #222;
     opacity: 0.7;
     padding-left: 14px;
@@ -203,13 +205,17 @@ input:focus {
 }
 
 .search-bar {
+    display: inline-block;
     background-color: rgba(0, 0, 0, 0);
     color: #F8F8F8;
     border: none;
     font-size: 18px;
     vertical-align: middle;
     text-align: left;
-    line-height: 24px;
+    line-height: 26px;
+    position: absolute;
+    left: 14px;
+    top: 6px;
 
 }
 
@@ -217,7 +223,7 @@ input:focus {
     display: inline-block;
     color: #656565;
     float: right;
-    line-height: 24px;
+
     vertical-align: middle;
 }
 
