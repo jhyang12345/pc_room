@@ -2,3 +2,6 @@
 */__pycache__/*
 */migrations/*
 pc_room/settings.py
+/static/*
+/staticfiles/*
+*/*.sock

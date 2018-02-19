@@ -73,7 +73,6 @@ function initializeDetail() {
         marginTop = 0;
       }
 
-      console.log(marginLeft, marginTop);
       $(this).css({
         "margin-left": (marginLeft + deltaX) + "px",
         "margin-top": (marginTop + deltaY) + "px",
