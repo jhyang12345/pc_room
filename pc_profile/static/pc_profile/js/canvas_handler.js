@@ -209,7 +209,7 @@ const seat_color = "#263333";
 
 const counter_color = "#9b9b9b";
 
-const empty_seat_color = "#bfffff";
+const empty_seat_color = "#bfdfff";
 
 // var ret = `-....+.....
 // -.+-.--.-.-

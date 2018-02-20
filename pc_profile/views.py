@@ -71,7 +71,7 @@ def get_current_grid(request, id):
     try:
         profile = Profile.objects.get(id=id)
         data = {
-            "grid": profile.grid_data.strip()
+            "grid": profile.grid_shape.strip()
         }
         return JsonResponse(data)
     except Exception as e:

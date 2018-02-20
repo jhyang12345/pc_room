@@ -24,8 +24,7 @@ $(document).ready(function(evt) {
     });
   });
 
-
-
+  $("#party-size-number").val(pageObject.getPartySize());
 });
 
 function initializeDetail() {

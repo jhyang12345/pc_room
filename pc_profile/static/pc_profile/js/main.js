@@ -53,11 +53,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   });
 
-  $(".mini-grid-viewer").height($(".mini-grid-viewer").width());
-
-  initializeCanvas(document.querySelector(".mini-grid-canvas"));
-
-  console.log($(".mini-grid-viewer").outerHeight());
 
   handleGridArrowPosition();
 
