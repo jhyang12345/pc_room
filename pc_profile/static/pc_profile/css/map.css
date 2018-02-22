@@ -30,6 +30,7 @@
 }
 
 #party-number-holder {
+  width: 46px;
   background-color: #222;
   opacity: 0.7;
   border-radius: 10px;
@@ -54,28 +55,29 @@
   font-size: 12px;
 }
 
-#party-size-number {
+div#party-size-number {
   font-family: Jua;
   background-color: rgba(0,0,0,0);
   border: none;
   width: 40px;
   height: 20px;
-  text-align: center;
+  line-height: 20px;
   color: #fff;
-  font-size: 24px;
-  padding-right: 13px;
+  letter-spacing: 0.1px;
+  font-size: 26px;
+  padding-right: 10px;
   text-align: right;
 }
 
 .number-button i {
   color: #888;
-  font-size: 40px;
+  font-size: 44px;
   vertical-align: middle;
 }
 
 #up-button-holder {
   /* margin-top: -10px; */
-  margin-bottom: -7px;
+  margin-bottom: -6px;
 }
 
 #up-button-holder i {
@@ -85,7 +87,7 @@
 /* 3:4 */
 
 #down-button-holder {
-  margin-top: -13px;
+  margin-top: -10px;
   /* margin-bottom: -10px; */
 }
 
@@ -94,8 +96,8 @@
 }
 
 #get-current-location-holder {
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
   margin-top: 10px;
   text-align: center;
   background-color: #222;
@@ -107,8 +109,8 @@
   color: #FFF;
   letter-spacing: 0px;
   vertical-align: middle;
-  line-height: 40px;
-  font-size: 20px;
+  line-height: 46px;
+  font-size: 24px;
 }
 
 .info-box {

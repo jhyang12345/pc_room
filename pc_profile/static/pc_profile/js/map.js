@@ -43,32 +43,32 @@ document.addEventListener("DOMContentLoaded", function(evt) {
   // attaching controls for party size number
   $("#up-button-holder").on("click tap", function(evt) {
     evt.preventDefault();
-    const curVal = parseInt($("#party-size-number").val());
+    const curVal = parseInt($("#party-size-number").text());
     if(curVal < 10) {
-      $("#party-size-number").val(curVal + 1);
+      $("#party-size-number").text(curVal + 1);
     } else {
-      $("#party-size-number").val(10);
+      $("#party-size-number").text(10);
     }
     $("#party-size-number").trigger('input');
   });
 
   $("#down-button-holder").on("click tap", function(evt) {
     evt.preventDefault();
-    const curVal = parseInt($("#party-size-number").val());
+    const curVal = parseInt($("#party-size-number").text());
     if(curVal > 1) {
-      $("#party-size-number").val(curVal - 1);
+      $("#party-size-number").text(curVal - 1);
     } else {
-      $("#party-size-number").val(1);
+      $("#party-size-number").text(1);
     }
     $("#party-size-number").trigger('input');
   });
 
   // handling input events on party size number
   $("#party-size-number").on('input', function(evt) {
-    const inputValue = $(evt.target).val();
+    const inputValue = $(evt.target).text();
     console.log("Changed!")
     if(inputValue.length > 2 || parseInt(inputValue) > 10) {
-      $(evt.target).val(10);
+      $(evt.target).text(10);
       pageObject.setPartySize(10);
     }
     pageObject.setPartySize(inputValue);
@@ -84,14 +84,14 @@ document.addEventListener("DOMContentLoaded", function(evt) {
   });
 
   $("#party-size-number").on('focusout', function(evt) {
-    const inputValue = $(evt.target).val();
+    const inputValue = $(evt.target).text();
     if(inputValue.length < 1 || parseInt(inputValue) < 1) {
-      $(evt.target).val(1);
+      $(evt.target).text(1);
       pageObject.setPartySize(1);
     }
   });
 
-  $("#party-size-number").val(pageObject.getPartySize());
+  $("#party-size-number").text(pageObject.getPartySize());
 
   // applying party size to initial marker images load
   applyPartyMarkerImage(pageObject.getPartySize());
