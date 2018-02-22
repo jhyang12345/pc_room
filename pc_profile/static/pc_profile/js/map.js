@@ -42,7 +42,23 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
   $(".info-state").on("click tap", function(evt) {
     evt.stopPropagation();
+    const curElem = evt.currentTarget;
+    const infoText = curElem.querySelector(".info-state-text").innerHTML.trim();
+    const content = getExplanationText(infoText);
+
+    $(".explanation-box").html(content);
+
     console.log("info state clicked!");
+    $(".explanation-overlay").css("display", "block");
+    $(".explanation-box").css("display", "block");
+
+    console.log(evt.target);
+    $(".explanation-overlay").on("click tap", function(evt) {
+      $(".explanation-overlay").css("display", "none");
+      $(".explanation-box").css("display", "none");
+
+    });
+
   });
 
   // attaching controls for party size number

@@ -162,6 +162,22 @@ function getPartyStateColor(partySize, markerInfo) {
   }
 }
 
+function getExplanationText(title) {
+  console.log(title);
+  let ret;
+  if(title == "붙은 자리") {
+    ret = '<span class="explanation-box-title">붙은 자리</span> - 전체 인원이 수용 가능하고, 전부 붙어 앉을수 있습니다.'
+  } else if(title == "최소 둘둘") {
+    ret = '<span class="explanation-box-title">최소 둘둘</span> - 전체 인원이 수용 가능하지만, 나눠져서 앉아야 합니다.'
+  } else if(title =="한명은 혼자") {
+    ret = '<span class="explanation-box-title">한명은 혼자</span> - 전체 인원이 수용 가능하지만, 적어도 한명은 떨어져 앉아야 합니다.'
+  } else {
+    ret = '<span class="explanation-box-title">자리 부족</span> - 전체 인원을 수용할 자리가 부족합니다.'
+  }
+  return ret;
+
+}
+
 function addMyLocationMarker(location, map, clickCalled) {
   let marker;
   // check in pageObject for locationMarker
