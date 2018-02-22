@@ -150,6 +150,18 @@ function getPartyStateText(partySize, markerInfo) {
   }
 }
 
+function getPartyStateColor(partySize, markerInfo) {
+  if(partySize < markerInfo.largest_empty_seats) {
+    return "#3EC8AC";
+  } else if(partySize < markerInfo.two_empty_seats) {
+    return "#4472C4";
+  } else if(partySize < markerInfo.empty_seats) {
+    return "#F79F24";
+  } else {
+    return "#E20049";
+  }
+}
+
 function addMyLocationMarker(location, map, clickCalled) {
   let marker;
   // check in pageObject for locationMarker

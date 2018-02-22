@@ -196,7 +196,29 @@ div#party-size-number {
   font-size: 14px;
   letter-spacing: 0.4px;
   color: #888;
+  line-height: 24px;
 }
+
+.info-state .far {
+  vertical-align: middle;
+  color: #aaa;
+}
+
+.info-state-color {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #000;
+}
+
+.info-state-text {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 24px;
+}
+
 
 .info-marker-holder {
   position: absolute;

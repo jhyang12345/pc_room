@@ -40,6 +40,11 @@ document.addEventListener("DOMContentLoaded", function(evt) {
     goToDetailsPage();
   });
 
+  $(".info-state").on("click tap", function(evt) {
+    evt.stopPropagation();
+    console.log("info state clicked!");
+  });
+
   // attaching controls for party size number
   $("#up-button-holder").on("click tap", function(evt) {
     evt.preventDefault();
@@ -124,8 +129,8 @@ function handleInfoBoxAnimation(object) {
   const imageSrc = getPartyMarkerImage(partySize, object);
   $(hidden.querySelector(".info-marker")).attr("src", imageSrc);
 
-  hidden.querySelector(".info-state").innerHTML = getPartyStateText(partySize, object);
-
+  hidden.querySelector(".info-state-text").innerHTML = getPartyStateText(partySize, object);
+  hidden.querySelector(".info-state-color").style.backgroundColor = getPartyStateColor(partySize, object);
   detailsPageLink = "/detail/" + object["id"].trim();
 
  $(hidden).css({'transform': 'translate(0px, 0px)',
