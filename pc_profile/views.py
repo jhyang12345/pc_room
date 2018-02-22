@@ -64,6 +64,9 @@ def single_detail_view(request, id):
         'pc_specs': profile.pc_specs.strip(),
         'owners_words': profile.owners_words.strip(),
         'total_seats': profile.total_seats.strip(),
+        "empty_seats": profile.empty_seats,
+        "two_empty_seats": profile.two_empty_seats,
+        "largest_empty_seats": profile.largest_empty_seats,
     }
     return render(request, 'pc_profile/detail.html', context)
 
