@@ -5,6 +5,7 @@ import os, time, datetime
 from pc_room.util import make_filename
 from picture_reader.first_time_generator import generate_first_time
 from picture_reader.read_profiles import read_data
+import logging
 
 # Profile attributes
 # profile_name
@@ -14,19 +15,27 @@ from picture_reader.read_profiles import read_data
 # grid_shape
 # grid_data
 
+logger = logging.getLogger(__name__)
+
 # Create your views here.
 def simple_upload(request):
     print(request)
+
+
     if request.method == 'POST' and request.FILES['snapshot']:
         image = request.FILES['snapshot']
 
         profile = handle_request(request)
 
         if(profile):
+            logger.info("Passkey successfully accepted: %s", profile.password)
             passkey = profile.password
 
             image_name, image_type = os.path.splitext(image.name)
             print(image_name, image_type)
+
+            logger.info("Existing passkey %s", profile.password)
+
             now = datetime.datetime.now()
             file_path = os.path.join("media", passkey, "raw_images")
             root_path = os.path.join("media", passkey)
@@ -39,6 +48,7 @@ def simple_upload(request):
                 'uploaded_file_url': uploaded_file_url
             })
         else:
+            logger.error("Non existing passkey")
             return "Failed"
 
     elif request.method == 'GET':
@@ -50,8 +60,8 @@ def simple_upload(request):
 
 
 def handle_request(request):
-    print(request.COOKIES)
     passkey = request.COOKIES["passkey"]
+    logger.info("Receiving post request for %s", passkey)
     try:
         profile = Profile.objects.get(password=passkey)
         return profile

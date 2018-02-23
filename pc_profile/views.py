@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils import timezone
 import json
+import logging
 
 from .models import Profile
 # Create your views here.
 
 from .forms import ReportForm
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     supported_profiles = Profile.objects.filter(supported=True)
@@ -68,6 +71,8 @@ def single_detail_view(request, id):
         "two_empty_seats": profile.two_empty_seats,
         "largest_empty_seats": profile.largest_empty_seats,
     }
+    logging.error("Detail view called!")
+    print("Detail view called!")
     return render(request, 'pc_profile/detail.html', context)
 
 def get_current_grid(request, id):

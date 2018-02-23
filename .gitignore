@@ -5,3 +5,4 @@ pc_room/settings.py
 /static/*
 /staticfiles/*
 */*.sock
+*.log
