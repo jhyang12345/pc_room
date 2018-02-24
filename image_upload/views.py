@@ -5,6 +5,7 @@ import os, time, datetime
 from pc_room.util import make_filename
 from picture_reader.first_time_generator import generate_first_time
 from picture_reader.read_profiles import read_data
+from picture_reader.util import get_date_time_stamp
 import logging
 
 # Profile attributes
@@ -28,13 +29,13 @@ def simple_upload(request):
         profile = handle_request(request)
 
         if(profile):
-            logger.info("Passkey successfully accepted: %s", profile.password)
+            logger.info(get_date_time_stamp() + "Passkey successfully accepted: %s", profile.password)
             passkey = profile.password
 
             image_name, image_type = os.path.splitext(image.name)
             print(image_name, image_type)
 
-            logger.info("Existing passkey %s", profile.password)
+            logger.info(get_date_time_stamp() + "Existing passkey %s", profile.password)
 
             now = datetime.datetime.now()
             file_path = os.path.join("media", passkey, "raw_images")
@@ -61,7 +62,7 @@ def simple_upload(request):
 
 def handle_request(request):
     passkey = request.COOKIES["passkey"]
-    logger.info("Receiving post request for %s", passkey)
+    logger.info(get_date_time_stamp() + "Receiving post request for %s", passkey)
     try:
         profile = Profile.objects.get(password=passkey)
         return profile

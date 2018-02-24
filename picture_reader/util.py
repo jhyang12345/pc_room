@@ -2,6 +2,7 @@ import os
 from skimage.measure import compare_ssim as ssim
 from PIL import Image
 import numpy as np
+import datetime
 
 def half(coords):
     i = 0
@@ -47,3 +48,7 @@ def compare_to_anchor(image, anchor_file="images/hough/snap_171202_215637_hough.
     print("Similarity value:", ssim_value)
     print("MSE:", mse(image, anchor))
     return ssim_value
+
+def get_date_time_stamp():
+    now = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S\t')
+    return now

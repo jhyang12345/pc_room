@@ -71,7 +71,7 @@ def single_detail_view(request, id):
         "two_empty_seats": profile.two_empty_seats,
         "largest_empty_seats": profile.largest_empty_seats,
     }
-    logging.error("Detail view called!")
+    logger.error("Detail view called: %d", id)
     print("Detail view called!")
     return render(request, 'pc_profile/detail.html', context)
 
