@@ -49,9 +49,9 @@ def compare_to_anchor(image, anchor_file="images/hough/snap_171202_215637_hough.
     print(image.shape, anchor.shape)
     ssim_value = get_ssim(image, anchor)
     print("Similarity value:", ssim_value)
-    logger.info(get_date_time_stamp() + "Similarity value:", ssim_value)
+    logger.info(get_date_time_stamp() + "Similarity value: " + str(ssim_value))
     print("MSE:", mse(image, anchor))
-    logger.info(get_date_time_stamp() + "MSE:", mse(image, anchor))
+    logger.info(get_date_time_stamp() + "MSE: "+  str(mse(image, anchor)))
     return ssim_value
 
 def get_date_time_stamp():

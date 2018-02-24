@@ -128,6 +128,8 @@ def generate_first_time(filename, pc_name, root_path=""):
 
     item = read_data(pc_name=pc_name)
 
+    logger.info(get_date_time_stamp() + "Handling %s" % (item.profile_name))
+
     img = cut_image(handle_coords(item.grid_corners), img)
     processed_image, empty_image = process_img(np.array(img))
     processed_image = Image.fromarray(processed_image, "L")
