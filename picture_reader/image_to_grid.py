@@ -1,5 +1,9 @@
 from PIL import Image
 import os
+import logging
+from picture_reader.util import get_date_time_stamp
+
+logger = logging.getLogger(__name__)
 
 def translate(coord, image):
     width = image.size[0]
@@ -77,6 +81,7 @@ def iterate_base_grid(base_grid, ret, color_grid, column_sort=True):
     for i in range(len(base_grid)):
         base_grid[i] = "".join(base_grid[i])
     base_grid = "\n".join(base_grid)
+    logger.info(get_date_time_stamp() + "\n" + base_grid)
     print(base_grid)
     return base_grid
 

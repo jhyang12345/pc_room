@@ -11,6 +11,9 @@ from picture_reader.read_profiles import  read_data
 from picture_reader.database_helper import update_profile_grid_info, update_profile_seats_info
 from picture_reader.image_to_grid import *
 from picture_reader.components_count import get_over_two_components
+import logging
+
+logger = logging.getLogger(__name__)
 
 ssim_threshold = 0.95
 
@@ -67,6 +70,7 @@ def process_img(image):
             if(i == 0):
                 draw_horizontal_lines(empty_image, lines, 255)
                 print("Horizontal lines")
+                logger.info(get_date_time_stamp() + "Detecting Horizontal lines")
                 pass
             elif lines:
                 draw_lines(empty_image, lines)
@@ -90,6 +94,7 @@ def draw_lines(img, lines, color=255):
             cv2.line(img, (coords[0], coords[1]), (coords[2], coords[3]), [color, color, color], 4)
     except:
         print("No lines detected")
+        logger.info(get_date_time_stamp() + "No lines detected!")
 
 def draw_horizontal_lines(img, lines, color=80):
     for line in lines:
