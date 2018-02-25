@@ -82,3 +82,36 @@ class Report(models.Model):
 
     def __str__(self):
         return self.report_title
+
+class ProfileImage(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    index = models.IntegerField(default=0, blank=True, null=True)
+    image = models.ImageField(upload_to='profile_images/')
+
+    def save(self, *args, **kwargs):
+        index = self.get_next_key()
+        self.index = index
+        print(index)
+        image_name, image_extension = self.get_image_name()
+        image_name = image_name + "_" + str(index)
+        image_name = image_name + "." + image_extension
+        self.image.name = image_name
+        super(ProfileImage, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.image)
+
+    def get_next_key(self):
+        profileImages = ProfileImage.objects.filter(profile=self.profile)
+        print(profileImages)
+        if profileImages:
+            return len(profileImages)
+        else:
+            return 0
+
+    def get_image_name(self):
+        extension = self.image.name.split('.')[1]
+        name = self.profile.profile_name
+        name = name.split()
+        name = "_".join(name)
+        return name, extension
