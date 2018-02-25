@@ -16,4 +16,5 @@ urlpatterns = [
   path('detail/<int:id>', views.single_detail_view, name="single_detail_view"),
   # AJAX function
   path('current-grid/<int:id>', views.get_current_grid, name="get_current_grid"),
+  # path('media/profile_images/<str:path>', views.get_image, name="get_image"),
 ]

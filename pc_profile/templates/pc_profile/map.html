@@ -18,6 +18,7 @@
     <script type="text/javascript">
       var mapMarkerList = [];
       var markerInfoDict = {};
+      var imageDict = {};
       {% for profile in supported_profiles %}
 
         markerInfoDict["{{profile.profile_name}}"] = {
@@ -32,6 +33,13 @@
             lng: {{profile.lng}},
           };
         mapMarkerList.push({profile_name: "{{profile.profile_name}}", lat: {{profile.lat}}, lng: {{profile.lng}}});
+      {% endfor %}
+      {% for profile_id, image_list in image_dict.items %}
+        imageDict["{{profile_id}}"] = [];
+        {% for image in image_list %}
+          imageDict["{{profile_id}}"].push("{{image.url}}");
+        {% endfor %}
+
       {% endfor %}
     </script>
 

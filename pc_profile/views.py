@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils import timezone
+from PIL import Image
 import json
 import logging
 
-from .models import Profile
+from .models import Profile, ProfileImage
 # Create your views here.
 
 from .forms import ReportForm
@@ -23,8 +24,18 @@ def index(request):
 
 def map_view(request):
     supported_profiles = Profile.objects.filter(supported=True)
+    image_dict = {}
+    for profile in supported_profiles:
+        image_dict[profile.id] = []
+        image_list = ProfileImage.objects.filter(profile=profile).order_by('index')
+        if(image_list.count()):
+            for image in image_list:
+                image_dict[profile.id].append(image.image)
+                print(image.image.url)
+
     context = {
         'supported_profiles': supported_profiles,
+        'image_dict': image_dict,
     }
     return render(request, 'pc_profile/map.html', context)
 
@@ -87,3 +98,8 @@ def get_current_grid(request, id):
         return JsonResponse({})
 
     return render(request, 'pc_profile/detail.html')
+# 
+# def get_image(request, path):
+#     print(path)
+#     path = 'media/profile_images/' + path
+#     return Image.open(path)

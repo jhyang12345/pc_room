@@ -85,13 +85,15 @@ class Report(models.Model):
 
 class ProfileImage(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
-    index = models.IntegerField(default=0, blank=True, null=True)
+    index = models.IntegerField(default=-1, blank=True, null=True)
     image = models.ImageField(upload_to='profile_images/')
 
     def save(self, *args, **kwargs):
-        index = self.get_next_key()
-        self.index = index
-        print(index)
+        # execute specially handled save only in
+        if(self.index == -1):
+            index = self.get_next_key()
+            self.index = index
+        index = self.index
         image_name, image_extension = self.get_image_name()
         image_name = image_name + "_" + str(index)
         image_name = image_name + "." + image_extension
