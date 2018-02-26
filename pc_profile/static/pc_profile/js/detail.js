@@ -214,6 +214,7 @@ function openGallery(index) {
     return;
   }
   const imageSource = pageObject.imagesList[index];
+  pageObject.imageListIndex = index;
 
   $(".gallery-holder img").attr("src", imageSource);
   $(".gallery-holder").css("display", "block");
@@ -229,9 +230,22 @@ function initializeImageList(imageList) {
     $(".gallery-background").css("display", "none");
   });
 
-  $(".gallery-closer").on("click tap", function(evt) {
+  $(".gallery-closer-holder").on("click tap", function(evt) {
     $(".gallery-holder").css("display", "none");
     $(".gallery-background").css("display", "none");
+  });
+
+  $(".gallery-image-holder img").on("click tap", function(evt) {
+    evt.stopPropagation();
+    const screenWidth = $(window).width();
+    let index = pageObject.imageListIndex;
+    if(evt.clientX < screenWidth / 2) {
+      if(index == 0) index = pageObject.imagesList.length;
+      openGallery(index - 1);
+    } else {
+      if(index == imageList.length - 1) index = -1;
+      openGallery(index + 1);
+    }
   });
 
   // hard codedly assign image sources to each element

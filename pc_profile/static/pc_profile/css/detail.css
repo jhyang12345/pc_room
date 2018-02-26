@@ -22,19 +22,23 @@
 .gallery-closer-holder {
   position: absolute;
   top: 54px;
-  font-size: 20px;
-  width: 100%;
-  text-align: right;
+  right: 0px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  font-size: 25px;
+  text-align: center;
   color: #555;
 }
 
 .gallery-closer {
-  display: inline-block;
-  padding: 4px;
-  font-size: 20px;
-  letter-spacing: 0px;
+  font-family: Arial;
+  width: 100%;
   vertical-align: middle;
-  height: 30px;
+  text-align: center;
+  /* font-size: 20px; */
+  letter-spacing: 0px;
+
 }
 
 .gallery-holder img {

@@ -10,6 +10,7 @@ class PageObject {
     this.selectedMarker = null;
     this.mapMarkerDict = {};
     this.imagesList = [];
+    this.imageListIndex = 0;
     this.init();
 
   }
