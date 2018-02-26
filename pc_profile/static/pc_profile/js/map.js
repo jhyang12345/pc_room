@@ -157,9 +157,9 @@ function handleInfoBoxAnimation(object) {
   detailsPageLink = "/detail/" + object["id"].trim();
 
  $(hidden).css({'transform': 'translate(0px, 0px)',
-   'transition-duration': '0.5s'});
+   'transition-duration': '0s'});
 
- $(hidden).fadeTo(200, 1.0);
+ $(hidden).fadeTo(0, 1.0);
 
  hidden.classList.toggle("hidden-box");
  hidden.classList.toggle("visible-box");
@@ -172,7 +172,7 @@ function handleInfoBoxAnimation(object) {
 
 function hideInfoBoxAnimation(infobox) {
 
-  $(infobox).fadeTo(200, 0.0, function(){
+  $(infobox).fadeTo(0, 0.0, function(){
     $(this).css({'transform': 'translate(0px, 120px)'});
   }.bind(infobox));
 

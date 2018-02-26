@@ -1,6 +1,8 @@
 from django.db import models
 from django.dispatch import receiver
 from django.utils import timezone
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFit
 
 # Create your models here.
 class Profile(models.Model):
@@ -86,7 +88,12 @@ class Report(models.Model):
 class ProfileImage(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     index = models.IntegerField(default=-1, blank=True, null=True)
-    image = models.ImageField(upload_to='profile_images/')
+    # image = models.ImageField(upload_to='profile_images/')
+    image = ProcessedImageField(upload_to='profile_images/',
+                                           processors=[ResizeToFit(1000, 1000)],
+                                           format='JPEG',
+                                           options={'quality': 60}, null=True, blank=True)
+
 
     def save(self, *args, **kwargs):
         # execute specially handled save only in
