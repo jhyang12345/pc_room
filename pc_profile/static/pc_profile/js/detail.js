@@ -75,7 +75,7 @@ $(document).ready(function(evt) {
   $("#party-size-number").text(pageObject.getPartySize());
 
   // will be replaced
-  initializeImageList(["/static/pc_profile/images/pc1.jpg", "/static/pc_profile/images/pc2.jpg", "/static/pc_profile/images/pc3.jpg"]);
+  initializeImageList(imageList);
 
 });
 
@@ -227,19 +227,26 @@ function initializeImageList(imageList) {
   $(".gallery-holder").on("click tap", function(evt) {
     $(".gallery-holder").css("display", "none");
     $(".gallery-background").css("display", "none");
-    })
+  });
+
+  $(".gallery-closer").on("click tap", function(evt) {
+    $(".gallery-holder").css("display", "none");
+    $(".gallery-background").css("display", "none");
+  });
+
   // hard codedly assign image sources to each element
   $(".main-picture-holder img").attr("src", imageList[0]);
   $(".main-picture-holder img").on("click tap", function(evt) {
     openGallery(0);
   });
-  $(".single_thumbnail").each(function(index, element) {
+  $(".single_thumbnail img").each((i, element) => {
+    const index = parseInt(i);
     console.log(index);
-    $(element).attr("src", imageList[index + 1]);
+    console.log(pageObject.imagesList);
+    $(element).attr("src", pageObject.imagesList[index + 1]);
     $(element).on("click tap", (evt) => {
       openGallery(index + 1)
     });
-    console.log(imageList[index + 1]);
   });
 }
 

@@ -145,6 +145,13 @@ function handleInfoBoxAnimation(object) {
   const imageSrc = getPartyMarkerImage(partySize, object);
   $(hidden.querySelector(".info-marker")).attr("src", imageSrc);
 
+  const imageList = imageDict[object["id"]];
+  if(imageList.length) {
+    $(hidden.querySelector(".info-thumbnail").querySelector("img")).attr("src", imageList[0]);
+  } else {
+    $(hidden.querySelector(".info-thumbnail").querySelector("img")).attr("src", "");
+  }
+
   hidden.querySelector(".info-state-text").innerHTML = getPartyStateText(partySize, object);
   hidden.querySelector(".info-state-color").style.backgroundColor = getPartyStateColor(partySize, object);
   detailsPageLink = "/detail/" + object["id"].trim();
@@ -165,7 +172,7 @@ function handleInfoBoxAnimation(object) {
 
 function hideInfoBoxAnimation(infobox) {
 
-  $(infobox).fadeTo(300, 0.0, function(){
+  $(infobox).fadeTo(200, 0.0, function(){
     $(this).css({'transform': 'translate(0px, 120px)'});
   }.bind(infobox));
 

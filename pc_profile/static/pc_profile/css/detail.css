@@ -9,7 +9,7 @@
 }
 
 .gallery-holder {
-  position: absolute;
+  position: fixed;
   z-index: 8;
 
   top: 0px;
@@ -19,17 +19,34 @@
   display: none;
 }
 
+.gallery-closer-holder {
+  position: absolute;
+  top: 54px;
+  font-size: 20px;
+  width: 100%;
+  text-align: right;
+  color: #555;
+}
+
+.gallery-closer {
+  display: inline-block;
+  padding: 4px;
+  font-size: 20px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  height: 30px;
+}
+
 .gallery-holder img {
   position: absolute;
   width: 95%;
   left: 50%;
-
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
 .gallery-background {
-  position: absolute;
+  position: fixed;
   z-index: 7;
   background-color: #111;
   opacity: 0.8;
@@ -206,7 +223,8 @@ div#party-size-number {
 .main-picture-holder {
   width: 100px;
   height: 100px;
-  background-color: #ccc;
+  position: relative;
+
   overflow: hidden;
   border: 1px solid #444;
   overflow: hidden;
@@ -220,7 +238,27 @@ div#party-size-number {
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
+  z-index: 2;
+}
 
+.main-picture-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  left: 0px;
+  top: 0px;
+  background-color: #353535;
+  z-index: -1;
+  color: #aaa;
+  font-size: 50px;
+}
+
+.main-picture-background .fas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .thumbnails-holder {
@@ -233,12 +271,12 @@ div#party-size-number {
   border: solid 3px transparent;
   border-bottom: none;
   overflow: hidden;
+  position: relative;
 }
 
 .thumbnails-holder tr td:first-child {
     border-top: 0;
     border-left: 0;
-
 }
 
 .thumbnails-holder tr td:last-child {
@@ -247,7 +285,7 @@ div#party-size-number {
 
 .thumbnails-holder .single_thumbnail {
   overflow: hidden;
-  background-color: #777;
+
   width: 100%;
   height: 100%;
   position: relative;
@@ -258,12 +296,29 @@ div#party-size-number {
 .thumbnails-holder .single_thumbnail img {
   display: block;
   height: 100%;
-
+  z-index: 1;
   -webkit-transform: translate(-50%);
   -moz-tranform: translate(-50%);
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
+}
+
+.single_thumbnail_background {
+  background-color: #353535;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+}
+
+.single_thumbnail_background .fas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .thumbnails-holder .single_thumbnail:hover {

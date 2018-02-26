@@ -32,6 +32,10 @@
     const twoEmptySeats = "{{two_empty_seats}}";
     const emptySeats = "{{empty_seats}}";
     const largestEmptySeats = "{{largest_empty_seats}}";
+    const imageList = [];
+    {% for image in image_list %}
+      imageList.push("{{image.url}}");
+    {% endfor %}
 
   </script>
 
@@ -50,8 +54,13 @@
       </div>
 
       <div class="gallery-holder">
+        <div class="gallery-closer-holder">
+          <span class="gallery-closer">✖</span>
+
+        </div>
         <div class="gallery-image-holder">
           <img class="gallery-image" src="/static/pc_profile/images/pc1.jpg"/>
+
         </div>
       </div>
       <div class="gallery-background">
@@ -96,22 +105,34 @@
       <div class="pc-info-holder">
         <div class="pc-picture-holder">
           <div class="main-picture-holder">
-            <img src="/static/pc_profile/images/pc1.jpg" />
+            <div class="main-picture-background">
+              <i class="fas fa-image"></i>
+            </div>
+            <img  src="" />
           </div>
           <table class="thumbnails-holder">
             <tr>
               <td>
                 <div class="single_thumbnail">
-                  <img src="/static/pc_profile/images/pc2.jpg" />
+                  <div class="single_thumbnail_background">
+                    <i class="fas fa-image"></i>
+                  </div>
+                  <img src="" />
                 </div>
               </td>
               <td>
                 <div class="single_thumbnail">
-                  <img src="/static/pc_profile/images/pc3.jpg" />
+                  <div class="single_thumbnail_background">
+                    <i class="fas fa-image"></i>
+                  </div>
+                  <img src="" />
                 </div>
               </td>
               <td>
                 <div class="single_thumbnail">
+                  <div class="single_thumbnail_background">
+                    <i class="fas fa-image"></i>
+                  </div>
                   <img src="" />
                 </div>
               </td>

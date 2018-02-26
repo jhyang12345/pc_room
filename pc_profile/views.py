@@ -31,7 +31,6 @@ def map_view(request):
         if(image_list.count()):
             for image in image_list:
                 image_dict[profile.id].append(image.image)
-                print(image.image.url)
 
     context = {
         'supported_profiles': supported_profiles,
@@ -68,6 +67,9 @@ def report_success(request):
 
 def single_detail_view(request, id):
     profile = Profile.objects.get(id=id)
+    image_list = ProfileImage.objects.filter(profile=profile).order_by('index')
+    image_list = [x.image for x in image_list]
+    print(image_list)
     context = {
         'profile_id': profile.id,
         'pc_title': profile.pc_title.strip(),
@@ -81,6 +83,7 @@ def single_detail_view(request, id):
         "empty_seats": profile.empty_seats,
         "two_empty_seats": profile.two_empty_seats,
         "largest_empty_seats": profile.largest_empty_seats,
+        "image_list": image_list,
     }
     logger.error("Detail view called: %d", id)
     print("Detail view called!")
@@ -98,7 +101,7 @@ def get_current_grid(request, id):
         return JsonResponse({})
 
     return render(request, 'pc_profile/detail.html')
-# 
+#
 # def get_image(request, path):
 #     print(path)
 #     path = 'media/profile_images/' + path
