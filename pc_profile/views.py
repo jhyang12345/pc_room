@@ -30,7 +30,7 @@ def map_view(request):
         image_list = ProfileImage.objects.filter(profile=profile).order_by('index')
         if(image_list.count()):
             for image in image_list:
-                image_dict[profile.id].append(image.image)
+                image_dict[profile.id].append(image.image_thumbnail)
 
     context = {
         'supported_profiles': supported_profiles,
