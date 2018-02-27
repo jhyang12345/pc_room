@@ -56,6 +56,8 @@ $(document).ready(function(evt) {
       pageObject.setPartySize(10);
     }
     pageObject.setPartySize(inputValue);
+    $("#party-info-label-text").text(getPartyStateText(pageObject.getPartySize(), profileInfo));
+    $("#party-info-label-color").css("background-color", getPartyStateColor(pageObject.getPartySize(), profileInfo));
   });
 
   $("#party-size-number").keypress(function(e) {
@@ -73,9 +75,33 @@ $(document).ready(function(evt) {
   });
 
   $("#party-size-number").text(pageObject.getPartySize());
+  $("#party-info-label-text").text(getPartyStateText(pageObject.getPartySize(), profileInfo));
+  $("#party-info-label-color").css("background-color", getPartyStateColor(pageObject.getPartySize(), profileInfo));
+
+  $("#party-info-label").on("click tap", function(evt) {
+    evt.stopPropagation();
+    const curElem = evt.currentTarget;
+    const infoText = curElem.querySelector("#party-info-label-text").innerHTML.trim();
+    const content = getExplanationText(infoText);
+
+    $(".explanation-box").html(content);
+
+    $(".explanation-overlay").css("display", "block");
+    $(".explanation-box").css("display", "block");
+
+    $(".explanation-overlay").on("click tap", function(evt) {
+      $(".explanation-overlay").css("display", "none");
+      $(".explanation-box").css("display", "none");
+      Android.handleBackButton();
+    });
+
+    Android.setHandleBackButton();
+  });
 
   // will be replaced
   initializeImageList(imageList);
+
+  console.log(profileInfo);
 
 });
 

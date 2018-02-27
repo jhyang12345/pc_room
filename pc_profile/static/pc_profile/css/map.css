@@ -113,37 +113,6 @@ div#party-size-number {
   font-size: 24px;
 }
 
-.explanation-overlay {
-  z-index: 7;
-  background-color: #333;
-  opacity: 0.5;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: none;
-  top: 0px;
-}
-
-.explanation-box {
-  position: absolute;
-  z-index: 8;
-  background-color: #f8f8f8;
-  color: #888;
-  padding: 10px;
-  width: 200px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 16px;
-  letter-spacing: 0.3px;
-  border-radius: 10px;
-  display: none;
-}
-
-.explanation-box-title {
-  color: #333;
-}
-
 .info-box {
   height: 100px;
   border-radius: 10px;

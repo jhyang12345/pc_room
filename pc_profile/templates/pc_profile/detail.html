@@ -19,6 +19,22 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA416a1okFOhUwZ-6ygcUfbDx7KjHMer1I&libraries=places">
     </script>
 
+    <script type="text/javascript">
+    const pcProfileID = "{{profile_id}}";
+    const twoEmptySeats = {{two_empty_seats}};
+    const emptySeats = {{empty_seats}};
+    const largestEmptySeats = {{largest_empty_seats}};
+    const imageList = [];
+    const profileInfo = {};
+    profileInfo.largest_empty_seats = largestEmptySeats;
+    profileInfo.two_empty_seats = twoEmptySeats;
+    profileInfo.empty_seats = emptySeats;
+    {% for image in image_list %}
+    imageList.push("{{image.url}}");
+    {% endfor %}
+
+    </script>
+
     <script src="{% static "pc_profile/js/PageObject.js" %}"></script>
     <script src="{% static "pc_profile/js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "pc_profile/js/bootstrap.min.js" %}"></script>
@@ -27,17 +43,6 @@
     <script src="{% static "pc_profile/js/map_functions.js" %}"></script>
     <script src="{% static "pc_profile/js/detail.js" %}"></script>
 
-  <script type="text/javascript">
-    const pcProfileID = "{{profile_id}}";
-    const twoEmptySeats = "{{two_empty_seats}}";
-    const emptySeats = "{{empty_seats}}";
-    const largestEmptySeats = "{{largest_empty_seats}}";
-    const imageList = [];
-    {% for image in image_list %}
-      imageList.push("{{image.url}}");
-    {% endfor %}
-
-  </script>
 
   </head>
   <body>
@@ -74,7 +79,11 @@
         </div>
 
         <div id="party-info-label">
-          전부 붙어 앉을 수 있음
+          <span id="party-info-label-text-holder">
+            <span id="party-info-label-color"></span>
+            <span id="party-info-label-text"></span>
+          </span>
+          <i class="far fa-question-circle"></i>
         </div>
         <div id="party-info-holder">
           <div id="party-number-holder">
@@ -99,6 +108,12 @@
         <div id="time-holder">
           <span id="current-time"></span><i class="fas fa-sync-alt"></i>
         </div>
+      </div>
+
+      <div class="explanation-overlay">
+      </div>
+      <div class="explanation-box">
+        <span class="explanation-box-title">한명은 혼자</span> - 전체 인원이 수용 가능하지만, 적어도 한명은 떨어져 앉아야 합니다.
       </div>
 
 

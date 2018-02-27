@@ -69,7 +69,6 @@ def single_detail_view(request, id):
     profile = Profile.objects.get(id=id)
     image_list = ProfileImage.objects.filter(profile=profile).order_by('index')
     image_list = [x.image for x in image_list]
-    print(image_list)
     context = {
         'profile_id': profile.id,
         'pc_title': profile.pc_title.strip(),
@@ -93,7 +92,10 @@ def get_current_grid(request, id):
     try:
         profile = Profile.objects.get(id=id)
         data = {
-            "grid": profile.grid_shape.strip()
+            "grid": profile.grid_shape.strip(),
+            "two_empty_seats": profile.two_empty_seats,
+            "largest_empty_seats": profile.largest_empty_seats,
+            "empty_seats": profile.empty_seats,
         }
         return JsonResponse(data)
     except Exception as e:
