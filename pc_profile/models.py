@@ -93,6 +93,10 @@ class ProfileImage(models.Model):
                                            processors=[ResizeToFit(1000, 1000)],
                                            format='JPEG',
                                            options={'quality': 60}, null=True, blank=True)
+    image_thumbnail = ImageSpecField(source='image',
+                                    processors=[ResizeToFit(100, 100)],
+                                    format='JPEG',
+                                    options={'quality': 60})
 
 
     def save(self, *args, **kwargs):

@@ -216,8 +216,6 @@ function openGallery(index) {
   const imageSource = pageObject.imagesList[index];
   pageObject.imageListIndex = index;
 
-  pageObject.backButtonHandled = true;
-
   $(".gallery-holder img").attr("src", imageSource);
   $(".gallery-holder").css("display", "block");
   $(".gallery-background").css("display", "block");

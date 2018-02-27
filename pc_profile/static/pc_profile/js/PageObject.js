@@ -12,8 +12,6 @@ class PageObject {
     this.imagesList = [];
     this.imageListIndex = 0;
 
-    this.backButtonHandled = false;
-
     this.init();
 
   }
@@ -28,6 +26,7 @@ class PageObject {
     $(".navbar-open-cover").on("click tap", function(evt) {
       $('.navbar-toggler').click();
       $(this).css("display", "none");
+      Android.handleBackButton();
     });
 
     $(".navbar-toggler").on("click tap", function(evt) {
@@ -35,7 +34,9 @@ class PageObject {
         $(".navbar-open-cover").css("display", "none");
       } else {
         $(".navbar-open-cover").css("display", "block");
+        Android.setHandleBackButton();
       }
+
     });
 
   }
@@ -60,6 +61,10 @@ class PageObject {
 
     if($(".explanation-overlay").length) {
       $(".explanation-overlay").click();
+    }
+
+    if($(".navbar-open-cover").css("display") == "block") {
+      $(".navbar-open-cover").click();
     }
   }
 

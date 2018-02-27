@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
   const map = initializeMap(document.querySelector("#actual-map"));
 
-  map.setOptions({'gestureHandling': 'greedy'});
+  map.setOptions({'gestureHandling': 'greedy', 'zoom': 16});
   getLocation(map);
 
   resizeMap($(".main-map-holder"));
@@ -48,11 +48,9 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
     $(".explanation-box").html(content);
 
-    console.log("info state clicked!");
     $(".explanation-overlay").css("display", "block");
     $(".explanation-box").css("display", "block");
 
-    console.log(evt.target);
     $(".explanation-overlay").on("click tap", function(evt) {
       $(".explanation-overlay").css("display", "none");
       $(".explanation-box").css("display", "none");
