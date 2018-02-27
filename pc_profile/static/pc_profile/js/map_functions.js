@@ -127,11 +127,11 @@ function applyPartyMarkerImage(partySize) {
 }
 
 function getPartyMarkerImage(partySize, markerInfo) {
-  if(partySize < markerInfo.largest_empty_seats) {
+  if(partySize <= markerInfo.largest_empty_seats) {
     return "/static/pc_profile/images/marker_green.png";
-  } else if(partySize < markerInfo.two_empty_seats) {
+  } else if(partySize <= markerInfo.two_empty_seats) {
     return "/static/pc_profile/images/marker_blue.png";
-  } else if(partySize < markerInfo.empty_seats) {
+  } else if(partySize <= markerInfo.empty_seats) {
     return "/static/pc_profile/images/marker_orange.png";
   } else {
     return "/static/pc_profile/images/marker_red.png";
@@ -241,6 +241,9 @@ function addActualMarker(object, map, small) {
 
   google.maps.event.addListener(marker, 'click', function(marker) {
     handleInfoBoxAnimation(this);
+
+    pageObject.focusedMarkerInfo = this;
+
     const map = marker.getMap();
     map.panTo(marker.getPosition());
     if(pageObject.selectedMarker == null) {

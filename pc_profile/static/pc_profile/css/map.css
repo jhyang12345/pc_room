@@ -44,14 +44,18 @@
 #party-unit {
   position: absolute;
   height: 100%;
-  line-height: 80px;
+  /* line-height: 80px; */
   top: 0px;
   right: 0px;
   color: #cfcfcf;
 }
 
 #party-unit span {
-  vertical-align: middle;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
   font-size: 12px;
 }
 

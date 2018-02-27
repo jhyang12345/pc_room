@@ -8,6 +8,7 @@ class PageObject {
     this.map = null;
     this.locationSet = null;
     this.selectedMarker = null;
+    this.focusedMarkerInfo = null;
     this.mapMarkerDict = {};
     this.imagesList = [];
     this.imageListIndex = 0;

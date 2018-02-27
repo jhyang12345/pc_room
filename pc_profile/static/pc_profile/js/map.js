@@ -96,6 +96,13 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
     // applying new party size each time to refresh marker images
     applyPartyMarkerImage(pageObject.getPartySize());
+
+    const object = pageObject.focusedMarkerInfo;
+    const partySize = pageObject.getPartySize();
+    var visible = document.querySelector(".visible-box");
+    visible.querySelector(".info-state-text").innerHTML = getPartyStateText(partySize, object);
+    visible.querySelector(".info-state-color").style.backgroundColor = getPartyStateColor(partySize, object);
+    $(visible.querySelector(".info-marker")).attr("src", getPartyMarkerImage(partySize, object));
   });
 
   $("#party-size-number").keypress(function(e) {
