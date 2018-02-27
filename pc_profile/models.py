@@ -96,7 +96,7 @@ class ProfileImage(models.Model):
     image_thumbnail = ProcessedImageField(upload_to='profile_thumbnails/',
                                            processors=[ResizeToFit(100, 100)],
                                            format='JPEG',
-                                           options={'quality': 60}, null=True, blank=True)
+                                           options={'quality': 100}, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         # execute specially handled save only in
