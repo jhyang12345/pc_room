@@ -94,7 +94,7 @@ class ProfileImage(models.Model):
                                            format='JPEG',
                                            options={'quality': 60}, null=True, blank=True)
     image_thumbnail = ProcessedImageField(upload_to='profile_thumbnails/',
-                                           processors=[ResizeToFit(100, 100)],
+                                           processors=[ResizeToFit(200, 200)],
                                            format='JPEG',
                                            options={'quality': 100}, null=True, blank=True)
 
