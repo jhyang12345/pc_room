@@ -198,6 +198,7 @@ function getCurrentGrid(profileID, initializeCanvas) {
       console.log(data.grid);
       initializeCanvas(this, data.grid);
       console.log(data);
+
     }.bind(this)
   });
 }

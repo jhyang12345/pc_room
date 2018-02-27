@@ -16,8 +16,7 @@ $(document).ready(function(evt) {
   const refreshButton = document.querySelector("#time-holder");
   $(refreshButton).on("click tap", function(evt) {
     setTime(document.querySelector("#current-time"));
-    console.log("REFRESHED");
-    getCurrentGrid.call(mainCanvas, pcProfileID, initializeCanvas);
+    getCurrentSeating.call(mainCanvas, pcProfileID, updatePartyState);
     $("#main-canvas").css({
       "margin-left": (0) + "px",
       "margin-top": (0) + "px",
@@ -56,8 +55,8 @@ $(document).ready(function(evt) {
       pageObject.setPartySize(10);
     }
     pageObject.setPartySize(inputValue);
-    $("#party-info-label-text").text(getPartyStateText(pageObject.getPartySize(), profileInfo));
-    $("#party-info-label-color").css("background-color", getPartyStateColor(pageObject.getPartySize(), profileInfo));
+    updatePartyState(getPartyStateText(pageObject.getPartySize(), profileInfo),
+        getPartyStateColor(pageObject.getPartySize(), profileInfo));
   });
 
   $("#party-size-number").keypress(function(e) {
@@ -75,8 +74,9 @@ $(document).ready(function(evt) {
   });
 
   $("#party-size-number").text(pageObject.getPartySize());
-  $("#party-info-label-text").text(getPartyStateText(pageObject.getPartySize(), profileInfo));
-  $("#party-info-label-color").css("background-color", getPartyStateColor(pageObject.getPartySize(), profileInfo));
+  updatePartyState(getPartyStateText(pageObject.getPartySize(), profileInfo),
+      getPartyStateColor(pageObject.getPartySize(), profileInfo));
+
 
   $("#party-info-label").on("click tap", function(evt) {
     evt.stopPropagation();
@@ -210,8 +210,26 @@ function initializeDetail() {
 
   }.bind(document.querySelector("#main-canvas")));
 
+}
 
+function updatePartyState(text, color) {
+  $("#party-info-label-text").text(text);
+  $("#party-info-label-color").css("background-color", color);
+}
 
+function getCurrentSeating(profileID, updatePartyState) {
+  $.ajax({
+    url: '/current-grid/' + profileID,
+    type: 'GET',
+    success: function(data) {
+      console.log(data);
+      profileInfo.largest_empty_seats = data.largest_empty_seats;
+      profileInfo.two_empty_seats = data.two_empty_seats;
+      profileInfo.empty_seats = data.empty_seats;
+      updatePartyState(getPartyStateText(pageObject.getPartySize(), data),
+          getPartyStateColor(pageObject.getPartySize(), data));
+    }.bind(this)
+  });
 }
 
 function resizeThumbnails() {
@@ -222,15 +240,6 @@ function resizeThumbnails() {
     elem.style.height = bufferWidth + "px";
     elem.querySelector("div").style.height = bufferWidth + "px";
 		var thumbnail_cover = elem.querySelector(".thumbnail_cover");
-
-    // if(thumbnail_cover) {
-		// 		var paddingValue = window.getComputedStyle(td, null).getPropertyValue('padding-left');
-		// 		paddingValue = parseInt(paddingValue.substring(0, paddingValue.length - 2));
-    //     console.log(paddingValue);
-		// 		paddingValue *= 2;
-    //     thumbnail_cover.style.lineHeight = bufferWidth - paddingValue + "px";
-    // }
-
   });
 }
 

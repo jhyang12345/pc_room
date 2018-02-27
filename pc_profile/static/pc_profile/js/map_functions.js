@@ -114,11 +114,11 @@ function applyPartyMarkerImage(partySize) {
   for(const item of mapMarkerList) {
     const marker = pageObject.mapMarkerDict[item.profile_name];
     const markerInfo = markerInfoDict[item.profile_name];
-    if(partySize < markerInfo.largest_empty_seats) {
+    if(partySize <= markerInfo.largest_empty_seats) {
       marker.setIcon(greenMarkerImage);
-    } else if(partySize < markerInfo.two_empty_seats) {
+    } else if(partySize <= markerInfo.two_empty_seats) {
       marker.setIcon(blueMarkerImage);
-    } else if(partySize < markerInfo.empty_seats) {
+    } else if(partySize <= markerInfo.empty_seats) {
       marker.setIcon(orangeMarkerImage);
     } else {
       marker.setIcon(redMarkerImage);
@@ -139,11 +139,11 @@ function getPartyMarkerImage(partySize, markerInfo) {
 }
 
 function getPartyStateText(partySize, markerInfo) {
-  if(partySize < markerInfo.largest_empty_seats) {
+  if(partySize <= markerInfo.largest_empty_seats) {
     return "붙은 자리";
-  } else if(partySize < markerInfo.two_empty_seats) {
+  } else if(partySize <= markerInfo.two_empty_seats) {
     return "최소 둘둘";
-  } else if(partySize < markerInfo.empty_seats) {
+  } else if(partySize <= markerInfo.empty_seats) {
     return "한명은 혼자";
   } else {
     return "자리 부족";
@@ -151,11 +151,11 @@ function getPartyStateText(partySize, markerInfo) {
 }
 
 function getPartyStateColor(partySize, markerInfo) {
-  if(partySize < markerInfo.largest_empty_seats) {
+  if(partySize <= markerInfo.largest_empty_seats) {
     return "#3EC8AC";
-  } else if(partySize < markerInfo.two_empty_seats) {
+  } else if(partySize <= markerInfo.two_empty_seats) {
     return "#4472C4";
-  } else if(partySize < markerInfo.empty_seats) {
+  } else if(partySize <= markerInfo.empty_seats) {
     return "#F79F24";
   } else {
     return "#E20049";
