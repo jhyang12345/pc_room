@@ -38,9 +38,6 @@ def map_view(request):
     }
     return render(request, 'pc_profile/map.html', context)
 
-def detail_view(request):
-    return render(request, 'pc_profile/detail.html')
-
 def about_view(request):
     return render(request, 'pc_profile/about.html')
 

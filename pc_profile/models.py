@@ -5,6 +5,8 @@ from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFit
 
 # Create your models here.
+
+# Main profile model for a pc_room profile
 class Profile(models.Model):
 
     profile_name = models.CharField(max_length=200, unique=True)
@@ -32,6 +34,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.profile_name
 
+# a receiver to create an associated ProfileImageGuide after a Profile is created
 @receiver(models.signals.post_save, sender=Profile)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     print("After Profile Save!")
@@ -43,6 +46,7 @@ def execute_after_save(sender, instance, created, *args, **kwargs):
         p = ProfileImageGuide(profile_name=instance.profile_name)
         p.save()
 
+# ProfileImageGuide model to guide image recognition procedure
 class ProfileImageGuide(models.Model):
     profile_name = models.CharField(max_length=200, unique=True)
     grid_corners = models.TextField(max_length=100, default="", blank=True, null=True)
@@ -76,6 +80,7 @@ class ProfileImageGuide(models.Model):
     def __str__(self):
         return self.profile_name
 
+# Model to handle reports
 class Report(models.Model):
     report_title = models.TextField(default="빈 제목", blank=True, null=True)
     report_content = models.TextField(default="", blank=True, null=True)
@@ -85,6 +90,7 @@ class Report(models.Model):
     def __str__(self):
         return self.report_title
 
+# Image based model to handle Images of pc_rooms
 class ProfileImage(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     index = models.IntegerField(default=-1, blank=True, null=True)

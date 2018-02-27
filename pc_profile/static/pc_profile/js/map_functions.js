@@ -92,19 +92,9 @@ function initializeMap(mapHolder, small) {
 
   // Map listener may be covering marker listener
   google.maps.event.addListener(map, 'click', function(evt) {
-    console.log(evt.latLng.lat());
-    console.log(evt.latLng.lng());
+    // console.log(evt.latLng.lat());
+    // console.log(evt.latLng.lng());
   });
-
-  // setTimeout(() => {
-  //   $(window).trigger("resize");
-  //   console.log("Trigger resize");
-  //   map.setCenter({lat: 37.56058516193408, lng: 127.0388});
-  //
-  //   map.fitBounds(map.getBounds());
-  //   google.maps.event.trigger(map, 'resize');
-  //
-  // }, 1000);
 
   return map;
 
