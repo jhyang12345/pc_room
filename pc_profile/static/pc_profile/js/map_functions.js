@@ -254,7 +254,9 @@ function addActualMarker(object, map, small) {
 }
 
 function removeSelectedMarker() {
-  pageObject.selectedMarker.setMap(null);
+  if(pageObject.selectedMarker) {
+    pageObject.selectedMarker.setMap(null);
+  }
 }
 
 // retrieve geolocation

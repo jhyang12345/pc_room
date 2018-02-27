@@ -23,6 +23,16 @@ $(document).ready(function(evt) {
     });
   });
 
+  $(".pc-phone-holder a").on("click tap", function(evt) {
+    evt.preventDefault();
+    const tel = $(evt.target).attr("href");
+    console.log(tel);
+    console.log(evt.target);
+    // window.open(tel.substr(4, tel.length));
+    Android.invokeCall(tel);
+
+  });
+
   // attaching controls for party size number
   $("#up-button-holder").on("click tap", function(evt) {
     evt.preventDefault();
