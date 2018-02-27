@@ -45,7 +45,6 @@ class PageObject {
   setPartySize(partySize) {
     if(!this.storageAvailable) return;
     localStorage["party-size"] = partySize;
-    console.log("Resetting partySize");
   }
 
   getPartySize() {
