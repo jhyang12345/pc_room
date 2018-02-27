@@ -216,9 +216,13 @@ function openGallery(index) {
   const imageSource = pageObject.imagesList[index];
   pageObject.imageListIndex = index;
 
+  pageObject.backButtonHandled = true;
+
   $(".gallery-holder img").attr("src", imageSource);
   $(".gallery-holder").css("display", "block");
   $(".gallery-background").css("display", "block");
+
+  Android.setHandleBackButton();
 }
 
 // imageList is a list of image sources
@@ -228,11 +232,14 @@ function initializeImageList(imageList) {
   $(".gallery-holder").on("click tap", function(evt) {
     $(".gallery-holder").css("display", "none");
     $(".gallery-background").css("display", "none");
+    Android.handleBackButton();
   });
 
   $(".gallery-closer-holder").on("click tap", function(evt) {
+    evt.stopPropagation();
     $(".gallery-holder").css("display", "none");
     $(".gallery-background").css("display", "none");
+    Android.handleBackButton();
   });
 
   $(".gallery-image-holder img").on("click tap", function(evt) {
@@ -255,8 +262,6 @@ function initializeImageList(imageList) {
   });
   $(".single_thumbnail img").each((i, element) => {
     const index = parseInt(i);
-    console.log(index);
-    console.log(pageObject.imagesList);
     $(element).attr("src", pageObject.imagesList[index + 1]);
     $(element).on("click tap", (evt) => {
       openGallery(index + 1)

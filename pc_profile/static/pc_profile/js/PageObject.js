@@ -11,6 +11,9 @@ class PageObject {
     this.mapMarkerDict = {};
     this.imagesList = [];
     this.imageListIndex = 0;
+
+    this.backButtonHandled = false;
+
     this.init();
 
   }
@@ -48,6 +51,16 @@ class PageObject {
     if(localStorage["party-size"] > 10) return 10;
     if(localStorage["party-size"] < 1) return 1;
     return localStorage["party-size"];
+  }
+
+  closeOpenView() {
+    if($(".gallery-closer-holder").length) {
+      $(".gallery-closer-holder").click();
+    }
+
+    if($(".explanation-overlay").length) {
+      $(".explanation-overlay").click();
+    }
   }
 
 }

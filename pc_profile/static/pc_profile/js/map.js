@@ -56,8 +56,10 @@ document.addEventListener("DOMContentLoaded", function(evt) {
     $(".explanation-overlay").on("click tap", function(evt) {
       $(".explanation-overlay").css("display", "none");
       $(".explanation-box").css("display", "none");
-
+      Android.handleBackButton();
     });
+
+    Android.setHandleBackButton();
 
   });
 
