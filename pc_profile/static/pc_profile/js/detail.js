@@ -271,6 +271,7 @@ function openGallery(index) {
 // imageList is a list of image sources
 function initializeImageList(imageList) {
   pageObject.imagesList = imageList;
+  pageObject.thumbnailList = thumbnailList;
 
   $(".gallery-holder").on("click tap", function(evt) {
     $(".gallery-holder").css("display", "none");
@@ -299,13 +300,13 @@ function initializeImageList(imageList) {
   });
 
   // hard codedly assign image sources to each element
-  $(".main-picture-holder img").attr("src", imageList[0]);
+  $(".main-picture-holder img").attr("src", pageObject.thumbnailList[0]);
   $(".main-picture-holder img").on("click tap", function(evt) {
     openGallery(0);
   });
   $(".single_thumbnail img").each((i, element) => {
     const index = parseInt(i);
-    $(element).attr("src", pageObject.imagesList[index + 1]);
+    $(element).attr("src", pageObject.thumbnailList[index + 1]);
     $(element).on("click tap", (evt) => {
       openGallery(index + 1)
     });

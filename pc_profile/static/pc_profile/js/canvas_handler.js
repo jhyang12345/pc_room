@@ -195,9 +195,7 @@ function getCurrentGrid(profileID, initializeCanvas) {
     url: '/current-grid/' + profileID,
     type: 'GET',
     success: function(data) {
-      console.log(data.grid);
       initializeCanvas(this, data.grid);
-      console.log(data);
 
     }.bind(this)
   });

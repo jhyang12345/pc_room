@@ -11,6 +11,7 @@ class PageObject {
     this.focusedMarkerInfo = null;
     this.mapMarkerDict = {};
     this.imagesList = [];
+    this.thumbnailList = [];
     this.imageListIndex = 0;
 
     this.init();

@@ -64,8 +64,9 @@ def report_success(request):
 
 def single_detail_view(request, id):
     profile = Profile.objects.get(id=id)
-    image_list = ProfileImage.objects.filter(profile=profile).order_by('index')
-    image_list = [x.image for x in image_list]
+    profile_image_list = ProfileImage.objects.filter(profile=profile).order_by('index')
+    image_list = [x.image for x in profile_image_list]
+    thumbnail_list = [x.image_thumbnail for x in profile_image_list]
     context = {
         'profile_id': profile.id,
         'pc_title': profile.pc_title.strip(),
@@ -80,6 +81,7 @@ def single_detail_view(request, id):
         "two_empty_seats": profile.two_empty_seats,
         "largest_empty_seats": profile.largest_empty_seats,
         "image_list": image_list,
+        "thumbnail_list": thumbnail_list,
     }
     logger.error("Detail view called: %d", id)
     print("Detail view called!")

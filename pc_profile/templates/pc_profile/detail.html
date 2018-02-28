@@ -25,6 +25,7 @@
       const emptySeats = {{empty_seats}};
       const largestEmptySeats = {{largest_empty_seats}};
       const imageList = [];
+      const thumbnailList = [];
       const profileInfo = {};
       profileInfo.largest_empty_seats = largestEmptySeats;
       profileInfo.two_empty_seats = twoEmptySeats;
@@ -32,6 +33,9 @@
 
       {% for image in image_list %}
         imageList.push("{{image.url}}");
+      {% endfor %}
+      {% for image in thumbnail_list %}
+        thumbnailList.push("{{image.url}}")
       {% endfor %}
     </script>
 
