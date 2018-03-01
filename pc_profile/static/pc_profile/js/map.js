@@ -160,7 +160,7 @@ function handleInfoBoxAnimation(object) {
     $(hidden.querySelector(".info-thumbnail").querySelector("img")).css("opacity", 0);
     $(hidden.querySelector(".info-thumbnail").querySelector("img")).on("load", function(evt) {
       const curImage = evt.target;
-      $(curImage).fadeTo(0.3, 1.0);
+      $(curImage).fadeTo(300, 1.0);
       console.log("Loaded?");
     });
   } else {
