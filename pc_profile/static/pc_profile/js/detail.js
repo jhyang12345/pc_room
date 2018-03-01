@@ -301,12 +301,20 @@ function initializeImageList(imageList) {
 
   // hard codedly assign image sources to each element
   $(".main-picture-holder img").attr("src", pageObject.thumbnailList[0]);
+  $(".main-picture-holder img").css("opacity", 0);
+  $(".main-picture-holder img").on("load", function(evt) {
+    $(evt.target).fadeTo(0.3, 1.0);
+  });
   $(".main-picture-holder img").on("click tap", function(evt) {
     openGallery(0);
   });
   $(".single_thumbnail img").each((i, element) => {
     const index = parseInt(i);
     $(element).attr("src", pageObject.thumbnailList[index + 1]);
+    $(element).css("opacity", 0);
+    $(element).on("load", function(evt) {
+      $(evt.target).fadeTo(0.3, 1.0);
+    });
     $(element).on("click tap", (evt) => {
       openGallery(index + 1)
     });

@@ -273,6 +273,7 @@ div#party-size-number {
   transform: translate(-50%);
   margin-left: 50%;
   z-index: 2;
+  opacity: 0;
 }
 
 .main-picture-background {
@@ -336,6 +337,7 @@ div#party-size-number {
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
+  opacity: 0;
 }
 
 .single_thumbnail_background {
