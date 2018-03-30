@@ -23,12 +23,12 @@ class Profile(models.Model):
     lat = models.DecimalField(max_digits=10, decimal_places=7, default=100.00)
     lng = models.DecimalField(max_digits=10, decimal_places=7, default=100.00)
     pc_title = models.CharField(max_length=20, default="")
-    pc_subtitle = models.CharField(max_length=20, default="")
+    pc_subtitle = models.CharField(max_length=20, blank=True, default="")
     address = models.CharField(max_length=60, default="")
     phone_number = models.CharField(max_length=20, default="")
     phone_address = models.CharField(max_length=20, default="")
     pc_specs = models.CharField(max_length=100, default="")
-    owners_words = models.CharField(max_length=100, default="")
+    owners_words = models.CharField(max_length=100, blank=True, default="")
     total_seats = models.CharField(max_length=10, default="")
 
     def __str__(self):
