@@ -275,6 +275,7 @@ function getLocation(map, clickCalled) {
 
       }
       );
+
       return;
     } else {
       console.log("Failed to retrieve geolocation!");
@@ -327,6 +328,7 @@ function showError(error, clickCalled) {
     default:
       break;
   }
+  Android.requestDeviceLocation();
   const currentCenter = this.getCenter();
   const location = {lat: currentCenter.lat(), lng: currentCenter.lng()};
   addMyLocationMarker(location, this, clickCalled);
