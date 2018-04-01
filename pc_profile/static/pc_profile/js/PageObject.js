@@ -69,6 +69,11 @@ class PageObject {
     }
   }
 
+  addMyLocationFromAndroid(lat, lng) {
+    const location = {"lat": parseFloat(lat), "lng": parseFloat(lng)};
+    addMyLocationMarker(location, this.map, true);
+  }
+
 }
 
 function storageAvailable(type) {
@@ -94,6 +99,8 @@ function storageAvailable(type) {
       storage.length !== 0;
   }
 }
+
+
 
 
 

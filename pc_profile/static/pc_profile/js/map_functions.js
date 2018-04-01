@@ -67,8 +67,18 @@ const myLocationBold = {
 };
 
 function initializeMap(mapHolder, small) {
+  const location = {lat: 37.56058516193408, lng: 127.03855991363525};
+  if(!small) {
+    if(pageObject.storageAvailable) {
+      if(localStorage["lat"]) {
+        location["lat"] = parseFloat(localStorage["lat"]);
+        location["lng"] = parseFloat(localStorage["lng"]);
+      }
+    }
+  }
+
   var map = new google.maps.Map(mapHolder, {
-    center: {lat: 37.56058516193408, lng: 127.03855991363525},
+    center: location,
     zoom: 15,
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
