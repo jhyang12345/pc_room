@@ -41,6 +41,23 @@ class PageObject {
 
     });
 
+    if($(".search-bar").length > 0) {
+
+      const searchValue = getParameterByName("q");
+
+      $(".search-bar").val(searchValue);
+
+      $(".search-bar").keypress(function(evt) {
+        if(evt.which == 13) {
+          handleSearchQuery();
+        }
+      });
+
+      $(".search-icon-holder").on("click tap", function(evt) {
+        handleSearchQuery();
+      });
+    }
+
   }
 
   setPartySize(partySize) {
@@ -100,7 +117,23 @@ function storageAvailable(type) {
   }
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
+function handleSearchQuery() {
+  console.log($(".search-bar").val());
+  const queryValue = $(".search-bar").val().trim();
+  let searchPageLink = "/results/?q=" + queryValue;
+  searchPageLink = encodeURI(searchPageLink);
+  window.location.href = searchPageLink;
+}
 
 
 

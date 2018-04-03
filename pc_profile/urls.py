@@ -14,6 +14,8 @@ urlpatterns = [
   path('report_success/', views.report_success, name="report_success_page"),
   # detail page only exists with id
   path('detail/<int:id>', views.single_detail_view, name="single_detail_view"),
+  # search results page
+  path('results/', views.search_results_view, name="search_results_view"),
   # AJAX function
   path('current-grid/<int:id>', views.get_current_grid, name="get_current_grid"),
   # path('media/profile_images/<str:path>', views.get_image, name="get_image"),

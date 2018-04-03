@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils import timezone
+import urllib
 from PIL import Image
 import json
 import logging
@@ -86,6 +87,14 @@ def single_detail_view(request, id):
     logger.error("Detail view called: %d", id)
     print("Detail view called!")
     return render(request, 'pc_profile/detail.html', context)
+
+def search_results_view(request):
+    query_value = request.GET.get('q', '')
+
+    # decode uri encoded query_value
+    query_value = urllib.parse.unquote(query_value)
+
+    return render(request, 'pc_profile/results.html')
 
 def get_current_grid(request, id):
     try:

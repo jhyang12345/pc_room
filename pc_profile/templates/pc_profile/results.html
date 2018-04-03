@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>자리요</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static "pc_profile/css/reset.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/fonts.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/bootstrap.min.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/font-awesome.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/fontawesome-all.min.css" %}" type="text/css">
+
+    <link rel="stylesheet" href="{% static "pc_profile/css/main.css" %}" type="text/css" />
+
+    <script src="{% static "pc_profile/js/PageObject.js" %}"></script>
+    <script src="{% static "pc_profile/js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "pc_profile/js/bootstrap.bundle.min.js" %}"></script>
+
+    <script src="{% static "pc_profile/js/results.js" %}"></script>
+
+  </head>
+  <body>
+    {% include "pc_profile/navbar.html" %}
+
+    <div class="container-box">
+        {% include "pc_profile/search_bar.html" %}
+
+        <div class="container-content">
+
+
+        </div>
+
+    </div>
+
+
+  </body>
+
+</html>
