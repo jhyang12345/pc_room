@@ -25,6 +25,8 @@ class Profile(models.Model):
     pc_title = models.CharField(max_length=20, default="")
     pc_subtitle = models.CharField(max_length=20, blank=True, default="")
     address = models.CharField(max_length=60, default="")
+    # query string that includes all the search fields
+    query_string = models.CharField(max_length=500, default="", blank=True)
     phone_number = models.CharField(max_length=20, default="")
     phone_address = models.CharField(max_length=20, default="")
     pc_specs = models.CharField(max_length=100, default="")
@@ -33,6 +35,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.profile_name
+
+    def save(self, *args, **kwargs):
+        query_words = self.pc_title.split(' ') + self.pc_subtitle.split(' ') + self.address.split(' ')
+        self.query_string = "".join(query_words)
+        super(Profile, self).save(*args, **kwargs)
 
 # a receiver to create an associated ProfileImageGuide after a Profile is created
 @receiver(models.signals.post_save, sender=Profile)

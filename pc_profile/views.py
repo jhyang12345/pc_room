@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils import timezone
+from itertools import chain
 import urllib
 from PIL import Image
 import json
@@ -93,8 +94,35 @@ def search_results_view(request):
 
     # decode uri encoded query_value
     query_value = urllib.parse.unquote(query_value)
+    print(query_value)
 
-    return render(request, 'pc_profile/results.html')
+    query_words = query_value.split()
+
+    # handle case where there aren't any search keywords
+    if len(query_words) < 1:
+        pass
+
+    initial_query_set = Profile.objects.filter(supported=True)\
+            .filter(query_string__icontains = query_words[0])
+    for word in query_words[1:]:
+        initial_query_set = initial_query_set.filter(query_string__icontains = word)
+
+    image_dict = {}
+
+    for profile in initial_query_set:
+        print(profile)
+        image_dict[profile.id] = []
+        image_list = ProfileImage.objects.filter(profile=profile).order_by('index')
+        if(image_list.count()):
+            for image in image_list:
+                image_dict[profile.id].append(image.image_thumbnail)
+
+    context = {
+        'profile_results': initial_query_set,
+        'image_dict': image_dict,
+    }
+
+    return render(request, 'pc_profile/results.html', context)
 
 def get_current_grid(request, id):
     try:

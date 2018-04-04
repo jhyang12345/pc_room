@@ -14,6 +14,34 @@
 
     <link rel="stylesheet" href="{% static "pc_profile/css/main.css" %}" type="text/css" />
 
+    <script type="text/javascript">
+      const profileResults = [];
+      const imageDict = {};
+      let elem;
+      {% for profile in profile_results %}
+         elem = {
+          pc_title: "{{profile.pc_title}}",
+          pc_subtitle: "{{profile.pc_subtitle}}",
+          address: "{{profile.address}}",
+          empty_seats : {{profile.empty_seats}},
+          two_empty_seats : {{profile.two_empty_seats}},
+          largest_empty_seats : {{profile.largest_empty_seats}},
+          id: "{{profile.id}}",
+          lat: {{profile.lat}},
+          lng: {{profile.lng}},
+        }
+        profileResults.push(elem);
+      {% endfor %}
+      {% for profile_id, image_list in image_dict.items %}
+        imageDict["{{profile_id}}"] = [];
+        {% for image in image_list %}
+          imageDict["{{profile_id}}"].push("{{image.url}}");
+        {% endfor %}
+
+      {% endfor %}
+
+    </script>
+
     <script src="{% static "pc_profile/js/PageObject.js" %}"></script>
     <script src="{% static "pc_profile/js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "pc_profile/js/bootstrap.min.js" %}"></script>
