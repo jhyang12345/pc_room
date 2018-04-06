@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static "pc_profile/css/font-awesome/css/fontawesome-all.min.css" %}" type="text/css">
 
     <link rel="stylesheet" href="{% static "pc_profile/css/main.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "pc_profile/css/results.css" %}" type="text/css" />
 
     <script type="text/javascript">
       const profileResults = [];
@@ -42,6 +43,7 @@
 
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="{% static "pc_profile/js/PageObject.js" %}"></script>
     <script src="{% static "pc_profile/js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "pc_profile/js/bootstrap.min.js" %}"></script>
@@ -62,7 +64,22 @@
         </div>
 
     </div>
+    {% verbatim %}
+    <script id="result_template" type="template">
+      <div class="info-box" id="{{id}}">
+        <div class="info-thumbnail-background">
+          <i class="fas fa-image"></i>
+        </div>
+        <div class="info-thumbnail">
+          <img src="{{thumbnail}}" />
+        </div>
+        <span class="info-title">{{title}}</span>
+        <span class="info-address">{{address}}</span>
 
+
+      </div>
+    </script>
+    {% endverbatim %}
 
   </body>
 
